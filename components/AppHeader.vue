@@ -3,7 +3,7 @@
     v-model="drawer"
     temporary
     app
-    class="drawer"
+    class="drawer pa-6"
     width="310"
   >
     <v-toolbar-title class="title mb-10">TIPLAST</v-toolbar-title>
@@ -29,7 +29,7 @@
       <v-divider />
 
       <v-list-item
-        class="list-item mt-10 contact"
+        class="list-item mt-16 contact"
         title="Kontakt"
         @click="navigateTo('/contact')"
       />
