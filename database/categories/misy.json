@@ -1,0 +1,15 @@
+{
+    "id": 2,
+    "name": "misy",
+    "url": "misy",
+    "display_name": "misy",
+    "description": "Misy ozdobne do kwiatów, stroików. Idealne do chryzantem.",
+    "sub_description": "Dostępne różne kolory i rozmiary.",
+    "photos": [
+        {
+            "title": "Misy ozdobne do kwiatów",
+            "url": "/images/categories/misa.png",
+            "alt": "Misy ozdobne do kwiatów"
+        }
+    ]
+}

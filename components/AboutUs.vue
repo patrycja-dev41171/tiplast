@@ -1,5 +1,5 @@
 <template>
-  <div class="about-container d-flex flex-wrap pa-6 pa-md-0">
+  <div class="about-container d-flex flex-wrap pa-6 pa-md-0 mb-md-0">
     <div class="content pr-10">
       <h4>O nas</h4>
       <h3>
@@ -20,15 +20,15 @@
         jako dekoracja ogrodu i domu.
       </p>
       <v-list class="list pa-0 ma-0 mt-6">
-        <v-list-item class="list-item pa-0 ma-0">
+        <v-list-item to="/doniczki-produkcyjne" class="list-item pa-0 ma-0">
           <v-icon color="#32aa27" icon="mdi-play" class="mr-4"></v-icon>
-          Doniczki</v-list-item
+          Doniczki Produkcyjne</v-list-item
         >
-        <v-list-item class="list-item pa-0 ma-0">
+        <v-list-item to="/misy" class="list-item pa-0 ma-0">
           <v-icon color="#32aa27" icon="mdi-play" class="mr-4"></v-icon>
           Misy</v-list-item
         >
-        <v-list-item class="list-item pa-0 ma-0">
+        <v-list-item to="/misy-wiszace" class="list-item pa-0 ma-0">
           <v-icon color="#32aa27" icon="mdi-play" class="mr-4"></v-icon>
           Misy Wiszące</v-list-item
         >
@@ -40,7 +40,7 @@
       <v-img
         aspect-ratio="16/9"
         cover
-        src="https://cdn.b12.io/client_media/dUM0XxWY/7fb6ea86-e473-11ef-a260-0242ac110002-jpg-hero_image.jpeg"
+        src="/images/about-us.jpeg"
         class="img"
       ></v-img>
     </div>
@@ -53,12 +53,15 @@
 .about-container {
   max-width: 1024px;
   width: 100%;
-  margin: 80px auto;
+  margin: 20px auto;
   div {
     width: 100%;
     margin-bottom: 50px;
     @include md {
       width: 55%;
+    }
+    @include md {
+      margin: 80px auto 0;
     }
   }
   .content {
@@ -72,22 +75,22 @@
       font-size: 26px;
       line-height: 32px;
     }
+    @include md {
+      margin-left: 0;
+    }
   }
   .photo {
     width: 80%;
     display: flex;
     align-items: flex-end;
+    margin-bottom: 0;
     @include sm {
-      width: 60%;
+      width: 40%;
     }
     @include md {
-      width: 45%;
-    }
-    .img {
-      width: 50%;
-      @include md {
-        width: 90%;
-      }
+      align-items: flex-end;
+      width: 350px;
+      margin-right: 0;
     }
   }
 }

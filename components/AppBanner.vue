@@ -21,7 +21,7 @@
       rgba(0, 0, 0, 0.7),
       rgba(0, 0, 0, 0.3)
     ),
-    url("https://cdn.b12.io/client_media/dUM0XxWY/6cefe74c-e471-11ef-8fbe-0242ac110002-JPG-hero_image.jpeg");
+    url("/public/images/banner.webp");
   background-attachment: initial;
   background-size: cover;
   background-position: center;
