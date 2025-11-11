@@ -3,7 +3,13 @@
     <div class="container px-6 px-md-0">
       <h1 class="mb-3">Wysokiej jakości produkty z tworzyw sztucznych</h1>
       <h2 class="mb-4 mb-md-6">Zrównoważone materiały na każdą potrzebę</h2>
-      <v-btn size="x-large" rounded="0" color="#32aa27" class="btn px-md-10">
+      <v-btn
+        to="/produkty"
+        size="x-large"
+        rounded="0"
+        color="#32aa27"
+        class="btn px-md-10"
+      >
         Zobacz nasze produkty
       </v-btn>
     </div>
