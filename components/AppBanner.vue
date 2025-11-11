@@ -15,7 +15,7 @@
 
 .banner {
   width: 100vw;
-  height: 80vh;
+  height: 60vh;
   background-image: linear-gradient(
       0deg,
       rgba(0, 0, 0, 0.7),

@@ -1,5 +1,5 @@
 <template>
-  <div class="about-container d-flex flex-wrap pa-6 pa-md-0 mb-md-0">
+  <div id="o-nas" class="about-container d-flex flex-wrap pa-6 pa-md-0 mb-md-0">
     <div class="content pr-10">
       <h4>O nas</h4>
       <h3>
@@ -51,6 +51,7 @@
 @import "../assets/styles/variables";
 
 .about-container {
+  scroll-margin-top: 100px;
   max-width: 1024px;
   width: 100%;
   margin: 20px auto;

@@ -6,7 +6,9 @@
     class="drawer pa-6"
     width="310"
   >
-    <v-toolbar-title class="title mb-10">TIPLAST</v-toolbar-title>
+    <v-toolbar-title class="title mb-10" @click="navigateTo('/')"
+      >TIPLAST</v-toolbar-title
+    >
     <v-list class="list">
       <v-list-item
         class="list-item"
@@ -17,27 +19,29 @@
       <v-list-item
         class="list-item"
         title="O nas"
-        @click="navigateTo('/about')"
+        @click="navigateTo('/#o-nas')"
       />
       <v-divider />
 
       <v-list-item
         class="list-item"
         title="Produkty"
-        @click="navigateTo('/contact')"
+        @click="navigateTo('/produkty')"
       />
       <v-divider />
 
       <v-list-item
         class="list-item mt-16 contact"
         title="Kontakt"
-        @click="navigateTo('/contact')"
+        @click="navigateTo('/kontakt')"
       />
     </v-list>
   </v-navigation-drawer>
   <v-app-bar color="white" elevation="0" class="app-bar my-md-0 py-md-3">
     <v-container class="app-bar-container pa-6 pa-md-0">
-      <v-toolbar-title class="title">TIPLAST</v-toolbar-title>
+      <v-toolbar-title class="title" @click="navigateTo('/')"
+        >TIPLAST</v-toolbar-title
+      >
       <v-spacer></v-spacer>
       <v-app-bar-nav-icon
         :icon="drawer ? 'mdi-close' : 'mdi-menu'"
@@ -56,21 +60,21 @@
         <v-list-item
           class="list-item"
           title="O nas"
-          @click="navigateTo('/about')"
+          @click="navigateTo('/#o-nas')"
         />
         <v-divider />
 
         <v-list-item
           class="list-item"
           title="Produkty"
-          @click="navigateTo('/contact')"
+          @click="navigateTo('/produkty')"
         />
         <v-divider />
 
         <v-list-item
           class="list-item contact"
           title="Kontakt"
-          @click="navigateTo('/contact')"
+          @click="navigateTo('/kontakt')"
         />
       </v-list>
     </v-container>
@@ -102,6 +106,9 @@ const navigateTo = (path) => {
 .title {
   font-weight: 1000;
   font-size: 25px;
+  cursor: pointer;
+  z-index: 100;
+  max-width: 105px;
 }
 
 ::v-deep(.v-btn__overlay) {

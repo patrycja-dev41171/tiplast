@@ -1,3 +1,3 @@
-import blackfi14 from "./blackfi14.json";
+import fi9czarna from "./fi9czarna.json";
 
-export const products = [blackfi14];
+export const products = [fi9czarna, fi9czarna, fi9czarna, fi9czarna];
