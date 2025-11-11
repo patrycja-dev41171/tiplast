@@ -2,20 +2,18 @@ import nodemailer from "nodemailer";
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
+  const { name, email, phone, quantity, message, product, sku, link } = body;
 
-  const { name, email, phone, message } = body;
-
-  if (!name || !email || !phone || !message) {
+  if (!name || !email || !phone || !quantity || !product || !link || !sku) {
     throw createError({
       statusCode: 400,
       statusMessage: "Brak wymaganych pól.",
     });
   }
 
-  // konfiguracja maila (np. Gmail SMTP)
   const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 465,
+    host: process.env.SMTP_HOST,
+    port: Number(process.env.SMTP_PORT),
     secure: true,
     auth: {
       user: process.env.SMTP_USER,
@@ -27,13 +25,22 @@ export default defineEventHandler(async (event) => {
     await transporter.sendMail({
       from: `"tiplast.pl" <${process.env.SMTP_USER}>`,
       to: ["kontakt.tiplast@gmail.com", "tiplast@wp.pl"],
-      subject: `Nowa wiadomość od ${name}`,
+      subject: `Zapytanie o produkt: ${product}`,
       html: `
-        <h3>Nowa wiadomość z formularza kontaktowego</h3>
+        <h3>Nowe zapytanie o produkt</h3>
+        <p><strong>Produkt:</strong> ${product}</p>
+        <p><strong>SKU:</strong> ${sku}</p>
+        <p><strong>Link:</strong> ${link}</p>
+        <p><strong>Ilość sztuk:</strong> ${quantity}</p>
+        <hr>
         <p><strong>Imię i nazwisko:</strong> ${name}</p>
-        <p><strong>E-mail:</strong> ${email}</p>
+        <p><strong>Email:</strong> ${email}</p>
         <p><strong>Telefon:</strong> ${phone}</p>
-        <p><strong>Wiadomość:</strong><br>${message}</p>
+        ${
+          message
+            ? `<p><strong>Wiadomość:</strong><br>${message}</p>`
+            : "<p><em>Bez dodatkowej wiadomości.</em></p>"
+        }
       `,
     });
 
@@ -42,7 +49,7 @@ export default defineEventHandler(async (event) => {
     console.error("Błąd wysyłki e-maila:", err);
     throw createError({
       statusCode: 500,
-      statusMessage: "Nie udało się wysłać wiadomości.",
+      statusMessage: "Nie udało się wysłać zapytania.",
     });
   }
 });

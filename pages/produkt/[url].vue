@@ -77,6 +77,9 @@
           <p>Informacje o dostawie będą dostępne wkrótce.</p>
         </div>
       </div>
+      <div v-else-if="activeTab === 'buy'">
+        <ProductInquiryForm :product="product" />
+      </div>
     </div>
   </div>
 
@@ -103,8 +106,9 @@ const activePhoto = computed(() => product?.photos[activeIndex.value]);
 // zakładki
 const tabs = [
   { label: "Opis Produktu", value: "description" },
-  { label: "Dane Techniczne", value: "technical" },
+  { label: "Parametry", value: "technical" },
   { label: "Dostawa", value: "delivery" },
+  { label: "Jestem zainteresowany", value: "buy" },
 ];
 
 const activeTab = ref("description"); // domyślnie "Opis produktu"
