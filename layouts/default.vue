@@ -4,10 +4,12 @@
     <v-main class="main">
       <slot />
     </v-main>
+    <AppFooter />
   </v-app>
 </template>
 
 <script setup>
+import { AppFooter } from "#components";
 import AppHeader from "~/components/AppHeader.vue";
 </script>
 

@@ -99,9 +99,7 @@
             >
           </p>
           <p>
-            <a href="Phone:kontakt.tiplast@gmail.com"
-              >Telefon: +48 608 467 068</a
-            >
+            <a href="tel:+48608467068">Telefon: +48 608 467 068</a>
           </p>
 
           <h3>Lokalizacja</h3>
