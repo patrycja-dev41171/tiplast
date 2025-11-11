@@ -1,6 +1,6 @@
 <template>
   <div class="products-page pa-6">
-    <h2 class="title">Nasze produkty</h2>
+    <h2 class="title">Nasze produkty:</h2>
 
     <div class="products-grid">
       <NuxtLink
@@ -49,9 +49,10 @@ import { products } from "~/database/products/products";
   margin: 0 auto;
 
   .title {
+    margin-top: 30px;
     font-size: 28px;
     margin-bottom: 30px;
-    text-align: center;
+    text-align: left;
     color: #333;
   }
 
@@ -75,7 +76,8 @@ import { products } from "~/database/products/products";
 
     .product-img {
       width: 100%;
-      height: 200px;
+      height: 220px;
+      padding: 20px;
       object-fit: cover;
     }
 

@@ -1,3 +1,5 @@
 <template>
-  <div class="container"></div>
+  <div class="container">
+    <contact-section />
+  </div>
 </template>

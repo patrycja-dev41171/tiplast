@@ -18,10 +18,10 @@
   height: 60vh;
   background-image: linear-gradient(
       0deg,
-      rgba(0, 0, 0, 0.7),
+      rgba(0, 0, 0, 0.6),
       rgba(0, 0, 0, 0.3)
     ),
-    url("/public/images/banner.webp");
+    url("/public/images/banner-home.webp");
   background-attachment: initial;
   background-size: cover;
   background-position: center;
@@ -32,6 +32,12 @@
   color: white;
   @include md {
     background-attachment: fixed;
+    background-image: linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.5),
+        rgba(0, 0, 0, 0.2)
+      ),
+      url("/public/images/banner-home.webp");
   }
 }
 
@@ -53,6 +59,12 @@
   h1,
   h2 {
     letter-spacing: 0.6px;
+  }
+  h1 {
+    font-size: 25px;
+  }
+  h2 {
+    font-size: 20px;
   }
   @include md {
     h1 {

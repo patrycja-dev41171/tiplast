@@ -270,8 +270,9 @@ const activeTab = ref("description"); // domyślnie "Opis produktu"
       }
 
       &:hover {
-        background: #e9f7e9;
-        color: #32aa27;
+        background: #32aa27;
+        color: #fff;
+        border-color: #32aa27;
       }
     }
   }
