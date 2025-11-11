@@ -20,15 +20,15 @@
         jako dekoracja ogrodu i domu.
       </p>
       <v-list class="list pa-0 ma-0 mt-6">
-        <v-list-item to="/doniczki-produkcyjne" class="list-item pa-0 ma-0">
+        <v-list-item to="/produkty" class="list-item pa-0 ma-0">
           <v-icon color="#32aa27" icon="mdi-play" class="mr-4"></v-icon>
           Doniczki Produkcyjne</v-list-item
         >
-        <v-list-item to="/misy" class="list-item pa-0 ma-0">
+        <v-list-item to="/produkty" class="list-item pa-0 ma-0">
           <v-icon color="#32aa27" icon="mdi-play" class="mr-4"></v-icon>
           Misy</v-list-item
         >
-        <v-list-item to="/misy-wiszace" class="list-item pa-0 ma-0">
+        <v-list-item to="/produkty" class="list-item pa-0 ma-0">
           <v-icon color="#32aa27" icon="mdi-play" class="mr-4"></v-icon>
           Misy Wiszące</v-list-item
         >
