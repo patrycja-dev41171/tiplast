@@ -1,6 +1,6 @@
 {
-  "sku": "004",
-  "url": "duza-misa-doniczka-fi-25-biala",
+  "sku": "005",
+  "url": "duza-misa-doniczka-fi-25-terakota",
   "hidden": false,
   "display_name": "Duża misa do kwiatów, chryzantem fi 25 cm",
   "category": ["misa"],
@@ -8,17 +8,25 @@
   "sub_description": "",
   "photos": [
     {
-      "url": "/images/misa25biala/misa-biala-25.webp",
-      "alt": "Duża misa do kwiatów, chryzantem fi 25 cm - BIAŁA"
+      "url": "/images/misa25terakota/misa-terakota-25.png",
+      "alt": "Duża misa do kwiatów, chryzantem fi 25 cm - TERAKOTA"
     },
     {
-      "url": "/images/misa25biala/misa-biala-25-1.webp",
-      "alt": "Duża misa do kwiatów, chryzantem fi 25 cm - BIAŁA"
+      "url": "/images/misa25terakota/misa-terakota-25-1.png",
+      "alt": "Duża misa do kwiatów, chryzantem fi 25 cm - TERAKOTA"
+    },
+     {
+      "url": "/images/misa25terakota/misa-terakota-25-2.png",
+      "alt": "Duża misa do kwiatów, chryzantem fi 25 cm - TERAKOTA"
+    },
+     {
+      "url": "/images/misa25terakota/misa-terakota-25-3.png",
+      "alt": "Duża misa do kwiatów, chryzantem fi 25 cm - TERAKOTA"
     }
   ],
   "prices": {
     "pln": {
-      "base_price": "1,35",
+      "base_price": "1,40",
       "curency": "pln",
       "symbol": "zł"
     }
@@ -27,7 +35,7 @@
     { "name": "stan", "value": "nowy" },
     {
       "name": "kolor",
-      "value": "biały"
+      "value": "terakota / brąz"
     },
     {
       "name": "średnica (góra)",
@@ -50,7 +58,7 @@
       "value": "4 l"
     }
   ],
-  "color": "#fff",
-  "delivery_description": "<div><p>Polecamy odbiór osobisty po wcześniejszym umówieniu.<br/>Możliwość wysyłki kurierem (Inpost). Płatność kartą lub gotówką przy odbiorze.</p><p>Maksymalna ilość sztuk w jednej paczce to 220. Koszt wysyłki to 30 zł.</p><p>Realizujemy większe i mniejsze zamówienia. Zachęcamy do kontaktu!</p> <p>**Większe zamówienia rozpatrywane są indywidualnie.</p></div>",
-  "olx": "https://www.olx.pl/d/oferta/chryzantemy-duza-misa-na-kwiaty-CID628-ID17Y3gN.html?isPreviewActive=0&reason=seller_listing&sliderIndex=0"
+  "color": "#8D4637",
+  "delivery_description": "<div><p>Polecamy odbiór osobisty po wcześniejszym umówieniu.<br/><br/>Możliwość wysyłki kurierem (Inpost). Płatność kartą lub gotówką przy odbiorze.</p><p>Maksymalna ilość sztuk w jednej paczce to 220. Koszt wysyłki to 30 zł.</p><br/><p>Realizujemy większe i mniejsze zamówienia. Zachęcamy do kontaktu!</p><br/><p>**Większe zamówienia rozpatrywane są indywidualnie.</p></div>",
+  "olx": "https://www.olx.pl/d/oferta/miski-na-chryzantemy-fi-23-cm-doniczki-CID628-IDdi4Yt.html?isPreviewActive=0&sliderIndex=3"
 }
