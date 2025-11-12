@@ -2,9 +2,9 @@
   "sku": "001",
   "url": "czarna-doniczka-produkcyjna-fi-9",
   "hidden": false,
-  "display_name": "Doniczka produkcyjna fi 9 cm - NOWA / CZARNA",
+  "display_name": "Doniczki produkcyjne fi 9 cm - NOWE / TWARDE",
   "category": ["doniczki"],
-  "description": "<div><h2><strong>Doniczki produkcyjne fi 9 cm!</strong></h2><h3><strong>Produkt nowy!</strong></h3><p> Doniczki idealnie nadaje się do rozsady kwiatów, warzyw, owoców, ziół.<br />Na wiosnę przydadzą się w każdym gospodarstwie!</p><p>Doniczka posiada otwory na odpływ wody. Jest wytrzymała (twarda), nie traci koloru i może być wkopywana w ziemię. Sprawdzi się do umieszczenia w ozdobnej osłonce (doniczce).</p></div>",
+  "description": "<div><h2><strong>Doniczki produkcyjne fi 9 cm!</strong></h2><h3><strong>Produkt nowy!</strong></h3><p>Doniczki idealnie nadaje się do rozsady kwiatów, warzyw, owoców, ziół.<br/>Na wiosnę przydadzą się w każdym gospodarstwie!</p><p>Doniczka posiada otwory na odpływ wody. Jest wytrzymała (twarda, sztywna), nie traci koloru i może być wkopywana w ziemię. Sprawdzi się do umieszczenia w ozdobnej osłonce (doniczce).</p></div>",
   "sub_description": "",
   "photos": [
     {
@@ -26,7 +26,7 @@
   ],
   "prices": {
     "pln": {
-      "base_price": "0,09",
+      "base_price": "0,17",
       "curency": "pln",
       "symbol": "zł"
     }
@@ -38,22 +38,19 @@
       "value": "czarny"
     },
     {
-      "name": "waga",
-      "value": "0.2 kg"
-    },
-    {
       "name": "średnica (góra)",
-      "value": "10 cm"
+      "value": "9 cm"
     },
     {
       "name": "średnica (dno)",
-      "value": "7,5 cm"
+      "value": "7 cm"
     },
     {
       "name": "wysokość doniczki",
-      "value": "8 cm"
+      "value": "6,5 cm"
     }
   ],
   "color": "#000",
-  "delivery_description": ""
+  "delivery_description": "<div><p>Polecamy odbiór osobisty po wcześniejszym umówieniu.<br/>Możliwość wysyłki kurierem (Inpost). Płatność kartą lub gotówką przy odbiorze.<br/>Maksymalna ilość sztuk w jednej paczce to 1880 sztuk. Koszt wysyłki to 32 zł.</p><p>Realizujemy większe i mniejsze zamówienia. Zachęcamy do kontaktu!</p></div>",
+  "olx": "https://www.olx.pl/d/oferta/doniczki-produkcyjne-fi-9-cm-nowe-twarde-CID628-IDklj24.html"
 }

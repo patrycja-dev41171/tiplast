@@ -147,11 +147,13 @@ const activeTab = ref("description"); // domyślnie "Opis produktu"
     .main-photo {
       width: 100%;
       max-height: 400px !important;
+      height: 400px;
       object-fit: cover;
       padding: 0 40px;
       border: 1px solid #e0e0e0;
       @include md {
         max-height: 500px !important;
+        height: 500px;
       }
     }
 

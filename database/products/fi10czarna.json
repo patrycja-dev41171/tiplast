@@ -1,0 +1,56 @@
+{
+  "sku": "002",
+  "url": "czarna-doniczka-produkcyjna-fi-10",
+  "hidden": false,
+  "display_name": "Doniczki produkcyjne fi 10 cm - NOWE / TWARDE",
+  "category": ["doniczki"],
+  "description": "<div><h2><strong>Doniczki produkcyjne fi 10 cm!</strong></h2><h3><strong>Produkt nowy!</strong></h3><p>Doniczki idealnie nadaje się do rozsady kwiatów, warzyw, owoców, ziół.<br/>Na wiosnę przydadzą się w każdym gospodarstwie!</p><p>Doniczka posiada otwory na odpływ wody. Jest wytrzymała (twarda, sztywna), nie traci koloru i może być wkopywana w ziemię. Sprawdzi się do umieszczenia w ozdobnej osłonce (doniczce).</p></div>",
+  "sub_description": "",
+  "photos": [
+    {
+      "url": "/images/fi-10-czarna/doniczka-fi-10-czarna.webp",
+      "alt": "Doniczka produkcyjna fi 10 cm - NOWA / TWARDA"
+    },
+    {
+      "url": "/images/fi-10-czarna/doniczka-fi-10-czarna-1.webp",
+      "alt": "Doniczka produkcyjna fi 10 cm - NOWA / TWARDA"
+    },
+    {
+      "url": "/images/fi-10-czarna/doniczka-fi-10-czarna-2.webp",
+      "alt": "Doniczka produkcyjna fi 10 cm - NOWA / TWARDA"
+    },
+    {
+      "url": "/images/fi-10-czarna/doniczka-fi-10-czarna-3.webp",
+      "alt": "Doniczka produkcyjna fi 10 cm - NOWA / TWARDA"
+    }
+  ],
+  "prices": {
+    "pln": {
+      "base_price": "0,19",
+      "curency": "pln",
+      "symbol": "zł"
+    }
+  },
+  "technical_details": [
+    { "name": "stan", "value": "nowy" },
+    {
+      "name": "kolor",
+      "value": "czarny"
+    },
+    {
+      "name": "średnica (góra)",
+      "value": "10 cm"
+    },
+    {
+      "name": "średnica (dno)",
+      "value": "7,5 cm"
+    },
+    {
+      "name": "wysokość doniczki",
+      "value": "8 cm"
+    }
+  ],
+  "color": "#000",
+  "delivery_description": "<div><p>Polecamy odbiór osobisty po wcześniejszym umówieniu.<br/>Możliwość wysyłki kurierem (Inpost). Płatność kartą lub gotówką przy odbiorze.<br/>Maksymalna ilość sztuk w jednej paczce to 1500. Koszt wysyłki to 30 zł.</p><p>Realizujemy większe i mniejsze zamówienia. Zachęcamy do kontaktu!</p></div>",
+  "olx": "https://www.olx.pl/d/oferta/doniczki-produkcyjne-fi-10-cm-nowe-twarde-CID628-IDdi4xP.html?reason=seller_listing"
+}

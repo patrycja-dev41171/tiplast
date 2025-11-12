@@ -1,0 +1,60 @@
+{
+  "sku": "003",
+  "url": "czarna-doniczka-produkcyjna-fi-12",
+  "hidden": false,
+  "display_name": "Doniczki produkcyjne fi 12 cm - NOWE / TWARDE",
+  "category": ["doniczki"],
+  "description": "<div><h2><strong>Doniczki produkcyjne fi 12 cm!</strong></h2><h3><strong>Produkt nowy!</strong></h3><p>Doniczki idealnie nadaje się do rozsady kwiatów, warzyw, owoców, ziół.<br/>Na wiosnę przydadzą się w każdym gospodarstwie!</p><p>Doniczka posiada otwory na odpływ wody. Jest wytrzymała (twarda, sztywna), nie traci koloru i może być wkopywana w ziemię. Sprawdzi się do umieszczenia w ozdobnej osłonce (doniczce).</p></div>",
+  "sub_description": "",
+  "photos": [
+    {
+      "url": "/images/fi-12-czarna/doniczka-fi-12-czarna.webp",
+      "alt": "Doniczka produkcyjna fi 12 cm - NOWA / TWARDA"
+    },
+    {
+      "url": "/images/fi-12-czarna/doniczka-fi-12-czarna-1.webp",
+      "alt": "Doniczka produkcyjna fi 12 cm - NOWA / TWARDA"
+    },
+    {
+      "url": "/images/fi-12-czarna/doniczka-fi-12-czarna-2.webp",
+      "alt": "Doniczka produkcyjna fi 12 cm - NOWA / TWARDA"
+    },
+    {
+      "url": "/images/fi-12-czarna/doniczka-fi-12-czarna-3.webp",
+      "alt": "Doniczka produkcyjna fi 12 cm - NOWA / TWARDA"
+    }
+  ],
+  "prices": {
+    "pln": {
+      "base_price": "0,25",
+      "curency": "pln",
+      "symbol": "zł"
+    }
+  },
+  "technical_details": [
+    { "name": "stan", "value": "nowy" },
+    {
+      "name": "kolor",
+      "value": "czarny"
+    },
+    {
+      "name": "średnica (góra)",
+      "value": "12 cm"
+    },
+    {
+      "name": "średnica (dno)",
+      "value": "8,5 cm"
+    },
+    {
+      "name": "wysokość doniczki",
+      "value": "9 cm"
+    },
+    {
+      "name": "Pojemność",
+      "value": "0,7 l"
+    }
+  ],
+  "color": "#000",
+  "delivery_description": "<div><p>Polecamy odbiór osobisty po wcześniejszym umówieniu.<br/>Możliwość wysyłki kurierem (Inpost). Płatność kartą lub gotówką przy odbiorze.<br/>Maksymalna ilość sztuk w jednej paczce to 860. Koszt wysyłki to 30 zł.</p><p>Realizujemy większe i mniejsze zamówienia. Zachęcamy do kontaktu!</p></div>",
+  "olx": "https://www.olx.pl/d/oferta/doniczki-produkcyjne-fi-12-cm-nowe-twarde-CID628-IDvCL8q.html?reason=seller_listing"
+}

@@ -1,0 +1,56 @@
+{
+  "sku": "004",
+  "url": "duza-misa-doniczka-fi-25-biala",
+  "hidden": false,
+  "display_name": "Duża misa do kwiatów, chryzantem fi 25 cm",
+  "category": ["misa"],
+  "description": "<div><h2><strong>Miski na chryzantemy fi 25 cm - doniczki!</strong></h2><h3><strong>Produkt nowy!</strong></h3><p>Doniczka/misa idealnie nadaje się do sadzenia popularnych kwiatów (pelargonie, begonie, lobelie, petunie, bratki i inne) oraz owoców (truskawki, poziomki i inne).<br/>Producent sczególnie poleca misę do chryzantem trój-kolorowych!<br/>Doniczka może być ozdobą podwórka, balkonu lub mieszkania!</p><br/><p>Misa posiada otwory na odpływ wody. Jest wytrzymała, nie traci koloru i może być wkopywana w ziemię.</p></div>",
+  "sub_description": "",
+  "photos": [
+    {
+      "url": "/images/misa25biala/misa-biala-25.webp",
+      "alt": "Duża misa do kwiatów, chryzantem fi 25 cm - BIAŁA"
+    },
+    {
+      "url": "/images/misa25biala/misa-biala-25-1.webp",
+      "alt": "Duża misa do kwiatów, chryzantem fi 25 cm - BIAŁA"
+    }
+  ],
+  "prices": {
+    "pln": {
+      "base_price": "1,35",
+      "curency": "pln",
+      "symbol": "zł"
+    }
+  },
+  "technical_details": [
+    { "name": "stan", "value": "nowy" },
+    {
+      "name": "kolor",
+      "value": "biały"
+    },
+    {
+      "name": "średnica (góra)",
+      "value": "25 cm"
+    },
+    {
+      "name": "średnica (góra - wewnątrz)",
+      "value": "23 cm"
+    },
+    {
+      "name": "średnica (dno)",
+      "value": "18 cm"
+    },
+    {
+      "name": "wysokość doniczki",
+      "value": "13,5 cm"
+    },
+    {
+      "name": "Pojemność",
+      "value": "4 l"
+    }
+  ],
+  "color": "#fff",
+  "delivery_description": "<div><p>Polecamy odbiór osobisty po wcześniejszym umówieniu.<br/>Możliwość wysyłki kurierem (Inpost). Płatność kartą lub gotówką przy odbiorze.</p><p>Realizujemy większe i mniejsze zamówienia. Zachęcamy do kontaktu!</p></div>",
+  "olx": "https://www.olx.pl/d/oferta/chryzantemy-duza-misa-na-kwiaty-CID628-ID17Y3gN.html?isPreviewActive=0&reason=seller_listing&sliderIndex=0"
+}
