@@ -37,8 +37,18 @@
 </template>
 
 <script setup>
-import { NuxtLink } from "#components";
-import { products } from "~/database/products/products";
+const { $supabase } = useNuxtApp();
+const products = ref([]);
+
+onMounted(async () => {
+  const { data, error } = await $supabase
+    .from("products")
+    .select("*")
+    .eq("hidden", false);
+
+  if (error) console.error(error);
+  else products.value = data;
+});
 </script>
 
 <style scoped lang="scss">
@@ -77,7 +87,7 @@ import { products } from "~/database/products/products";
     .product-img {
       width: 100%;
       height: 220px;
-      padding: 20px;
+      padding: 0px;
       object-fit: cover;
     }
 

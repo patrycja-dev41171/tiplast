@@ -89,21 +89,36 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
 import { useRoute } from "vue-router";
-import { products } from "~/database/products/products";
+const { $supabase } = useNuxtApp();
 
 const route = useRoute();
 const url = route.params.url;
 
-// znajdź produkt po URL
-const product = products.find((p) => p.url === url);
+const product = ref(null);
 
-// galeria
+// 🔥 1. Pobieranie produktu z Supabase po URL
+onMounted(async () => {
+  const { data, error } = await $supabase
+    .from("products")
+    .select("*")
+    .eq("url", url)
+    .single();
+
+  if (error) {
+    console.error(error);
+    return;
+  }
+
+  product.value = data;
+});
+
+// 🔥 2. Galeria
 const activeIndex = ref(0);
-const activePhoto = computed(() => product?.photos[activeIndex.value]);
+const activePhoto = computed(() => product.value?.photos?.[activeIndex.value]);
 
-// zakładki
+// 🔥 3. Zakładki
 const tabs = [
   { label: "Opis Produktu", value: "description" },
   { label: "Parametry", value: "technical" },
@@ -111,7 +126,7 @@ const tabs = [
   { label: "Jestem zainteresowany", value: "buy" },
 ];
 
-const activeTab = ref("description"); // domyślnie "Opis produktu"
+const activeTab = ref("description");
 </script>
 
 <style scoped lang="scss">
@@ -149,7 +164,6 @@ const activeTab = ref("description"); // domyślnie "Opis produktu"
       max-height: 400px !important;
       height: 400px;
       object-fit: cover;
-      padding: 0 40px;
       border: 1px solid #e0e0e0;
       @include md {
         max-height: 500px !important;
