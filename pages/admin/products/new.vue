@@ -1,0 +1,330 @@
+<script setup>
+import draggable from "vuedraggable";
+
+definePageMeta({
+  middleware: "admin-client",
+});
+
+const { $supabase } = useNuxtApp();
+const router = useRouter();
+
+const saving = ref(false);
+
+// 🔹 1. PUSTY PRODUKT STARTOWY
+const product = ref({
+  sku: "",
+  display_name: "",
+  url: "",
+  categories: [],
+  color: "#000000",
+  description: "",
+  delivery_description: "",
+  hidden: false,
+
+  prices: {
+    pln: {
+      base_price: "",
+      currency: "pln",
+      symbol: "zł",
+    },
+  },
+
+  technical_details: [{ name: "", value: "" }],
+  photos: [],
+});
+
+// 🔹 2. Upload zdjęć (identyczny jak w edycji)
+const uploadPhotos = async (event) => {
+  const files = event.target.files;
+  if (!files.length) return;
+
+  if (!product.value.sku) {
+    alert("Najpierw wpisz SKU – zdjęcia muszą mieć folder!");
+    return;
+  }
+
+  const folder = product.value.sku;
+
+  for (const file of files) {
+    const filename = `${Date.now()}-${file.name}`;
+
+    const { data, error } = await $supabase.storage
+      .from("products")
+      .upload(`${folder}/${filename}`, file);
+
+    if (error) {
+      console.error("Upload error:", error);
+      continue;
+    }
+
+    const publicUrl = $supabase.storage
+      .from("products")
+      .getPublicUrl(`${folder}/${filename}`).data.publicUrl;
+
+    product.value.photos.push({
+      url: publicUrl,
+      alt: product.value.display_name,
+    });
+  }
+
+  event.target.value = "";
+};
+
+// 🔹 3. Usuwanie zdjęcia
+const removePhoto = (i) => {
+  product.value.photos.splice(i, 1);
+};
+
+// 🔹 4. Zapis nowego produktu (INSERT)
+const saveProduct = async () => {
+  saving.value = true;
+
+  // automatyczny URL
+  if (!product.value.url) {
+    product.value.url = product.value.display_name
+      .toLowerCase()
+      .replaceAll(" ", "-")
+      .replace(/[^\w-]+/g, "");
+  }
+
+  const payload = {
+    ...product.value,
+    categories:
+      typeof product.value.categories === "string"
+        ? product.value.categories.split(",").map((c) => c.trim())
+        : product.value.categories,
+  };
+
+  const { error } = await $supabase.from("products").insert(payload);
+
+  saving.value = false;
+
+  if (error) {
+    console.error(error);
+    alert("Błąd podczas zapisu ❌");
+  } else {
+    alert("Produkt dodany 🎉");
+    router.push("/admin/products");
+  }
+};
+</script>
+
+<template>
+  <div class="admin-edit">
+    <NuxtLink to="/admin/products" class="back-link">← Powrót</NuxtLink>
+
+    <h1>Dodaj nowy produkt</h1>
+
+    <div class="form">
+      <!-- 🎯 SEKCJA 1 -->
+      <section>
+        <h2>Podstawowe informacje</h2>
+
+        <label>SKU</label>
+        <input v-model="product.sku" />
+
+        <label>Nazwa</label>
+        <input v-model="product.display_name" />
+
+        <label>URL (opcjonalnie)</label>
+        <input v-model="product.url" />
+
+        <label>Kategorie (oddzielone przecinkami)</label>
+        <input
+          v-model="product.categories"
+          @input="
+            product.categories = $event.target.value
+              .split(',')
+              .map((c) => c.trim())
+          "
+        />
+
+        <label>Kolor (HEX)</label>
+        <input v-model="product.color" type="color" />
+
+        <label>Opis (HTML)</label>
+        <textarea v-model="product.description"></textarea>
+
+        <label>Opis dostawy (HTML)</label>
+        <textarea v-model="product.delivery_description"></textarea>
+
+        <label>Ukryty produkt?</label>
+        <input type="checkbox" v-model="product.hidden" />
+      </section>
+
+      <!-- 🎯 SEKCJA 2 -->
+      <section>
+        <h2>Ceny</h2>
+
+        <label>Cena PLN</label>
+        <input v-model="product.prices.pln.base_price" />
+      </section>
+
+      <!-- 🎯 SEKCJA 3 -->
+      <section>
+        <h2>Parametry techniczne</h2>
+
+        <div
+          v-for="(row, idx) in product.technical_details"
+          :key="idx"
+          class="row"
+        >
+          <input v-model="row.name" placeholder="Nazwa" />
+          <input v-model="row.value" placeholder="Wartość" />
+          <button @click="product.technical_details.splice(idx, 1)">🗑</button>
+        </div>
+
+        <button
+          class="small-btn"
+          @click="product.technical_details.push({ name: '', value: '' })"
+        >
+          ➕ Dodaj parametr
+        </button>
+      </section>
+
+      <!-- 🎯 SEKCJA 4 -->
+      <section>
+        <h2>Zdjęcia</h2>
+
+        <draggable
+          v-model="product.photos"
+          item-key="url"
+          class="photos-grid"
+          ghost-class="drag-ghost"
+          animation="200"
+        >
+          <template #item="{ element, index }">
+            <div class="photo-box">
+              <img :src="element.url" class="photo-img" />
+              <button class="delete-btn" @click="removePhoto(index)">
+                Usuń
+              </button>
+            </div>
+          </template>
+        </draggable>
+
+        <input type="file" multiple @change="uploadPhotos" />
+      </section>
+
+      <!-- 🎯 SEKCJA 5 -->
+      <section>
+        <button class="save-btn" @click="saveProduct" :disabled="saving">
+          💾 Zapisz produkt
+        </button>
+      </section>
+    </div>
+  </div>
+</template>
+
+<style scoped>
+.admin-edit {
+  padding: 30px;
+  max-width: 800px;
+  margin: auto;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 20px;
+  color: #2563eb;
+}
+
+h1 {
+  font-size: 28px;
+  margin-bottom: 25px;
+}
+
+section {
+  margin-bottom: 40px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid #e5e5e5;
+}
+
+h2 {
+  font-size: 20px;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+label {
+  display: block;
+  margin-top: 12px;
+  font-weight: 500;
+}
+
+input,
+textarea {
+  width: 100%;
+  margin-top: 6px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+}
+
+textarea {
+  min-height: 120px;
+}
+
+.row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.row input {
+  flex: 1;
+}
+
+.small-btn {
+  margin-top: 5px;
+  background: #e5e7eb;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  border: none;
+}
+
+.photos-grid {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.photo-box {
+  width: 140px;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  text-align: center;
+  background: white;
+}
+
+.photo-img {
+  width: 100%;
+  border-radius: 8px;
+}
+
+.delete-btn {
+  margin-top: 8px;
+  background: #ffecec;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #c0392b;
+}
+
+.save-btn {
+  background: #2563eb;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
+  border: none;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.drag-ghost {
+  opacity: 0.4;
+}
+</style>

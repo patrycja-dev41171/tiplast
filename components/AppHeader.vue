@@ -1,42 +1,44 @@
 <template>
-  <v-navigation-drawer
-    v-model="drawer"
-    temporary
-    app
-    class="drawer pa-6"
-    width="310"
-  >
-    <v-toolbar-title class="title mb-10" @click="navigateTo('/')"
-      >TIPLAST</v-toolbar-title
+  <ClientOnly>
+    <v-navigation-drawer
+      v-model="drawer"
+      temporary
+      app
+      class="drawer pa-6"
+      width="310"
     >
-    <v-list class="list">
-      <v-list-item
-        class="list-item"
-        title="Strona główna"
-        @click="navigateTo('/')"
-      />
-      <v-divider />
-      <v-list-item
-        class="list-item"
-        title="O nas"
-        @click="navigateTo('/#o-nas')"
-      />
-      <v-divider />
+      <v-toolbar-title class="title mb-10" @click="navigateTo('/')"
+        >TIPLAST</v-toolbar-title
+      >
+      <v-list class="list">
+        <v-list-item
+          class="list-item"
+          title="Strona główna"
+          @click="navigateTo('/')"
+        />
+        <v-divider />
+        <v-list-item
+          class="list-item"
+          title="O nas"
+          @click="navigateTo('/#o-nas')"
+        />
+        <v-divider />
 
-      <v-list-item
-        class="list-item"
-        title="Produkty"
-        @click="navigateTo('/produkty')"
-      />
-      <v-divider />
+        <v-list-item
+          class="list-item"
+          title="Produkty"
+          @click="navigateTo('/produkty')"
+        />
+        <v-divider />
 
-      <v-list-item
-        class="list-item mt-16 contact"
-        title="Kontakt"
-        @click="navigateTo('/kontakt')"
-      />
-    </v-list>
-  </v-navigation-drawer>
+        <v-list-item
+          class="list-item mt-16 contact"
+          title="Kontakt"
+          @click="navigateTo('/kontakt')"
+        />
+      </v-list>
+    </v-navigation-drawer>
+  </ClientOnly>
   <v-app-bar color="white" elevation="0" class="app-bar my-md-0 py-md-3">
     <v-container class="app-bar-container pa-6 pa-md-0">
       <v-toolbar-title class="title" @click="navigateTo('/')"

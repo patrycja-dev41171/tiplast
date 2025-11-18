@@ -40,7 +40,7 @@
       <v-img
         aspect-ratio="16/9"
         cover
-        src="/images/about-us.jpeg"
+        src="/images/about.webp"
         class="img"
       ></v-img>
     </div>
@@ -82,15 +82,17 @@
   }
   .photo {
     width: 80%;
+    height: auto;
+    max-height: 640px;
     display: flex;
     align-items: flex-end;
     margin-bottom: 0;
     @include sm {
-      width: 40%;
+      width: 50%;
     }
     @include md {
       align-items: flex-end;
-      width: 350px;
+      width: 400px;
       margin-right: 0;
     }
   }

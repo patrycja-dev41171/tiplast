@@ -6,7 +6,14 @@
   "category": ["doniczki"],
   "description": "<div><h2><strong>Doniczki produkcyjne fi 9 cm!</strong></h2><h3><strong>Produkt nowy!</strong></h3><p>Doniczki idealnie nadaje się do rozsady kwiatów, warzyw, owoców, ziół.<br/>Na wiosnę przydadzą się w każdym gospodarstwie!</p><p>Doniczka posiada otwory na odpływ wody. Jest wytrzymała (twarda, sztywna), nie traci koloru i może być wkopywana w ziemię. Sprawdzi się do umieszczenia w ozdobnej osłonce (doniczce).</p></div>",
   "sub_description": "",
-  "photos": [
+  "photos": [{
+      "url": "/images/fi-9-czarna/xxx.png",
+      "alt": "Doniczka produkcyjna fi 9 cm - NOWA / TWARDA"
+    },
+    {
+      "url": "/images/fi-9-czarna/5.jpg",
+      "alt": "Doniczka produkcyjna fi 9 cm - NOWA / TWARDA"
+    },
     {
       "url": "/images/fi-9-czarna/doniczka-fi-9-czarna.webp",
       "alt": "Doniczka produkcyjna fi 9 cm - NOWA / TWARDA"
