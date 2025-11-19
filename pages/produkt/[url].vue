@@ -1,5 +1,7 @@
 <template>
-  <div v-if="product" class="product-page pa-6">
+  <div v-if="loading" class="not-found">Ładowanie produktu...</div>
+
+  <div v-else-if="product" class="product-page pa-6">
     <div class="product-header">
       <!-- Galeria -->
       <div class="gallery">
@@ -84,7 +86,7 @@
   </div>
 
   <div v-else class="not-found">
-    <h2>Nie znaleziono produktu 😢</h2>
+    <h2>Nie znaleziono produktu</h2>
   </div>
 </template>
 
@@ -97,6 +99,7 @@ const route = useRoute();
 const url = route.params.url;
 
 const product = ref(null);
+const loading = ref(true);
 
 // 🔥 1. Pobieranie produktu z Supabase po URL
 onMounted(async () => {
@@ -106,12 +109,11 @@ onMounted(async () => {
     .eq("url", url)
     .single();
 
-  if (error) {
-    console.error(error);
-    return;
+  if (!error) {
+    product.value = data;
   }
 
-  product.value = data;
+  loading.value = false;
 });
 
 // 🔥 2. Galeria

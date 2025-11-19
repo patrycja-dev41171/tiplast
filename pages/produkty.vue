@@ -44,7 +44,7 @@ onMounted(async () => {
     .eq("hidden", false);
 
   if (error) console.error(error);
-  else products.value = data;
+  else products.value = data.sort((a, b) => a.sku.localeCompare(b.sku));
 });
 </script>
 
