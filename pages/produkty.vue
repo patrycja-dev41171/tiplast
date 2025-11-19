@@ -26,9 +26,6 @@
               class="color-dot"
               :style="{ backgroundColor: product.color }"
             ></span>
-            <span class="color-name">{{
-              product.technical_details.find((e) => e.name === "kolor").value
-            }}</span>
           </div>
         </div>
       </NuxtLink>
