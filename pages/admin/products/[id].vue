@@ -31,6 +31,16 @@ const saveProduct = async () => {
   const { error } = await $supabase
     .from("products")
     .update({
+      sku: product.value.sku,
+      display_name: product.value.display_name,
+      url: product.value.url,
+      categories: product.value.categories,
+      color: product.value.color,
+      description: product.value.description,
+      delivery_description: product.value.delivery_description,
+      hidden: product.value.hidden,
+      prices: product.value.prices,
+      technical_details: product.value.technical_details,
       photos: product.value.photos,
     })
     .eq("id", product.value.id);

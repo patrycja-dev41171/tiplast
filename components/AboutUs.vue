@@ -3,7 +3,7 @@
     <div class="content pr-10">
       <h4>O nas</h4>
       <h3>
-        Produkcja i sprzeda wysokiej jakości doniczek z tworzyw sztucznych
+        Produkcja i sprzedaż wysokiej jakości doniczek z tworzyw sztucznych
       </h3>
       <p>
         TIPLAST firma produkcyjna działająca na rynku produkcji tworzyw
