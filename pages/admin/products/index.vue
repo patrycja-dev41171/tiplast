@@ -62,6 +62,7 @@ const getCategoryNames = (ids) => {
     <table v-else class="products-table">
       <thead>
         <tr>
+          <th></th>
           <th>Nazwa</th>
           <th>SKU</th>
           <th>Cena</th>
@@ -74,6 +75,14 @@ const getCategoryNames = (ids) => {
 
       <tbody>
         <tr v-for="product in products" :key="product.id">
+          <td>
+            <v-img
+              aspect-ratio="16/9"
+              cover
+              :src="product.photos[0].url"
+              class="product_photo"
+            ></v-img>
+          </td>
           <td>{{ product.display_name }}</td>
           <td>{{ product.sku }}</td>
           <td>
@@ -192,5 +201,10 @@ const getCategoryNames = (ids) => {
   width: 20px;
   height: 20px;
   border: 2px solid black;
+}
+
+.product_photo {
+  width: 80px;
+  height: 80px;
 }
 </style>
