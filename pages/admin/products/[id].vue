@@ -65,7 +65,10 @@ const saveProduct = async () => {
   saving.value = false;
 
   if (error) console.error(error);
-  else alert("Zapisano 🎉");
+  else {
+    const router = useRouter();
+    router.push("/admin/products");
+  }
 };
 
 const uploadPhotos = async (event) => {
