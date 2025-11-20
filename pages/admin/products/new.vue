@@ -33,6 +33,16 @@ const product = ref({
   photos: [],
 });
 
+const categories = ref([]);
+const loadCategories = async () => {
+  const { data, error } = await $supabase
+    .from("categories")
+    .select("*")
+    .order("id");
+
+  if (!error) categories.value = data;
+};
+
 // 🔹 2. Upload zdjęć (identyczny jak w edycji)
 const uploadPhotos = async (event) => {
   const files = event.target.files;
@@ -107,6 +117,10 @@ const saveProduct = async () => {
     router.push("/admin/products");
   }
 };
+
+onMounted(async () => {
+  await loadCategories();
+});
 </script>
 
 <template>
@@ -126,18 +140,20 @@ const saveProduct = async () => {
         <label>Nazwa</label>
         <input v-model="product.display_name" />
 
-        <label>URL (opcjonalnie)</label>
+        <label>URL</label>
         <input v-model="product.url" />
 
-        <label>Kategorie (oddzielone przecinkami)</label>
-        <input
-          v-model="product.categories"
-          @input="
-            product.categories = $event.target.value
-              .split(',')
-              .map((c) => c.trim())
-          "
-        />
+        <label>Kategorie produktu</label>
+        <div class="categories-list">
+          <label v-for="cat in categories" :key="cat.id" class="cat-item">
+            <input
+              type="checkbox"
+              :value="cat.id"
+              v-model="product.categories"
+            />
+            {{ cat.display_name }}
+          </label>
+        </div>
 
         <label>Kolor (HEX)</label>
         <input v-model="product.color" type="color" />
@@ -326,5 +342,20 @@ textarea {
 
 .drag-ghost {
   opacity: 0.4;
+}
+
+.categories-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.cat-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #f5f5f5;
+  padding: 6px 12px;
+  border-radius: 6px;
 }
 </style>
