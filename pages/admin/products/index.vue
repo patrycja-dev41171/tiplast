@@ -20,7 +20,33 @@ const fetchProducts = async () => {
   loading.value = false;
 };
 
-onMounted(fetchProducts);
+const categories = ref([]);
+const loadCategories = async () => {
+  const { data, error } = await $supabase
+    .from("categories")
+    .select("*")
+    .order("id");
+
+  if (!error) categories.value = data;
+};
+
+onMounted(async () => {
+  await fetchProducts();
+  await loadCategories();
+});
+
+const categoriesMap = computed(() => {
+  const map = {};
+  categories.value.forEach((c) => {
+    map[c.id] = c.display_name;
+  });
+  return map;
+});
+
+const getCategoryNames = (ids) => {
+  if (!ids || !Array.isArray(ids)) return [];
+  return ids.map((id) => categoriesMap.value[id] || id);
+};
 </script>
 
 <template>
@@ -53,7 +79,7 @@ onMounted(fetchProducts);
           <td>
             {{ product.prices.pln.base_price }} {{ product.prices.pln.symbol }}
           </td>
-          <td>{{ product.categories?.join(", ") }}</td>
+          <td>{{ getCategoryNames(product.categories).join(", ") }}</td>
           <td>
             <span :class="product.hidden ? 'hidden-flag' : 'visible-flag'">
               {{ product.hidden ? "NIE" : "TAK" }}
