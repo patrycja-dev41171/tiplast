@@ -14,7 +14,7 @@ const fetchProducts = async () => {
   if (error) {
     console.error(error);
   } else {
-    products.value = data;
+    products.value = data.sort((a, b) => a.sku.localeCompare(b.sku));
   }
 
   loading.value = false;
