@@ -1,5 +1,6 @@
 <script setup>
 definePageMeta({
+  layout: 'admin',
   middleware: "admin-client",
 });
 
@@ -11,6 +12,7 @@ const { $supabase } = useNuxtApp();
 const product = ref(null);
 const categories = ref([]);
 const saving = ref(false);
+const colors = ref([]);
 
 const loadCategories = async () => {
   const { data, error } = await $supabase
@@ -21,7 +23,6 @@ const loadCategories = async () => {
   if (!error) categories.value = data;
 };
 
-// 🚀 1. Pobranie produktu
 const loadProduct = async () => {
   const { data, error } = await $supabase
     .from("products")
@@ -36,9 +37,18 @@ const loadProduct = async () => {
   }
 };
 
+const loadColors = async () => {
+  const { data, error } = await $supabase.from("colors").select("*").order("id");
+
+  if (!error) {
+    colors.value = data;
+  }
+};
+
 onMounted(async () => {
   await loadCategories();
   await loadProduct();
+  await loadColors();
 });
 
 // 🚀 2. Zapis do Supabase
@@ -147,8 +157,19 @@ const removePhoto = (index) => {
           </label>
         </div>
 
-        <label>Kolor (HEX)</label>
-        <input v-model="product.color" type="color" />
+           <label>Kolor</label>
+
+        <div class="color-select-wrapper">
+          <select v-model="product.color" class="color-select">
+            <option disabled value="">Wybierz kolor</option>
+
+            <option v-for="col in colors" :key="col.id" :value="col.value" :style="{ '--color': col.value }">
+              {{ col.display_name }}
+            </option>
+          </select>
+
+          <div class="color-preview" v-if="product.color" :style="{ background: product.color }"></div>
+        </div>
 
         <label>Opis (HTML)</label>
         <textarea v-model="product.description"></textarea>
@@ -375,5 +396,41 @@ textarea {
   background: #f5f5f5;
   padding: 6px 12px;
   border-radius: 6px;
+}
+
+.color-select-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.color-select {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  background: #ffffff;
+  border: 1px solid #ccc;
+  appearance: none;
+  cursor: pointer;
+  font-size: 15px;
+  text-transform: capitalize;
+}
+
+/* Każda opcja ma kolorowe kółeczko */
+.color-select option {
+  padding-left: 26px;
+  background-image: radial-gradient(circle, var(--color) 50%, transparent 51%);
+  background-repeat: no-repeat;
+  background-position: 6px center;
+  background-size: 12px 12px;
+}
+
+/* Kółko z aktualnym kolorem obok selecta */
+.color-preview {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
 }
 </style>

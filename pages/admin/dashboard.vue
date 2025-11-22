@@ -1,32 +1,31 @@
 <script setup>
 definePageMeta({
-  middleware: "admin-client",
-});
+  layout: 'admin',
+  middleware: 'admin-client'
+})
 
 const { $supabase } = useNuxtApp();
-const router = useRouter();
+const user = ref(null);
 
-const logout = async () => {
-  await $supabase.auth.signOut();
-  router.push("/");
-};
+onMounted(async () => {
+  const { data } = await $supabase.auth.getUser();
+  user.value = data.user;
+});
 </script>
 
 <template>
   <div class="admin-wrapper">
     <div class="admin-card">
       <h1>Admin Panel</h1>
-      <p class="subtitle">Jesteś zalogowana 🎉</p>
+      <p class="subtitle">
+  Zalogowana jako: <strong>{{ user?.email }}</strong>
+</p>
 
       <nav class="admin-nav">
         <NuxtLink to="/admin/products" class="nav-item"> 📦 Produkty </NuxtLink>
 
         <NuxtLink to="/admin/products/new" class="nav-item">
           ➕ Dodaj produkt
-        </NuxtLink>
-
-        <NuxtLink @click.prevent="logout" class="nav-item logout">
-          🚪 Wyloguj się
         </NuxtLink>
       </nav>
     </div>
@@ -38,13 +37,12 @@ const logout = async () => {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 40px 20px;
+  padding: 20px;
 }
 
 .admin-card {
   background: #ffffff;
   padding: 30px;
-  max-width: 450px;
   width: 100%;
   border-radius: 12px;
   box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.1);

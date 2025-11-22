@@ -2,6 +2,7 @@
 import draggable from "vuedraggable";
 
 definePageMeta({
+ layout: 'admin',
   middleware: "admin-client",
 });
 
@@ -9,6 +10,8 @@ const { $supabase } = useNuxtApp();
 const router = useRouter();
 
 const saving = ref(false);
+const colors = ref([]);
+
 
 // 🔹 1. PUSTY PRODUKT STARTOWY
 const product = ref({
@@ -42,6 +45,15 @@ const loadCategories = async () => {
 
   if (!error) categories.value = data;
 };
+
+const loadColors = async () => {
+  const { data, error } = await $supabase.from("colors").select("*").order("id");
+
+  if (!error) {
+    colors.value = data;
+  }
+};
+
 
 // 🔹 2. Upload zdjęć (identyczny jak w edycji)
 const uploadPhotos = async (event) => {
@@ -120,6 +132,7 @@ const saveProduct = async () => {
 
 onMounted(async () => {
   await loadCategories();
+  await loadColors();
 });
 </script>
 
@@ -146,17 +159,25 @@ onMounted(async () => {
         <label>Kategorie produktu</label>
         <div class="categories-list">
           <label v-for="cat in categories" :key="cat.id" class="cat-item">
-            <input
-              type="checkbox"
-              :value="cat.id"
-              v-model="product.categories"
-            />
+            <input type="checkbox" :value="cat.id" v-model="product.categories" />
             {{ cat.display_name }}
           </label>
         </div>
 
-        <label>Kolor (HEX)</label>
-        <input v-model="product.color" type="color" />
+        <label>Kolor</label>
+
+        <div class="color-select-wrapper">
+          <select v-model="product.color" class="color-select">
+            <option disabled value="">Wybierz kolor</option>
+
+            <option v-for="col in colors" :key="col.id" :value="col.value" :style="{ '--color': col.value }">
+              {{ col.display_name }}
+            </option>
+          </select>
+
+          <div class="color-preview" v-if="product.color" :style="{ background: product.color }"></div>
+        </div>
+
 
         <label>Opis (HTML)</label>
         <textarea v-model="product.description"></textarea>
@@ -180,20 +201,13 @@ onMounted(async () => {
       <section>
         <h2>Parametry techniczne</h2>
 
-        <div
-          v-for="(row, idx) in product.technical_details"
-          :key="idx"
-          class="row"
-        >
+        <div v-for="(row, idx) in product.technical_details" :key="idx" class="row">
           <input v-model="row.name" placeholder="Nazwa" />
           <input v-model="row.value" placeholder="Wartość" />
           <button @click="product.technical_details.splice(idx, 1)">🗑</button>
         </div>
 
-        <button
-          class="small-btn"
-          @click="product.technical_details.push({ name: '', value: '' })"
-        >
+        <button class="small-btn" @click="product.technical_details.push({ name: '', value: '' })">
           ➕ Dodaj parametr
         </button>
       </section>
@@ -202,13 +216,7 @@ onMounted(async () => {
       <section>
         <h2>Zdjęcia</h2>
 
-        <draggable
-          v-model="product.photos"
-          item-key="url"
-          class="photos-grid"
-          ghost-class="drag-ghost"
-          animation="200"
-        >
+        <draggable v-model="product.photos" item-key="url" class="photos-grid" ghost-class="drag-ghost" animation="200">
           <template #item="{ element, index }">
             <div class="photo-box">
               <img :src="element.url" class="photo-img" />
@@ -357,5 +365,41 @@ textarea {
   background: #f5f5f5;
   padding: 6px 12px;
   border-radius: 6px;
+}
+
+.color-select-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.color-select {
+  flex: 1;
+  padding: 10px;
+  border-radius: 8px;
+  background: #ffffff;
+  border: 1px solid #ccc;
+  appearance: none;
+  cursor: pointer;
+  font-size: 15px;
+  text-transform: capitalize;
+}
+
+/* Każda opcja ma kolorowe kółeczko */
+.color-select option {
+  padding-left: 26px;
+  background-image: radial-gradient(circle, var(--color) 50%, transparent 51%);
+  background-repeat: no-repeat;
+  background-position: 6px center;
+  background-size: 12px 12px;
+}
+
+/* Kółko z aktualnym kolorem obok selecta */
+.color-preview {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
 }
 </style>
