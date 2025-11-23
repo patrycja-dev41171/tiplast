@@ -2,7 +2,11 @@
   <footer class="footer">
     <div class="footer-container">
       <div class="footer-col col-1">
-        <h3>TIPLAST</h3>
+        <h3><v-img  
+          cover
+          src="/images/logo_green.svg"
+          class="img"
+          ></v-img></h3>
         <p>
           TIPLAST to producent wysokiej jakości plastikowych doniczek i mis
           dekoracyjnych. Nasze produkty powstają by zaspokoić wasze oczekiwania.
@@ -134,5 +138,9 @@
     font-size: 14px;
     color: #aaa;
   }
+}
+
+.img {
+width: 120px;
 }
 </style>

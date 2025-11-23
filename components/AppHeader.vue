@@ -7,8 +7,12 @@
       class="drawer pa-6"
       width="310"
     >
-      <v-toolbar-title class="title mb-10" @click="navigateTo('/')"
-        >TIPLAST</v-toolbar-title
+      <v-toolbar-title class="mb-10" 
+        ><v-img  
+          cover
+          src="/images/logo_black.svg"
+          class="img"
+          @click="navigateTo('/')"></v-img></v-toolbar-title
       >
       <v-list class="list">
         <v-list-item
@@ -42,7 +46,10 @@
   <v-app-bar color="white" elevation="0" class="app-bar my-md-0 py-md-3">
     <v-container class="app-bar-container pa-6 pa-md-0">
       <v-toolbar-title class="title" @click="navigateTo('/')"
-        >TIPLAST</v-toolbar-title
+        ><v-img  
+          cover
+          src="/images/logo_black.svg"
+          class="img"></v-img></v-toolbar-title
       >
       <v-spacer></v-spacer>
       <v-app-bar-nav-icon
@@ -97,6 +104,11 @@ const navigateTo = (path) => {
 </script>
 
 <style lang="scss" scoped>
+.img {
+  z-index: 10000;
+  cursor: pointer;
+}
+
 .app-bar {
   background-color: rgb(152, 95, 20);
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -119,7 +131,7 @@ const navigateTo = (path) => {
   font-size: 25px;
   cursor: pointer;
   z-index: 100;
-  max-width: 105px;
+  max-width: 150px;
 }
 
 ::v-deep(.v-btn__overlay) {
