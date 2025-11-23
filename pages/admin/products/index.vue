@@ -48,6 +48,101 @@ const getCategoryNames = (ids) => {
   if (!ids || !Array.isArray(ids)) return [];
   return ids.map((id) => categoriesMap.value[id] || id);
 };
+
+const getNextSku = async () => {
+  const { data, error } = await $supabase
+    .from("products")
+    .select("sku")
+    .order("sku", { ascending: false })
+    .limit(1);
+
+  if (error) {
+    console.error(error);
+    return "001";
+  }
+
+  const lastSku = data?.[0]?.sku;
+  if (!lastSku) return "001";
+
+  const nextNumber = parseInt(lastSku, 10) + 1;
+  return String(nextNumber).padStart(3, "0");
+};
+
+const getNextUrl = async (baseUrl) => {
+  const { data, error } = await $supabase
+    .from("products")
+    .select("url")
+    .like("url", `${baseUrl}%`);
+
+  if (error) {
+    console.error(error);
+    return `${baseUrl}-copy`;
+  }
+
+  if (!data.length) return baseUrl;
+
+  let maxNum = 1;
+
+  data.forEach((p) => {
+    const match = p.url.match(/-(\d+)$/);
+    if (match) {
+      const num = parseInt(match[1], 10);
+      if (num > maxNum) maxNum = num;
+    }
+  });
+
+  return `${baseUrl}-${maxNum + 1}`;
+};
+
+
+
+const duplicateProduct = async (product) => {
+  if (!confirm("Na pewno skopiować ten produkt?")) return;
+
+  const newSku = await getNextSku();
+  const newUrl = await getNextUrl(product.url);
+
+  const newProduct = JSON.parse(JSON.stringify(product));
+
+  delete newProduct.id;
+  delete newProduct.created_at;
+  delete newProduct.updated_at;
+
+  newProduct.sku = newSku;
+  newProduct.url = newUrl;
+
+  const { data, error } = await $supabase
+    .from("products")
+    .insert([newProduct])
+    .select();
+
+  if (error) {
+    console.error(error);
+    alert("Błąd podczas duplikacji produktu.");
+  } else {
+    alert("Produkt zduplikowany!");
+    await fetchProducts();
+  }
+};
+
+const deleteProduct = async (productId) => {
+  if (!confirm("Czy na pewno chcesz usunąć ten produkt?")) return;
+
+  const { error } = await $supabase
+    .from("products")
+    .delete()
+    .eq("id", productId);
+
+  if (error) {
+    console.error(error);
+    alert("Błąd podczas usuwania produktu.");
+  } else {
+    alert("Produkt został usunięty.");
+    await fetchProducts();
+  }
+};
+
+
 </script>
 
 <template>
@@ -77,12 +172,7 @@ const getCategoryNames = (ids) => {
       <tbody>
         <tr v-for="product in products" :key="product.id">
           <td>
-            <v-img
-              aspect-ratio="16/9"
-              cover
-              :src="product.photos[0].url"
-              class="product_photo"
-            ></v-img>
+            <v-img aspect-ratio="16/9" cover :src="product.photos[0].url" class="product_photo"></v-img>
           </td>
           <td>{{ product.display_name }}</td>
           <td>{{ product.sku }}</td>
@@ -96,15 +186,30 @@ const getCategoryNames = (ids) => {
             </span>
           </td>
           <td>
-            <div
-              class="color"
-              :style="{ backgroundColor: product.color }"
-            ></div>
+            <div class="color" :style="{ backgroundColor: product.color }"></div>
           </td>
-          <td>
-            <NuxtLink :to="`/admin/products/${product.id}`" class="edit-link">
-              Edytuj
-            </NuxtLink>
+          <td class="buttons">
+            <v-menu>
+              <template #activator="{ props }">
+                <v-btn icon v-bind="props" color="#2664eb">
+                  <v-icon>mdi-dots-vertical</v-icon>
+                </v-btn>
+              </template>
+
+              <v-list>
+                <v-list-item @click="duplicateProduct(product)">
+                  <v-list-item-title>Duplikuj</v-list-item-title>
+                </v-list-item>
+
+                <v-list-item :to="`/admin/products/${product.id}`">
+                  <v-list-item-title>Edytuj</v-list-item-title>
+                </v-list-item>
+
+                <v-list-item @click="deleteProduct(product.id)">
+                  <v-list-item-title class="delete">Usuń</v-list-item-title>
+                </v-list-item>
+              </v-list>
+            </v-menu>
           </td>
         </tr>
       </tbody>
@@ -176,17 +281,20 @@ const getCategoryNames = (ids) => {
 }
 
 .visible-flag {
-  color: #059669; /* zielony */
+  color: #059669;
+  /* zielony */
   font-weight: 600;
 }
 
 .hidden-flag {
-  color: #dc2626; /* czerwony */
+  color: #dc2626;
+  /* czerwony */
   font-weight: 600;
 }
 
 /* Responsywność */
 @media (max-width: 600px) {
+
   .products-table th,
   .products-table td {
     padding: 10px;
@@ -208,4 +316,6 @@ const getCategoryNames = (ids) => {
   width: 80px;
   height: 80px;
 }
+
+.buttons {}
 </style>
