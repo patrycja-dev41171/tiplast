@@ -5,48 +5,31 @@
       Wypełnij formularz, a skontaktujemy się z Tobą w sprawie wyceny i zakupu.
     </p>
 
-    <v-text-field
-      v-model="form.name"
-      label="Imię i nazwisko"
-      outlined
-      dense
-      required
-      class="mb-4"
-    />
-    <v-text-field
-      v-model="form.email"
-      label="Adres e-mail"
-      outlined
-      dense
-      type="email"
-      required
-      class="mb-4"
-    />
-    <v-text-field
-      v-model="form.phone"
-      label="Telefon"
-      outlined
-      dense
-      required
-      class="mb-4"
-    />
-    <v-text-field
-      v-model="form.quantity"
-      label="Ilość sztuk"
-      outlined
-      dense
-      type="number"
-      min="1"
-      required
-      class="mb-4"
-    />
-    <v-textarea
-      v-model="form.message"
-      label="Wiadomość (opcjonalnie)"
-      outlined
-      rows="3"
-      class="mb-6"
-    />
+    <v-text-field v-model="form.name" label="Imię i nazwisko" outlined dense required class="mb-4" />
+    <v-text-field v-model="form.email" label="Adres e-mail" outlined dense type="email" required class="mb-4" />
+    <v-text-field v-model="form.phone" label="Telefon" outlined dense required class="mb-4" />
+    <v-text-field v-model="form.quantity" label="Ilość sztuk" outlined dense type="number" min="1" required
+      class="mb-4" />
+    <v-textarea v-model="form.message" label="Wiadomość (opcjonalnie)" outlined rows="3" class="mb-4" />
+
+    <div class="checkbox">
+      <input type="checkbox" id="policy" v-model="form.policy" />
+      <label for="policy">
+        Akceptuję politykę prywatności oraz wyrażam zgodę na przetwarzanie danych
+        w celu kontaktu zwrotnego. *
+      </label>
+    </div>
+    <small v-if="errors.policy" class="error-text">
+      {{ errors.policy }}
+    </small>
+
+    <div class="checkbox mt-4 mb-6">
+      <input type="checkbox" id="marketing" v-model="form.marketing" />
+      <label for="marketing">
+        Chcę otrzymywać informacje marketingowe.
+      </label>
+    </div>
+
 
     <v-btn type="submit" color="#32aa27" dark :loading="loading" block>
       Wyślij zapytanie
@@ -63,6 +46,7 @@
 <script setup>
 import { ref } from "vue";
 import { useFetch } from "#app";
+const { $supabase } = useNuxtApp();
 
 const props = defineProps({
   product: {
@@ -77,18 +61,75 @@ const form = ref({
   phone: "",
   quantity: 1,
   message: "",
+  marketing: false,
+  policy: false,
 });
 
+const errors = reactive({});
 const loading = ref(false);
 const success = ref(false);
 const error = ref(false);
 
+function validate() {
+  errors.name = form.value.name ? "" : "Podaj imię i nazwisko.";
+  errors.email = /\S+@\S+\.\S+/.test(form.value.email)
+    ? ""
+    : "Podaj poprawny adres e-mail.";
+  errors.phone = form.value.phone ? "" : "Podaj numer telefonu.";
+  errors.message = form.value.message ? "" : "Wpisz wiadomość.";
+  errors.policy = form.value.policy ? "" : "Musisz zaakceptować politykę prywatności.";
+
+  return !Object.values(errors).some(Boolean);
+}
+
 const handleSubmit = async () => {
+
+  if (!validate()) return;
+
   loading.value = true;
   success.value = false;
   error.value = false;
 
+
   try {
+    const message = `
+       <h3>Nowe zapytanie o produkt</h3>
+        <p><strong>Produkt:</strong> ${props.product.display_name}</p>
+        <p><strong>SKU:</strong> ${props.product.sku}</p>
+        <p><strong>Link:</strong> ${`http://tiplast.pl/produkt/${props.product.url}`}</p>
+        <p><strong>Ilość sztuk:</strong> ${form.value.quantity}</p>
+        <hr>
+        <p><strong>Imię i nazwisko:</strong> ${form.value.name}</p>
+        <p><strong>Email:</strong> ${form.value.email}</p>
+        <p><strong>Telefon:</strong> ${form.value.phone}</p>
+        <p><strong>Wiadomość:</strong><br>${form.value.message}</p>
+      `
+
+    const { error: dbError } = await $supabase.from("messages").insert({
+      form_type: "formularz kontaktowy",
+      name: form.value.name,
+      email: form.value.email,
+      phone: form.value.phone,
+      message: message,
+      status: "nowa",
+      subject: `Zapytanie o produkt`,
+    });
+
+    if (dbError) {
+      console.error("DB ERROR", dbError);
+      throw new Error("Błąd zapisu do bazy");
+    }
+
+
+    if (form.value.marketing) {
+      await $supabase.from("marketing_contacts").insert({
+        name: form.value.name,
+        email: form.value.email,
+        phone: form.value.phone,
+       consent: true,
+      });
+    }
+
     const { data, error: fetchError } = await useFetch("/api/inquiry", {
       method: "POST",
       body: {
@@ -135,7 +176,7 @@ const handleSubmit = async () => {
     font-weight: 600;
   }
 
-  .error {
+  .error, .error-text {
     color: #d93025;
     font-weight: 600;
   }

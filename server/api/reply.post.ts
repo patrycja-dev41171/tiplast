@@ -3,18 +3,9 @@ import nodemailer from "nodemailer";
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
 
-  const target_email = "tiplast@wp.pl";
-  const admin_email = "kontakt.tiplast@gmail.com";
-  const form_type = "formularz kontaktowy";
+  const { email, reply_text  } = body;
 
-  const {
-    name,
-    email,
-    phone,
-    message,
-  } = body;
-
-  if (!name || !email || !phone || !message) {
+  if (!email || !reply_text ) {
     throw createError({
       statusCode: 400,
       statusMessage: "Brak wymaganych pól."
@@ -26,7 +17,7 @@ export default defineEventHandler(async (event) => {
     port: 465,
     secure: true,
     auth: {
-      user: process.env.SMTP_USER,
+      user: process.env.SMTP_USER,  
       pass: process.env.SMTP_PASS
     }
   });
@@ -34,17 +25,21 @@ export default defineEventHandler(async (event) => {
   try {
     await transporter.sendMail({
       from: `"Tiplast.pl" <${process.env.SMTP_USER}>`,
-      to: [target_email, admin_email], 
-      subject: `Nowa wiadomość od ${name}`,
-      replyTo: `${email}`,
+      to: email,
+      subject: "Dziękujemy za kontakt z Tiplast",
+      replyTo: process.env.SMTP_USER,
       html: `
-        <h3>Nowa wiadomość: ${form_type}</h3>
-        <p><strong>Imię i nazwisko:</strong> ${name}</p>
-        <p><strong>E-mail:</strong> ${email}</p>
-        <p><strong>Telefon:</strong> ${phone}</p>
-        <p><strong>Wiadomość:</strong><br>${message}</p>
+        <div style="font-family:Arial; font-size:15px;">
+          ${reply_text}
+
+          <br><br>
+          <p style="color:#888;font-size:13px;">
+            Pozdrawiamy,<br>
+            Zespół Tiplast
+          </p>
+        </div>
       `
-    });
+     });
 
     return { ok: true };
   } catch (err) {

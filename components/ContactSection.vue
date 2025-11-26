@@ -10,48 +10,31 @@
           <!-- Imię i nazwisko -->
           <label>
             Imię i nazwisko *
-            <input
-              type="text"
-              v-model.trim="form.name"
-              :class="{ error: errors.name }"
-              placeholder="Jan Kowalski"
-            />
+            <input type="text" v-model.trim="form.name" :class="{ error: errors.name }" placeholder="Jan Kowalski" />
             <small v-if="errors.name">{{ errors.name }}</small>
           </label>
 
           <!-- E-mail -->
           <label>
             E-mail *
-            <input
-              type="email"
-              v-model.trim="form.email"
-              :class="{ error: errors.email }"
-              placeholder="email@domena.pl"
-            />
+            <input type="email" v-model.trim="form.email" :class="{ error: errors.email }"
+              placeholder="email@domena.pl" />
             <small v-if="errors.email">{{ errors.email }}</small>
           </label>
 
           <!-- Telefon -->
           <label>
             Numer tel. *
-            <input
-              type="tel"
-              v-model.trim="form.phone"
-              :class="{ error: errors.phone }"
-              placeholder="+48 555-555-555"
-            />
+            <input type="tel" v-model.trim="form.phone" :class="{ error: errors.phone }"
+              placeholder="+48 555-555-555" />
             <small v-if="errors.phone">{{ errors.phone }}</small>
           </label>
 
           <!-- Wiadomość -->
           <label>
             Wiadomość *
-            <textarea
-              v-model.trim="form.message"
-              rows="5"
-              :class="{ error: errors.message }"
-              placeholder="Twoja wiadomość..."
-            ></textarea>
+            <textarea v-model.trim="form.message" rows="5" :class="{ error: errors.message }"
+              placeholder="Twoja wiadomość..."></textarea>
             <small v-if="errors.message">{{ errors.message }}</small>
           </label>
 
@@ -59,13 +42,18 @@
           <div class="checkbox">
             <input type="checkbox" id="consent" v-model="form.consent" />
             <label for="consent">
-              Wyrażam zgodę na przetwarzanie moich danych w celu kontaktu
-              zwrotnego. *
+              Akceptuję politykę prywatności oraz wyrażam zgodę na przetwarzanie danych
+              w celu kontaktu zwrotnego. *
             </label>
           </div>
           <small v-if="errors.consent" class="error-text">{{
             errors.consent
-          }}</small>
+            }}</small>
+
+          <div class="checkbox">
+            <input type="checkbox" id="marketing" v-model="form.marketing" />
+            <label for="marketing">Chcę otrzymywać informacje marketingowe.</label>
+          </div>
 
           <!-- Komunikat -->
           <p v-if="successMessage" class="success-message">
@@ -84,19 +72,12 @@
       <div class="contact-info">
         <iframe
           src="https://www.google.com/maps/embed/v1/place?q=Papowo%20Biskupie%2031, Papowo%20Biskupie, Kujawsko%20-%20Pomorskie 86-221 Polska&key=AIzaSyDygu92JJ_MAMG__b5A0xMKNWHP4vgHER4"
-          width="100%"
-          height="400"
-          style="border: 0"
-          allowfullscreen=""
-          loading="lazy"
-        ></iframe>
+          width="100%" height="400" style="border: 0" allowfullscreen="" loading="lazy"></iframe>
 
         <div class="info-box">
           <h3>Napisz do nas lub zadzwoń!</h3>
           <p>
-            <a href="mailto:kontakt.tiplast@gmail.com"
-              >E-mail: kontakt.tiplast@gmail.com</a
-            >
+            <a href="mailto:kontakt.tiplast@gmail.com">E-mail: kontakt.tiplast@gmail.com</a>
           </p>
           <p>
             <a href="tel:+48608467068">Telefon: +48 608 467 068</a>
@@ -115,6 +96,8 @@
 </template>
 
 <script setup>
+const { $supabase } = useNuxtApp();
+
 import { reactive, ref } from "vue";
 
 const form = reactive({
@@ -123,6 +106,7 @@ const form = reactive({
   phone: "",
   message: "",
   consent: false,
+  marketing: false,
 });
 
 const errors = reactive({});
@@ -150,9 +134,41 @@ async function handleSubmit() {
 
   isLoading.value = true;
   try {
-    const { data, error } = await useFetch("/api/contact", {
+    const message = `
+        <h3>Wiadomość z formularza kontaktowego</h3>
+        <p><strong>Imię i nazwisko:</strong> ${form.name}</p>
+        <p><strong>E-mail:</strong> ${form.email}</p>
+        <p><strong>Telefon:</strong> ${form.phone}</p>
+        <p><strong>Wiadomość:</strong><br>${form.message}</p>
+      `
+
+    const { error: dbError } = await $supabase.from("messages").insert({
+      form_type: "formularz kontaktowy",
+      name: form.name,
+      email: form.email,
+      phone: form.phone,
+      message: message,
+      status: "nowa",
+      subject: `Wiadomość z formularza kontaktowego`,
+    });
+
+    if (dbError) {
+      console.error("DB ERROR", dbError);
+      throw new Error("Błąd zapisu do bazy");
+    }
+
+    if (form.marketing) {
+      await $supabase.from("marketing_contacts").insert({
+        name: form.name,
+        email: form.email,
+        phone: form.phone,
+        consent: true,
+      });
+    }
+
+    const { error } = await useFetch("/api/contact", {
       method: "POST",
-      body: { ...form },
+      body: { ...form},
     });
 
     if (error.value) throw new Error(error.value.message);

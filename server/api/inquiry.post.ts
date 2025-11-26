@@ -2,7 +2,8 @@ import nodemailer from "nodemailer";
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
-  const { name, email, phone, quantity, message, product, sku, link } = body;
+
+  const { name, email, phone, quantity, message, product, sku, link} = body;
 
   if (!name || !email || !phone || !quantity || !product || !link || !sku) {
     throw createError({
@@ -25,6 +26,7 @@ export default defineEventHandler(async (event) => {
     await transporter.sendMail({
       from: `"tiplast.pl" <${process.env.SMTP_USER}>`,
       to: ["kontakt.tiplast@gmail.com", "tiplast@wp.pl"],
+      replyTo: email,
       subject: `Zapytanie o produkt: ${product}`,
       html: `
         <h3>Nowe zapytanie o produkt</h3>
