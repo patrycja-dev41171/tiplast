@@ -1,4 +1,18 @@
 export default defineNuxtConfig({
+     ssr: true,
+  nitro: {
+    externals: {
+      external: ["@supabase/supabase-js"]
+    }
+  },
+  vite: {
+    ssr: {
+      noExternal: ["@supabase/supabase-js"]
+    }
+  },
+  optimizeDeps: {
+    exclude: ["@supabase/supabase-js"]
+  },
   build: {
     transpile: ["vuetify"],
   },
