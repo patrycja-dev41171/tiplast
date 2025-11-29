@@ -28,7 +28,7 @@
           <v-icon color="#32aa27" icon="mdi-play" class="mr-4"></v-icon>
           Misy</v-list-item
         >
-        <v-list-item to="/produkty" class="list-item pa-0 ma-0">
+        <v-list-item to="/kategoria/misy-wiszace-do-kwiatow" class="list-item pa-0 ma-0">
           <v-icon color="#32aa27" icon="mdi-play" class="mr-4"></v-icon>
           Misy Wiszące</v-list-item
         >
