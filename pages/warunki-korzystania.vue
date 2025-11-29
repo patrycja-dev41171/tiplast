@@ -30,9 +30,9 @@
 
 <style scoped>
 .legal-page {
-  max-width: 1024px;
+  max-width: 1200px;
   margin: 40px auto;
-  padding: 0;
+  padding: 0 24px;
   line-height: 1.6;
 }
 

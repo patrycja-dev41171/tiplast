@@ -1,12 +1,11 @@
 <template>
   <div class="banner">
-    <div class="container px-6 px-md-0">
+    <div class="container px-6">
       <h1 class="mb-3">Wysokiej jakości produkty z tworzyw sztucznych</h1>
       <h2 class="mb-4 mb-md-6">Zrównoważone materiały na każdą potrzebę</h2>
       <v-btn
         to="/produkty"
         size="x-large"
-        rounded="0"
         color="#32aa27"
         class="btn px-md-10"
       >
@@ -48,7 +47,7 @@
 }
 
 .container {
-  max-width: 1024px;
+  max-width: 1200px;
   width: 100%;
   margin: auto;
   height: 80%;
@@ -60,7 +59,6 @@
     font-weight: 800;
     font-size: 15px;
     letter-spacing: 1px;
-    border-radius: 2px;
   }
   h1,
   h2 {

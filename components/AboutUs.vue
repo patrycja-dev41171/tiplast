@@ -52,11 +52,12 @@
 
 .about-container {
   scroll-margin-top: 100px;
-  max-width: 1024px;
+  max-width: 1200px;
   width: 100%;
   margin: 20px auto;
   div {
     width: 100%;
+  padding: 0px 24px;
     margin-bottom: 50px;
     @include md {
       width: 55%;

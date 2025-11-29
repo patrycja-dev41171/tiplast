@@ -34,9 +34,9 @@
 
 <style scoped>
 .legal-page {
-  max-width: 1024px;
+  max-width: 1200px;
   margin: 40px auto;
-  padding: 0;
+  padding: 0 24px;
   line-height: 1.6;
 }
 
@@ -52,5 +52,9 @@ h2 {
 }
 a {
   color: #32aa27;
+}
+
+ul, ol {
+  margin: 10px 0 10px 40px;
 }
 </style>

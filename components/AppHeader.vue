@@ -44,7 +44,7 @@
     </v-navigation-drawer>
   </ClientOnly>
   <v-app-bar color="white" elevation="0" class="app-bar my-md-0 py-md-3">
-    <v-container class="app-bar-container pa-6 pa-md-0">
+    <v-container class="app-bar-container pa-6 pa-md-0 px-md-6">
       <v-toolbar-title class="title" @click="navigateTo('/')"
         ><v-img  
           cover
@@ -119,7 +119,7 @@ const navigateTo = (path) => {
 }
 
 .app-bar-container {
-  max-width: 1024px;
+  max-width: 1200px;
   width: 100%;
   margin: 0 auto; /* Wyśrodkowanie */
   display: flex;

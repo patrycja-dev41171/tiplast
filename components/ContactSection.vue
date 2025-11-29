@@ -192,8 +192,9 @@ async function handleSubmit() {
     display: flex;
     flex-direction: column;
     gap: 40px;
-    max-width: 1024px;
+    max-width: 1200px;
     margin: 0 auto;
+    padding: 0px 24px;
 
     @media (min-width: 768px) {
       flex-direction: row;

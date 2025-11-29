@@ -18,36 +18,7 @@
     <!-- PRAWA KOLUMNA – PRODUKTY -->
     <div class="products-wrapper">
       <h2 class="title">{{ header }}:</h2>
-
-      <div class="products-grid">
-        <NuxtLink
-          v-for="product in filteredProducts"
-          :href="`produkt/${product.url}`"
-          :key="product.id"
-          class="product-card"
-        >
-          <img
-            :src="product.photos[0].url"
-            :alt="product.photos[0].alt"
-            class="product-img"
-          />
-
-          <div class="product-info">
-            <h3 class="name">{{ product.display_name }}</h3>
-            <p class="price">
-              {{ product.prices.pln.base_price }}
-              {{ product.prices.pln.symbol }}
-            </p>
-            <div class="color">
-              <span>Kolor:</span>
-              <span
-                class="color-dot"
-                :style="{ backgroundColor: product.color }"
-              ></span>
-            </div>
-          </div>
-        </NuxtLink>
-      </div>
+      <ProductList :products="filteredProducts" />
     </div>
   </div>
 </template>
@@ -121,64 +92,6 @@ margin-top: 30px;
 
     }
   }
-
-  .products-grid {
-    display: grid;
-    gap: 30px;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  }
-
-  .product-card {
-    background: #fff;
-    border-radius: 0;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-    overflow: hidden;
-    transition: transform 0.3s ease;
-    cursor: pointer;
-
-    &:hover {
-      transform: translateY(-5px);
-    }
-
-    .product-img {
-      width: 100%;
-      height: 240px;
-      padding: 0px;
-      object-fit: cover;
-    }
-
-    .product-info {
-      padding: 16px;
-
-      .name {
-        font-size: 18px;
-        margin-bottom: 8px;
-        color: #222;
-      }
-
-      .price {
-        font-weight: 600;
-        color: #32aa27;
-        margin-bottom: 8px;
-      }
-
-      .color {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        color: #555;
-        font-size: 14px;
-
-        .color-dot {
-          display: inline-block;
-          width: 16px;
-          height: 16px;
-          border-radius: 50%;
-          border: 1px solid #ccc;
-        }
-      }
-    }
-  }
 }
 
 .mobile-filters-btn { 
@@ -188,22 +101,19 @@ margin-top: 30px;
 .products-page {
   display: flex;
   gap: 30px;
-  max-width: 1300px;
+  max-width: 1200px;
   margin: 0 auto;
 
-  /* PRODUCT LIST RIGHT SIDE */
   .products-wrapper {
     flex: 1;
   }
 }
 
-/* ---------- MOBILE ---------- */
 @media (max-width: 768px) {
   .products-page {
     flex-direction: column;
   }
 
-  /* Przycisk na mobile */
   .mobile-filters-btn {
     display: flex;
     justify-content: center;

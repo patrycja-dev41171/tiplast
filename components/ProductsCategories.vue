@@ -1,5 +1,5 @@
 <template>
-  <div class="about-container pa-6 pa-md-0 mb-16">
+  <div class="about-container pa-6 mb-16">
     <div class="header d-md-flex">
       <div>
         <h4>Idealne do twojego ogrodu</h4>
@@ -34,7 +34,7 @@ export default {
 @import "../assets/styles/variables";
 
 .about-container {
-  max-width: 1024px;
+  max-width: 1200px;
   width: 100%;
   margin: 0 auto 50px;
   div {
