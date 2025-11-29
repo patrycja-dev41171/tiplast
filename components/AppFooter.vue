@@ -38,6 +38,9 @@
           <li>
             <NuxtLink href="/warunki-korzystania">Warunki Korzystania</NuxtLink>
           </li>
+           <li>
+            <NuxtLink href="/faq">FAQ</NuxtLink>
+          </li>
         </ul>
       </div>
 

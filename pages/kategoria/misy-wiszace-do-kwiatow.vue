@@ -1,27 +1,28 @@
 <script setup>
 definePageMeta({
   layout: "default"
-})
+});
 
-const faqMisy = [
-   {question: "Czy te misy nadają się do chryzantem?",
-    answer: "Tak. Misa 21 cm i 25 cm będzie do tego idealna. Chryzantema trio, tricolor, trzykolorowana będzie świetnie rosnąć w misie fi 25 cm."
+const faq = [
+  {
+    question: "Czy misy wiszące nadają się na balkon lub taras?",
+    answer: "Tak. Misy wiszące idealnie sprawdzą się zarówno na balkonie, tarasie, jak i w ogrodzie. Są lekkie, wytrzymałe i odporne na warunki atmosferyczne."
   },
   {
-    question: "Z jakiego materiału wykonane są plastikowe doniczki?",
-    answer: "Większość plastikowych mis i doniczek produkowana jest z polipropylenu (PP), który cechuje się dużą trwałością, lekkością oraz odpornością na pęknięcia i działanie warunków atmosferycznych."
+    question: "Czy misy wiszące mają wkład lub otwory drenażowe?",
+    answer: "Większość modeli posiada otwory drenażowe. Dzięki temu nadmiar wody może swobodnie odpływać, chroniąc rośliny przed przelaniem."
   },
   {
-    question: "Czy plastikowe doniczki nadają się do użytku na zewnątrz?",
-    answer: "Tak, doniczki z wysokiej jakości tworzywa są odporne na deszcz, wilgoć i promieniowanie UV."
+    question: "Czy komplet zawiera haki do zawieszenia?",
+    answer: "Tak. Wszystkie misy wiszące Tiplast są sprzedawane w komplecie z solidnymi hakami, które pozwalają na bezpieczne zawieszenie donicy."
   },
   {
-    question: "Czy doniczki mają otwory drenażowe?",
-    answer: "Powysze doniczki posiadają otwory drenażowe. Otwory pozwalają na odpływ nadmiaru wody i chronią korzenie przed gniciem."
-  },
+    question: "Z jakiego materiału wykonane są misy wiszące?",
+    answer: "Misy wiszące wykonane są z polipropylenu (PP), który jest trwały, odporny na uszkodzenia oraz działanie promieni UV."
+  }
 ];
 
-const slug = "misy-do-kwiatow"
+const slug = "misy-wiszace";
 
 const { getCategoryBySlug } = useCategories(slug)
 const { getProductsByCategory } = useProducts()
@@ -33,29 +34,31 @@ if (!category) {
 
 const products = await getProductsByCategory(category.id)
 
-const title = "Misy do kwiatów – donice ogrodowe i balkonowe | tiplast.pl";
+const title = "Misy wiszące, doniczki wiszące do kwiatów | tiplast.pl";
 const url = `https://tiplast.pl/kategoria/${slug}`;
 const ogImage = "https://tiplast.pl/images/og-image.webp"
-const description = "Misy do kwiatów, miski do chryzantem w różnych rozmiarach i kolorach. Idealne do ogrodu, domu i na balkon. Trwałe, polski producent."
+const description = "Misy wiszące do kwiatów – idealne na balkon, taras i do ogrodu. Trwałe, lekkie i odporne na warunki atmosferyczne. Polski producent Tiplast."
 
+// SEO / HEAD
 useHead({
   title: title,
   meta: [
     {
       name: "description",
-      content: description
+      content: description,
     },
     {
       name: "keywords",
       content:
-        "misy do kwiatów, misy ogrodowe, miski do chryzantem, donice plastikowe, donice ogrodowe, donice balkonowe"
+        "misy wiszące, donice wiszące, doniczki wiszące, misa wisząca, donice balkonowe wiszące, doniczki do kwiatów wiszące"
     },
     { name: "robots", content: "index, follow" },
 
     { property: "og:title", content: title },
     {
       property: "og:description",
-      content: description
+      content:
+        description
     },
     { property: "og:type", content: "website" },
     {
@@ -72,19 +75,12 @@ useHead({
     { name: "twitter:title", content: title },
     {
       name: "twitter:description",
-      content: description
+      content:
+        description
     },
     {
       name: "twitter:image",
       content: ogImage
-    },
-     {
-      name: 'robots', 
-      content: 'noindex, nofollow'
-    },
-    {
-      name: 'x-robots-tag',
-      content: 'noindex, nofollow'
     }
   ],
   link: [
@@ -94,6 +90,7 @@ useHead({
     }
   ],
   script: [
+    // Schema – lista produktów
     {
       type: "application/ld+json",
       children: JSON.stringify({
@@ -101,7 +98,7 @@ useHead({
         "@type": "CollectionPage",
         name: category.display_name,
         description:
-          "Misy do kwiatów, miski do chryzantem w różnych rozmiarach i kolorach. Idealne do ogrodu, domu i na balkon. Trwałe, polski producent.",
+          description,
         url: url,
         image: url,
         mainEntity: products.map((p, index) => ({
@@ -147,16 +144,16 @@ useHead({
             }
           }
         }))
-
       })
     },
 
+    // Schema FAQ
     {
       type: "application/ld+json",
       children: JSON.stringify({
         "@context": "https://schema.org",
         "@type": "FAQPage",
-        mainEntity: faqMisy.map((f) => ({
+        mainEntity: faq.map((f) => ({
           "@type": "Question",
           name: f.question,
           acceptedAnswer: {
@@ -168,9 +165,8 @@ useHead({
     }
   ]
 });
-
 </script>
 
 <template>
-  <PageMisy :products="products" :faqMisy="faqMisy" />
+  <PageMisyWiszace :products="products" :faq="faq" />
 </template>

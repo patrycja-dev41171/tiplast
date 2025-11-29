@@ -36,6 +36,13 @@
         <v-divider />
 
         <v-list-item
+          class="list-item"
+          title="FAQ"
+          @click="navigateTo('/faq')"
+        />
+        <v-divider />
+
+        <v-list-item
           class="list-item mt-16 contact"
           title="Kontakt"
           @click="navigateTo('/kontakt')"
@@ -77,6 +84,13 @@
           class="list-item"
           title="Produkty"
           @click="navigateTo('/produkty')"
+        />
+        <v-divider />
+
+         <v-list-item
+          class="list-item"
+          title="FAQ"
+          @click="navigateTo('/faq')"
         />
         <v-divider />
 
