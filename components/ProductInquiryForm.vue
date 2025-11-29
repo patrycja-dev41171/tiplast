@@ -120,14 +120,10 @@ const handleSubmit = async () => {
       throw new Error("Błąd zapisu do bazy");
     }
 
+    const { saveMarketingContact } = useMarketingContacts()
 
     if (form.value.marketing) {
-      await $supabase.from("marketing_contacts").insert({
-        name: form.value.name,
-        email: form.value.email,
-        phone: form.value.phone,
-       consent: true,
-      });
+      await saveMarketingContact(form)
     }
 
     const { data, error: fetchError } = await useFetch("/api/inquiry", {
@@ -176,7 +172,8 @@ const handleSubmit = async () => {
     font-weight: 600;
   }
 
-  .error, .error-text {
+  .error,
+  .error-text {
     color: #d93025;
     font-weight: 600;
   }

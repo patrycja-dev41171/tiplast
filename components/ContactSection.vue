@@ -48,7 +48,7 @@
           </div>
           <small v-if="errors.consent" class="error-text">{{
             errors.consent
-            }}</small>
+          }}</small>
 
           <div class="checkbox">
             <input type="checkbox" id="marketing" v-model="form.marketing" />
@@ -157,18 +157,15 @@ async function handleSubmit() {
       throw new Error("Błąd zapisu do bazy");
     }
 
+    const { saveMarketingContact } = useMarketingContacts()
+
     if (form.marketing) {
-      await $supabase.from("marketing_contacts").insert({
-        name: form.name,
-        email: form.email,
-        phone: form.phone,
-        consent: true,
-      });
+      await saveMarketingContact(form)
     }
 
     const { error } = await useFetch("/api/contact", {
       method: "POST",
-      body: { ...form},
+      body: { ...form },
     });
 
     if (error.value) throw new Error(error.value.message);

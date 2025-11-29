@@ -4,25 +4,15 @@ definePageMeta({
   middleware: 'admin-client'
 });
 
-const { $supabase } = useNuxtApp();
+const { fetchMarketingContacts } = useMarketingContacts()
 
 const contacts = ref([]);
 const loading = ref(true);
 
-const fetchContacts = async () => {
-  const { data, error } = await $supabase
-    .from("marketing_contacts")
-    .select("*")
-    .eq("consent", true)
-    .order("created_at", { ascending: false });
-
-  if (!error) {
-    contacts.value = data;
-  }
+onMounted(async () => {
+ contacts.value = await fetchMarketingContacts()
   loading.value = false;
-};
-
-onMounted(fetchContacts);
+});
 </script>
 
 <template>
