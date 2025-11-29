@@ -15,7 +15,7 @@ useSeoMeta({
   // Open Graph (Facebook, LinkedIn)
   ogTitle: 'tiplast.pl',
   ogDescription: 'Produkcja i dystrybucja doniczek i innych produktów z tworzyw sztucznych. Usługi wtryskowe w województwie kujawsko-pomorskiem.',
-  ogImage: 'https://tiplast.pl/og-image.webp',
+  ogImage: 'https://tiplast.pl/images/og-image.webp',
   ogUrl: 'https://tiplast.pl',
 
   // Twitter (czasem Google też używa)
