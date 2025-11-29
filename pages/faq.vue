@@ -82,14 +82,6 @@ useHead({
             name: "twitter:image",
             content: ogImage
         },
-        {
-            name: 'robots',
-            content: 'noindex, nofollow'
-        },
-        {
-            name: 'x-robots-tag',
-            content: 'noindex, nofollow'
-        }
     ],
     link: [
         {
