@@ -128,7 +128,9 @@ useHead({
             offers: {
               "@type": "Offer",
               availability: "https://schema.org/InStock",
-              price: p.prices.pln.base_price || 0,
+              price: Number(
+                (p.prices.pln.base_price || '0').toString().replace(',', '.')
+              ),
               priceCurrency: "PLN",
 
               priceValidUntil: new Date(
