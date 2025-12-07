@@ -317,5 +317,4 @@ const deleteProduct = async (productId) => {
   height: 80px;
 }
 
-.buttons {}
 </style>

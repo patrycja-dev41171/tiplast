@@ -1,6 +1,24 @@
 export const useProducts = () => {
     const { $supabase } = useNuxtApp()
 
+    const getAllProducts = async () => {
+        const { data, error } = await $supabase
+            .from("products")
+            .select("*")
+
+        return data || []
+    }
+
+    const getProductById = async (id) => {
+        const { data, error } = await $supabase
+            .from("products")
+            .select("*")
+            .eq("id", id)
+            .single()
+
+        return data
+    }
+
     const getProductsByCategory = async (categoryId) => {
         const { data, error } = await $supabase
             .from("products")
@@ -20,5 +38,10 @@ export const useProducts = () => {
         return data
     }
 
-    return { getProductsByCategory, getProduct }
+    return {
+        getAllProducts,
+        getProductById,
+        getProductsByCategory,
+        getProduct
+    }
 }
