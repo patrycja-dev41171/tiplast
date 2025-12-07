@@ -1,6 +1,8 @@
 export const useProducts = () => {
     const { $supabase } = useNuxtApp()
 
+    console.log("SSR supabase:", $supabase)
+
     const getProductsByCategory = async (categoryId) => {
         const { data, error } = await $supabase
             .from("products")
@@ -10,5 +12,15 @@ export const useProducts = () => {
         return data || []
     }
 
-    return { getProductsByCategory }
+    const getProduct = async (url) => {
+        const { data, error } = await $supabase
+            .from("products")
+            .select("*")
+            .eq("url", url)
+            .single();
+
+        return data
+    }
+
+    return { getProductsByCategory, getProduct }
 }

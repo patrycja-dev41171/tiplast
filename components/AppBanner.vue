@@ -16,7 +16,6 @@
 </template>
 
 <style scoped lang="scss">
-@import "../assets/styles/variables";
 
 .banner {
   width: 100vw;

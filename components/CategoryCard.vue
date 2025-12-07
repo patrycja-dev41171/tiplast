@@ -27,7 +27,6 @@ defineProps({
 </script>
 
 <style scoped lang="scss">
-@import "../assets/styles/variables";
 
 .category-card {
   width: 320px;

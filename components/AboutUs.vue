@@ -48,7 +48,6 @@
 </template>
 
 <style scoped lang="scss">
-@import "../assets/styles/variables";
 
 .about-container {
   scroll-margin-top: 100px;

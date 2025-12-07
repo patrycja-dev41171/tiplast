@@ -31,7 +31,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-@import "../assets/styles/variables";
 
 .about-container {
   max-width: 1200px;

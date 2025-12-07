@@ -6,7 +6,7 @@ export default defineNuxtPlugin(() => {
 
   const supabaseServer = createClient(
     config.supabaseUrl,
-    config.supabaseServiceKey, // ← prywatny klucz SERWEROWY
+    config.supabaseServiceKey,
     {
       auth: {
         persistSession: false

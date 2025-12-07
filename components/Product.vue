@@ -1,99 +1,114 @@
 <template>
-  <div v-if="loading" class="not-found">Ładowanie produktu...</div>
+  <div v-if="product" class="product-page pa-6">
+    <div class="product-header">
+      <!-- Galeria -->
+      <div class="gallery">
+        <img :src="activePhoto.url" :alt="activePhoto.alt" class="main-photo" />
 
-<Product v-else-if="product" :product="product" />
+        <div class="thumbnails">
+          <img
+            v-for="(photo, i) in product.photos"
+            :key="i"
+            :src="photo.url"
+            :alt="photo.alt"
+            :class="{ active: i === activeIndex }"
+            @click="activeIndex = i"
+          />
+        </div>
+      </div>
 
-  <div v-else class="not-found">
-    <h2>Nie znaleziono produktu</h2>
+      <!-- Info -->
+      <div class="product-info">
+        <h1>{{ product.display_name }}</h1>
+        <div
+          class="d-none d-md-flex flex-column technical mt-6"
+          v-if="product.technical_details?.length"
+        >
+          <ul>
+            <li v-for="(item, i) in product.technical_details" :key="i">
+              <strong>{{ item.name }}:</strong> {{ item.value }}
+            </li>
+          </ul>
+        </div>
+        <p class="price mt-6">
+          Cena: {{ product.prices.pln.base_price }}
+          {{ product.prices.pln.symbol }}
+        </p>
+      </div>
+    </div>
+
+    <!-- ZAKŁADKI -->
+    <div class="tabs">
+      <button
+        v-for="tab in tabs"
+        :key="tab.value"
+        :class="{ active: activeTab === tab.value }"
+        @click="activeTab = tab.value"
+      >
+        {{ tab.label }}
+      </button>
+    </div>
+
+    <!-- TREŚĆ ZAKŁADEK -->
+    <div class="tab-content">
+      <div v-if="activeTab === 'description'">
+        <ProductDescription :description="product.description" />
+      </div>
+
+      <div v-else-if="activeTab === 'technical'">
+        <div v-if="product.technical_details?.length">
+          <h3>Parametry</h3>
+          <ul>
+            <li v-for="(item, i) in product.technical_details" :key="i">
+              <strong>{{ item.name }}:</strong> {{ item.value }}
+            </li>
+          </ul>
+        </div>
+        <div v-else>
+          <p>Brak danych technicznych.</p>
+        </div>
+      </div>
+
+      <div v-else-if="activeTab === 'delivery'">
+        <div v-if="product.delivery_description">
+          <div v-html="product.delivery_description"></div>
+        </div>
+        <div v-else>
+          <p>Informacje o dostawie będą dostępne wkrótce.</p>
+        </div>
+      </div>
+      <div v-else-if="activeTab === 'buy'">
+        <ProductInquiryForm :product="product" />
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup>
-import { computed} from "vue";
-import { useRoute } from "vue-router";
+import { ref, computed} from "vue";
 
-const route = useRoute();
-const url = route.params.url
-
-const { getProduct } = useProducts()
-
-const data = await getProduct(url);
-const product = computed(() => data)
-
-const stripHtml = (html) => {
-  if (!html) return "";
-  return html.replace(/<[^>]*>?/gm, "").trim();
-};
-
-
-const title = product.value?.display_name || "Produkt";
-const description = product.value?.short_description || product.value?.display_name;
-const og_image = "https://tiplast.pl/images/og-image.webp"
-
-useSeoMeta({
-  title: title,
-  description: description,
-  ogTitle: title,
-  ogDescription: description,
-  ogImage: og_image,
-  twitterCard: "summary_large_image",
-  twitterTitle: title,
-  twitterDescription: description,
-  twitterImage: og_image,
-});
-
-useHead({
-  link: [
-    {
-      rel: "canonical",
-      href: `https://tiplast.pl/produkt/${product.value.url}`,
-    },
-  ],
-   script: [
-    {
-      type: "application/ld+json",
-      children: JSON.stringify({
-        "@context": "https://schema.org",
-        "@type": "Product",
-        "name": product.value?.display_name,
-        "description": stripHtml(product.value?.description),
-        "image": product.value?.photos?.length
-          ? product.value.photos.map(p => p.url)
-          : ["https://tiplast.pl/images/og-image.webp"],
-        "sku": product.value?.sku || product.value?.id || url,
-        "brand": {
-          "@type": "Brand",
-          "name": "Tiplast"
-        },
-        "additionalProperty":
-          product.value?.technical_details?.map((t) => ({
-            "@type": "PropertyValue",
-            "name": t.name,
-            "value": t.value
-          })) || [],
-        "offers": {
-          "@type": "Offer",
-          "url": `https://tiplast.pl/produkt/${product.value?.url}`,
-          "priceCurrency": "PLN",
-          "price": product.value?.prices?.pln?.base_price || "0",
-          "availability": "http://schema.org/InStock",
-          "itemCondition": "https://schema.org/NewCondition"
-        },
-        "publisher": {
-          "@type": "Organization",
-          "name": "Tiplast",
-          "url": "https://tiplast.pl"
-        }
-      })
-    }
-  ]
+const { product } = defineProps({
+  product: {
+    type: Object,
+    required: true,
+  },
 });
 
 
+const activeIndex = ref(0);
+const activePhoto = computed(() => product?.photos?.[activeIndex.value]);
+
+const tabs = [
+  { label: "Opis Produktu", value: "description" },
+  { label: "Parametry", value: "technical" },
+  { label: "Dostawa", value: "delivery" },
+  { label: "Jestem zainteresowany", value: "buy" },
+];
+
+const activeTab = ref("description");
 </script>
 
-<style scoped lang="scss">
-
+<style lang="scss">
 .product-page {
   max-width: 1100px;
   margin: 30px auto 100px;
@@ -276,8 +291,4 @@ useHead({
   }
 }
 
-.not-found {
-  text-align: center;
-  padding: 100px 0;
-}
 </style>

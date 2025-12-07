@@ -74,8 +74,6 @@ const header = computed(() => {
 </script>
 
 <style scoped lang="scss">
-@import "../assets/styles/variables";
-
 .products-page {
   max-width: 1200px;
   margin: 0 auto;
