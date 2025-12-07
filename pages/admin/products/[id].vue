@@ -51,6 +51,16 @@ onMounted(async () => {
   await loadColors();
 });
 
+const counterClass = computed(() => {
+  const len = product.value?.short_description?.length || 0;
+
+  if (len < 50) return "too-short";       // czerwony
+  if (len <= 120) return "ok";           // pomarańczowy
+  if (len <= 160) return "perfect";      // zielony
+  return "too-long";                     // czerwony
+});
+
+
 // 🚀 2. Zapis do Supabase
 const saveProduct = async () => {
   saving.value = true;
@@ -69,6 +79,7 @@ const saveProduct = async () => {
       prices: product.value.prices,
       technical_details: product.value.technical_details,
       photos: product.value.photos,
+      short_description: product.value.short_description,
     })
     .eq("id", product.value.id);
 
@@ -148,16 +159,12 @@ const removePhoto = (index) => {
 
         <div class="categories-list">
           <label v-for="cat in categories" :key="cat.id" class="cat-item">
-            <input
-              type="checkbox"
-              :value="cat.id"
-              v-model="product.categories"
-            />
+            <input type="checkbox" :value="cat.id" v-model="product.categories" />
             {{ cat.display_name }}
           </label>
         </div>
 
-           <label>Kolor</label>
+        <label>Kolor</label>
 
         <div class="color-select-wrapper">
           <select v-model="product.color" class="color-select">
@@ -173,6 +180,17 @@ const removePhoto = (index) => {
 
         <label>Opis (HTML)</label>
         <textarea v-model="product.description"></textarea>
+
+        <label>Krótki opis (SEO) – meta description</label>
+
+        <div class="counter-wrapper">
+          <textarea v-model="product.short_description"></textarea>
+
+          <div class="char-counter" :class="counterClass">
+            {{ product.short_description?.length || 0 }} / 160
+          </div>
+        </div>
+
 
         <label>Opis dostawy (HTML)</label>
         <textarea v-model="product.delivery_description"></textarea>
@@ -193,20 +211,13 @@ const removePhoto = (index) => {
       <section>
         <h2>Parametry techniczne</h2>
 
-        <div
-          v-for="(row, idx) in product.technical_details"
-          :key="idx"
-          class="row"
-        >
+        <div v-for="(row, idx) in product.technical_details" :key="idx" class="row">
           <input v-model="row.name" placeholder="Nazwa" />
           <input v-model="row.value" placeholder="Wartość" />
           <button @click="product.technical_details.splice(idx, 1)">🗑</button>
         </div>
 
-        <button
-          class="small-btn"
-          @click="product.technical_details.push({ name: '', value: '' })"
-        >
+        <button class="small-btn" @click="product.technical_details.push({ name: '', value: '' })">
           ➕ Dodaj parametr
         </button>
       </section>
@@ -216,13 +227,8 @@ const removePhoto = (index) => {
         <h2>Zdjęcia</h2>
 
         <div class="photos">
-          <draggable
-            v-model="product.photos"
-            item-key="url"
-            class="photos-grid"
-            ghost-class="drag-ghost"
-            animation="200"
-          >
+          <draggable v-model="product.photos" item-key="url" class="photos-grid" ghost-class="drag-ghost"
+            animation="200">
             <template #item="{ element, index }">
               <div class="photo-box">
                 <img :src="element.url" class="photo-img" />
@@ -433,4 +439,32 @@ textarea {
   border-radius: 50%;
   border: 1px solid #ccc;
 }
+
+.counter-wrapper {
+  position: relative;
+}
+
+.char-counter {
+  margin-top: 6px;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+/* Kolorowanie pod SEO */
+.char-counter.too-short {
+  color: #c0392b; /* czerwony */
+}
+
+.char-counter.ok {
+  color: #e67e22; /* pomarańczowy */
+}
+
+.char-counter.perfect {
+  color: #27ae60; /* zielony */
+}
+
+.char-counter.too-long {
+  color: #c0392b; /* czerwony */
+}
+
 </style>

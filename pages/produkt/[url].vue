@@ -75,7 +75,9 @@ useHead({
           "@type": "Offer",
           "url": `https://tiplast.pl/produkt/${product.value?.url}`,
           "priceCurrency": "PLN",
-          "price": product.value?.prices?.pln?.base_price || "0",
+           "price": Number(
+                (product.value?.prices?.pln?.base_price || '0').toString().replace(',', '.')
+              ),
           "availability": "http://schema.org/InStock",
           "itemCondition": "https://schema.org/NewCondition"
         },

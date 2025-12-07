@@ -1,8 +1,6 @@
 export const useProducts = () => {
     const { $supabase } = useNuxtApp()
 
-    console.log("SSR supabase:", $supabase)
-
     const getProductsByCategory = async (categoryId) => {
         const { data, error } = await $supabase
             .from("products")
