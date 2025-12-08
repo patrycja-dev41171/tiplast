@@ -13,7 +13,7 @@
 
     <tbody>
       <tr v-for="p in products.sort((a, b) => a.sku.localeCompare(b.sku))" :key="p.id">
-        <v-img aspect-ratio="16/9" cover :src="p.photos[0].url" class="product_photo"></v-img>
+        <v-img aspect-ratio="16/9" cover :src="p.photos[0]?.url" class="product_photo"></v-img>
         <td>{{ p.display_name }}</td>
         <td>{{ p.sku || "-" }}</td>
         <td>{{ p.quantity }}</td>
