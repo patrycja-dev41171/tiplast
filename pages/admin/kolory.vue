@@ -4,308 +4,164 @@ definePageMeta({
   middleware: "admin-client",
 });
 
-const { $supabase } = useNuxtApp();
+const { 
+  getAllColors,
+  createColor,
+  updateColor,
+  deleteColor
+} = useColors();
 
 const colors = ref([]);
 const loading = ref(true);
 
-const newColor = ref({
-  display_name: "",
-  value: "",
-});
 
-// Pobieranie kolorów
 const loadColors = async () => {
   loading.value = true;
-
-  const { data, error } = await $supabase
-    .from("colors")
-    .select("*")
-    .order("id");
-
-  if (!error) colors.value = data;
-
+  colors.value = await getAllColors();
   loading.value = false;
 };
 
-// Dodawanie koloru
-const addColor = async () => {
-  if (!newColor.value.display_name || !newColor.value.value) return;
+const addColor = async (data) => {
+  if (!data.display_name || !data.value) return;
 
-  const { error } = await $supabase.from("colors").insert(newColor.value);
+  try {
+    await createColor({
+      display_name: data.display_name,
+      value: data.value
+    });
 
-  if (!error) {
-    newColor.value = { display_name: "", value: "" };
     await loadColors();
+  } catch (err) {
+    alert(err.message);
   }
 };
 
-// Update koloru
-const updateColor = async (color) => {
-  const { error } = await $supabase
-    .from("colors")
-    .update({
-      display_name: color.display_name,
-      value: color.value,
-    })
-    .eq("id", color.id);
-
-  if (error) {
-    alert("Błąd podczas aktualizacji koloru");
-  } else {
+const saveColor = async (row) => {
+  try {
+    await updateColor(row.id, {
+      display_name: row.display_name,
+      value: row.value,
+    });
     alert("Zapisano zmiany!");
+  } catch (err) {
+    alert(err.message);
   }
 };
 
-// Usuwanie koloru (z blokadą gdy powiązany z produktem)
-const deleteColor = async (colorValue) => {
-  if (!confirm("Na pewno chcesz usunąć kolor?")) return;
-
-  // Czy kolor jest używany w produktach?
-  const { count } = await $supabase
-    .from("products")
-    .select("id", { count: "exact", head: true })
-    .eq("color", colorValue);
-
-  if (count > 0) {
-    alert(`Nie można usunąć — kolor jest używany w ${count} produktach.`);
-    return;
+const removeColor = async (row) => {
+  try {
+    await deleteColor(row.value,
+    );
+    alert("Usunięto kolor!");
+    await loadColors()
+  } catch (err) {
+    alert(err.message);
   }
-
-  const { error } = await $supabase
-    .from("colors")
-    .delete()
-    .eq("value", colorValue);
-
-  if (error) {
-    alert(error.message);
-    return;
-  }
-
-  await loadColors();
 };
 
-onMounted(() => {
-  loadColors();
-});
+
+onMounted(loadColors);
+
+const columns = [
+  { label: "ID", key: "id" },
+  { label: "Nazwa", key: "display_name" },
+  { label: "HEX", key: "value" },
+  { label: "Podgląd", key: "preview" },
+  { label: "Akcje", key: "actions" },
+];
 </script>
 
 <template>
-  <div class="admin-categories">
-    <h1>Kolory</h1>
+  <div class="pa-7">
+    <AdminPageHeader text="Kolory" />
 
     <div v-if="loading">Ładowanie...</div>
+    <Table
+      v-else
+      :columns="columns"
+      :rows="colors"
+      idKey="id"
+    >
+      <!-- Edycja nazwy -->
+      <template #cell-display_name="{ row }">
+        <input v-model="row.display_name" />
+      </template>
 
-    <table v-else class="cat-table">
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Nazwa</th>
-          <th>HEX</th>
-          <th>Podgląd</th>
-          <th>Akcje</th>
-        </tr>
-      </thead>
+      <!-- Edycja HEX -->
+      <template #cell-value="{ row }">
+        <input v-model="row.value" />
+      </template>
 
-      <tbody>
-        <tr v-for="col in colors" :key="col.id">
-          <td>{{ col.id }}</td>
+      <!-- Podgląd -->
+      <template #cell-preview="{ row }">
+        <div class="preview" :style="{ background: row.value }"></div>
+      </template>
 
-          <td><input v-model="col.display_name" /></td>
-
-          <td><input v-model="col.value" /></td>
-
-          <td>
-            <div class="preview" :style="{ background: col.value }"></div>
-          </td>
-
-          <td class="actions">
-            <button class="save-btn" @click="updateColor(col)">
-              <v-icon icon="mdi-content-save" size="small" /> Zapisz
-            </button>
-
-            <button class="delete-btn" @click="deleteColor(col.value)">
-              <v-icon icon="mdi-delete" size="small" /> Usuń
-            </button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-
-    <!-- Dodawanie -->
-    <div class="add-box">
-      <h2>Dodaj nowy kolor</h2>
-
-      <div class="fields">
-        <input v-model="newColor.display_name" placeholder="Nazwa (np. grafitowy)" />
-        <input v-model="newColor.value" placeholder="#hex" />
-
-        <button class="add-btn" @click="addColor">
-          <v-icon icon="mdi-plus" size="small" /> Dodaj
+      <!-- Akcje -->
+      <template #cell-actions="{ row }">
+        <button class="save-btn" @click="saveColor(row)">
+          <v-icon icon="mdi-content-save" size="small" /> Zapisz
         </button>
-      </div>
-    </div>
+
+        <button class="delete-btn" @click="removeColor(row)">
+          <v-icon icon="mdi-delete" size="small" /> Usuń
+        </button>
+      </template>
+    </Table>
+
+   <AddNewColor @add="addColor" />
+
   </div>
 </template>
 
 <style scoped lang="scss">
+input {
+  width: 260px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  border: 1px solid #cbd5e1; // jasna ramka
+  background: #fff;
+  font-size: 15px;
+  color: #111;
+
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+
+  &:focus {
+    border-color: #2563eb;
+    box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25);
+    outline: none;
+  }
+}
+
+td input {
+  background: #f8fafc; // jaśniejsze tło w tabeli
+}
+
+
 .preview {
-  width: 32px;
+  width: 96px;
   height: 32px;
   border-radius: 4px;
   border: 1px solid #ccc;
   margin: auto;
 }
-</style>
-
-<style scoped lang="scss">
-h1 {
-    font-size: 26px;
-    margin-bottom: 20px;
-}
-
-.add-box {
-    background: #f3f4f6;
-    padding: 20px;
-    border-radius: 4px;
-    margin-bottom: 25px;
-    border: 1px solid #eee;
-    margin-top: 50px;
-}
-
-.add-box input {
-    width: 100%;
-    margin-top: 10px;
-    padding: 10px;
-    border-radius: 4px;
-    border: 1px solid #ddd;
-    background-color: #fff;
-}
-
-.add-btn {
-    width: 200px;
-    margin-top: 15px;
-    background: #2563eb;
-    color: white;
-    padding: 10px 16px;
-    border-radius: 4px;
-    border: none;
-    cursor: pointer;
-}
-
-.cat-table {
-    width: 100%;
-    max-width: 100%;
-    background: white;
-    border-collapse: collapse;
-    border-radius: 4px;
-    overflow: hidden;
-    table-layout: fixed;
-}
-
-.cat-table th,
-.cat-table td {
-    padding: 12px 10px;
-    text-align: left;
-}
-
-.cat-table tr {
-    border-bottom: 1px solid #eee;
-}
-
-.cat-table th:nth-child(1),
-.cat-table td:nth-child(1) {
-    width: 30px;
-    /* ID */
-    font-weight: 600;
-}
-
-.cat-table th:nth-child(2),
-.cat-table td:nth-child(2) {
-    width: 35%;
-    /* Nazwa */
-}
-
-.cat-table th:nth-child(3),
-.cat-table td:nth-child(3) {
-    width: 35%;
-    /* Slug */
-}
-
-.cat-table th:nth-child(4),
-.cat-table td:nth-child(4) {
-    width: 80px;
-    text-align: center;
-}
-
-.cat-table th:nth-child(5),
-.cat-table td:nth-child(5) {
-    width: 180px;
-    /* Akcje */
-}
-
-.cat-table input {
-    width: 100%;
-    padding: 10px;
-    border-radius: 6px;
-    border: 1px solid #ccc;
-    font-size: 15px;
-    background: #fff;
-}
-
-/* Akcje */
-.actions {
-    display: flex;
-    gap: 12px;
-
-    button {
-        height: 44px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
-}
 
 .save-btn {
-    background: #2563eb;
-    color: white;
-    border: none;
-    padding: 8px 14px;
-    border-radius: 4px;
-    cursor: pointer;
-    white-space: nowrap;
-}
-
-.save-btn:hover {
-    background: #1d4ed8;
+  background: #2563eb;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
 }
 
 .delete-btn {
-    background: #ffecec;
-    border: none;
-    padding: 8px 14px;
-    border-radius: 4px;
-    cursor: pointer;
-    color: #c0392b;
-    white-space: nowrap;
-}
-
-.delete-btn:hover {
-    background: #ffd6d6;
-}
-
-.fields {
-    display: flex;
-    gap: 12px;
-    margin: 10px auto;
-     button, input {
-        height: 44px;
-        margin-top: 0;
-    }
-    button {
-        display: flex;
-        align-items: center;
-        gap: 8px;
-    }
+  background: #ffecec;
+  color: #c0392b;
+  padding: 8px 14px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
 }
 </style>

@@ -147,7 +147,7 @@ const deleteProduct = async (productId) => {
 
 <template>
   <div class="admin-products">
-    <h1>Produkty</h1>
+    <AdminPageHeader text="Produkty" />
 
     <NuxtLink to="/admin/products/new" class="add-btn">
       + Dodaj produkt

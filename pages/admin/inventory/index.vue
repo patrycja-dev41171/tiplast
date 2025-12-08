@@ -1,7 +1,6 @@
 <template>
     <section class="inventory-page">
-    <h1>Zarządzanie magazynem</h1>
-
+      <AdminPageHeader text="Zarządzanie magazynem" />
     <InventoryTable :products="productsWithStock" />
   </section>
 </template>
