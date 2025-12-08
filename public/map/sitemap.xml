@@ -4,217 +4,245 @@
 >
     <url>
         <loc>https://tiplast.pl/</loc>
-        <lastmod>2025-11-29</lastmod>
+        <lastmod>2025-12-08</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://tiplast.pl/kontakt</loc>
-        <lastmod>2025-11-29</lastmod>
+        <lastmod>2025-12-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
     </url>
     <url>
         <loc>https://tiplast.pl/polityka-cookies</loc>
-        <lastmod>2025-11-29</lastmod>
+        <lastmod>2025-12-08</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
     </url>
 
     <url>
         <loc>https://tiplast.pl/polityka-prywatnosci</loc>
-        <lastmod>2025-11-29</lastmod>
+        <lastmod>2025-12-08</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
     </url>
 
     <url>
         <loc>https://tiplast.pl/produkty</loc>
-        <lastmod>2025-11-29</lastmod>
+        <lastmod>2025-12-08</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
     </url>
 
     <url>
         <loc>https://tiplast.pl/kategoria/misy-do-kwiatow</loc>
-        <lastmod>2025-11-29</lastmod>
+        <lastmod>2025-12-08</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
     </url>
 
     <url>
         <loc>https://tiplast.pl/kategoria/misy-wiszace-do-kwiatow</loc>
-        <lastmod>2025-11-29</lastmod>
+        <lastmod>2025-12-08</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
     </url>
 
     <url>
         <loc>https://tiplast.pl/faq</loc>
-        <lastmod>2025-11-29</lastmod>
+        <lastmod>2025-12-08</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
     </url>
 
     <url>
+        <loc>https://tiplast.pl/zwroty</loc>
+        <lastmod>2025-12-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+
+    <url>
+        <loc>https://tiplast.pl/produkt/terakota-misa-fi-21</loc>
+        <lastmod>2025-12-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    <url>
+        <loc>https://tiplast.pl/produkt/terakota-doniczka-produkcyjna-fi-14</loc>
+        <lastmod>2025-12-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    <url>
+        <loc>https://tiplast.pl/produkt/terakota-misa-fi-21-22</loc>
+        <lastmod>2025-12-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    <url>
         <loc>https://tiplast.pl/produkt/zielona-jasna-misa-wiszaca-fi-23</loc>
-        <lastmod>2025-11-29</lastmod>
+        <lastmod>2025-12-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://tiplast.pl/produkt/czarna-doniczka-produkcyjna-fi-9</loc>
-        <lastmod>2025-11-29</lastmod>
+        <lastmod>2025-12-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://tiplast.pl/produkt/terakota-misa-fi-25</loc>
-        <lastmod>2025-11-29</lastmod>
+        <lastmod>2025-12-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://tiplast.pl/produkt/terakota-misa-fi-23</loc>
-        <lastmod>2025-11-29</lastmod>
+        <lastmod>2025-12-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://tiplast.pl/produkt/biala-misa-wiszaca-fi-23</loc>
-        <lastmod>2025-11-29</lastmod>
+        <lastmod>2025-12-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://tiplast.pl/produkt/grafitowa-misa-wiszaca-fi-23</loc>
-        <lastmod>2025-11-29</lastmod>
+        <lastmod>2025-12-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://tiplast.pl/produkt/terakota-misa-fi-21-z-kolnierzykiem</loc>
-        <lastmod>2025-11-29</lastmod>
+        <lastmod>2025-12-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://tiplast.pl/produkt/misa-fi-21-cm-z-konierzykiem-czarna</loc>
-        <lastmod>2025-11-29</lastmod>
+        <lastmod>2025-12-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://tiplast.pl/produkt/grafitowa-misa-fi-23</loc>
-        <lastmod>2025-11-29</lastmod>
+        <lastmod>2025-12-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://tiplast.pl/produkt/biala-misa-fi-25</loc>
-        <lastmod>2025-11-29</lastmod>
+        <lastmod>2025-12-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://tiplast.pl/produkt/czarna-misa-fi-25</loc>
-        <lastmod>2025-11-29</lastmod>
+        <lastmod>2025-12-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://tiplast.pl/produkt/terakota-misa-fi-17</loc>
-        <lastmod>2025-11-29</lastmod>
+        <lastmod>2025-12-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://tiplast.pl/produkt/jasna-zielona-misa-fi-23</loc>
-        <lastmod>2025-11-29</lastmod>
+        <lastmod>2025-12-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://tiplast.pl/produkt/biala-misa-fi-23</loc>
-        <lastmod>2025-11-29</lastmod>
+        <lastmod>2025-12-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://tiplast.pl/produkt/terakota-misa-wiszaca-fi-23</loc>
-        <lastmod>2025-11-29</lastmod>
+        <lastmod>2025-12-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://tiplast.pl/produkt/czarna-doniczka-produkcyjna-fi-12</loc>
-        <lastmod>2025-11-29</lastmod>
+        <lastmod>2025-12-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://tiplast.pl/produkt/szary-bez-misa-fi-23</loc>
-        <lastmod>2025-11-29</lastmod>
+        <lastmod>2025-12-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://tiplast.pl/produkt/czarna-doniczka-produkcyjna-fi-10</loc>
-        <lastmod>2025-11-29</lastmod>
+        <lastmod>2025-12-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://tiplast.pl/produkt/czarna-doniczka-produkcyjna-fi-14</loc>
-        <lastmod>2025-11-29</lastmod>
+        <lastmod>2025-12-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://tiplast.pl/produkt/szary-bez-misa-wiszaca-fi-23</loc>
-        <lastmod>2025-11-29</lastmod>
+        <lastmod>2025-12-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://tiplast.pl/produkt/fuksja-misa-wiszaca-fi-23</loc>
-        <lastmod>2025-11-29</lastmod>
+        <lastmod>2025-12-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://tiplast.pl/produkt/fuksja-misa-fi-23</loc>
-        <lastmod>2025-11-29</lastmod>
+        <lastmod>2025-12-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://tiplast.pl/produkt/zlota-misa-fi-17</loc>
-        <lastmod>2025-11-29</lastmod>
+        <lastmod>2025-12-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://tiplast.pl/produkt/biala-misa-wiszaca-fi-25</loc>
-        <lastmod>2025-11-29</lastmod>
+        <lastmod>2025-12-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://tiplast.pl/produkt/grafitowa-misa-wiszaca-fi-25</loc>
-        <lastmod>2025-11-29</lastmod>
+        <lastmod>2025-12-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://tiplast.pl/produkt/terakota-misa-wiszaca-fi-25</loc>
-        <lastmod>2025-11-29</lastmod>
+        <lastmod>2025-12-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://tiplast.pl/produkt/czarna-misa-fi-17</loc>
-        <lastmod>2025-11-29</lastmod>
+        <lastmod>2025-12-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
