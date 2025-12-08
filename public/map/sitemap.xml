@@ -78,7 +78,14 @@
     </url>
 
     <url>
-        <loc>https://tiplast.pl/produkt/terakota-misa-fi-21-22</loc>
+        <loc>https://tiplast.pl/produkt/czarna-misa-fi-21</loc>
+        <lastmod>2025-12-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+
+    <url>
+        <loc>https://tiplast.pl/produkt/złota-misa-fi-21</loc>
         <lastmod>2025-12-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
