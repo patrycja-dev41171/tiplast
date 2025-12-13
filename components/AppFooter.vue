@@ -2,11 +2,7 @@
   <footer class="footer">
     <div class="footer-container">
       <div class="footer-col col-1">
-        <h3><v-img  
-          cover
-          src="/images/logo_green.svg"
-          class="img"
-          ></v-img></h3>
+        <h3><v-img cover src="/images/logo_green.svg" class="img"></v-img></h3>
         <p>
           TIPLAST to producent wysokiej jakości plastikowych doniczek i mis
           dekoracyjnych. Nasze produkty powstają by zaspokoić wasze oczekiwania.
@@ -16,11 +12,15 @@
       <div class="footer-col">
         <h3>Menu</h3>
         <ul>
-          <li><NuxtLink href="/">Strona główna</NuxtLink></li>
+          <li>
+            <NuxtLink href="/">Strona główna</NuxtLink>
+          </li>
           <li>
             <NuxtLink href="/produkty">Nasze produkty</NuxtLink>
           </li>
-          <li><NuxtLink href="/kontakt">O nas</NuxtLink></li>
+          <li>
+            <NuxtLink href="/kontakt">O nas</NuxtLink>
+          </li>
         </ul>
       </div>
 
@@ -28,9 +28,7 @@
         <h3>Informacje</h3>
         <ul>
           <li>
-            <NuxtLink href="/polityka-prywatnosci"
-              >Polityka prywatości</NuxtLink
-            >
+            <NuxtLink href="/polityka-prywatnosci">Polityka prywatości</NuxtLink>
           </li>
           <li>
             <NuxtLink href="/polityka-cookies">Polityka Cookies</NuxtLink>
@@ -38,9 +36,10 @@
           <li>
             <NuxtLink href="/warunki-korzystania">Warunki Korzystania</NuxtLink>
           </li>
-           <li>
+          <li>
             <NuxtLink href="/faq">FAQ</NuxtLink>
           </li>
+          <li @click="showSettings = true"><p class="link" >Zarządzaj ciasteczkami</p></li>
         </ul>
       </div>
 
@@ -50,9 +49,7 @@
         <ul>
           <li>
             <strong>Email: </strong>
-            <a href="mailto:kontakt.tiplast@gmail.com"
-              >kontakt.tiplast@gmail.com</a
-            >
+            <a href="mailto:kontakt.tiplast@gmail.com">kontakt.tiplast@gmail.com</a>
           </li>
           <li>
             <strong>Telefon: </strong>
@@ -69,8 +66,13 @@
     <div class="footer-bottom">
       <p>© 2025 TIPLAST. Wszelkie prawa zastrzeżone.</p>
     </div>
+    <CookiesManager v-if="showSettings" @close="showSettings = false" />
   </footer>
 </template>
+
+<script setup>
+const showSettings = ref(false)
+</script>
 
 <style scoped lang="scss">
 .footer {
@@ -116,10 +118,11 @@
         li {
           margin-bottom: 8px;
 
-          a {
+          a , .link{
             color: #eee;
             text-decoration: none;
             transition: color 0.3s;
+            cursor: pointer;
 
             &:hover {
               color: #32aa27;
@@ -145,6 +148,6 @@
 }
 
 .img {
-width: 120px;
+  width: 120px;
 }
 </style>
