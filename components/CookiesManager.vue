@@ -51,7 +51,6 @@ const consent = useCookie('cookies_consent', {
   sameSite: 'lax',
 })
 
-// inicjalizacja ze stanu cookie (jeśli user wróci)
 const functional = ref(consent.value?.cookies?.includes('functional'))
 const analytics = ref(consent.value?.cookies?.includes('analytics'))
 

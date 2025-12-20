@@ -75,7 +75,7 @@ export const useInventory = () => {
         const { data, error } = await $supabase
             .from("product_stock_logs")
             .insert({
-                product_id: productId,
+                record_id: productId,
                 quantity_before: before,
                 quantity_after: after,
                 change_type: changeType,
@@ -105,7 +105,7 @@ export const useInventory = () => {
           email
         )
     `)
-            .eq("product_id", productId)
+            .eq("record_id", productId)
             .order("created_at", { ascending: false })
 
         return data || []
