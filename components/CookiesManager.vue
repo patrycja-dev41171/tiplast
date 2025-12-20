@@ -29,10 +29,6 @@
           <span>Analityczne</span>
         </div>
 
-        <div class="switch">
-          <input type="checkbox" v-model="marketing" />
-          <span>Marketinowe</span>
-        </div>
       </div>
 
       <div class="buttons">
@@ -58,14 +54,12 @@ const consent = useCookie('cookies_consent', {
 // inicjalizacja ze stanu cookie (jeśli user wróci)
 const functional = ref(consent.value?.cookies?.includes('functional'))
 const analytics = ref(consent.value?.cookies?.includes('analytics'))
-const marketing = ref(consent.value?.cookies?.includes('marketing'))
 
 const save = () => {
   const cookies = ['mandatory']
 
   if (functional.value) cookies.push('functional')
   if (analytics.value) cookies.push('analytics')
-  if (marketing.value) cookies.push('marketing')
 
   consent.value = {
     accepted: true,
@@ -78,8 +72,10 @@ const save = () => {
 const acceptAll = () => {
   consent.value = {
     accepted: true,
-    cookies: ['mandatory', 'functional', 'analytics', 'marketing'],
+    cookies: ['mandatory', 'functional', 'analytics'],
   }
+
+  emit('close')
 }
 
 
@@ -103,6 +99,8 @@ const acceptAll = () => {
   margin: auto;
   max-width: 850px;
   position: fixed;
+  max-height: 90vh;
+  overflow: auto;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);

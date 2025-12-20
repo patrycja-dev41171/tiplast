@@ -27,7 +27,7 @@ const consent = useCookie('cookies_consent', {
 const acceptAll = () => {
   consent.value = {
     accepted: true,
-    cookies: ['mandatory', 'functional', 'analytics', 'marketing'],
+    cookies: ['mandatory', 'functional', 'analytics'],
   }
 }
 

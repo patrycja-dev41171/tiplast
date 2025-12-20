@@ -1,34 +1,34 @@
 import { createClient } from '@supabase/supabase-js'
 
 export default defineEventHandler(async (event) => {
-    const config = useRuntimeConfig()
+  const config = useRuntimeConfig()
 
-    const supabase = createClient(
-        config.supabaseUrl,
-        config.supabaseServiceKey
-    )
+  const supabase = createClient(
+    config.supabaseUrl,
+    config.supabaseServiceKey
+  )
 
-    const { data: products, error } = await supabase
-        .from('products')
-        .select('*')
-        .eq("hidden", false);
+  const { data: products, error } = await supabase
+    .from('products')
+    .select('*')
+    .eq("hidden", false);
 
 
-    if (error) {
-        console.error('SUPABASE ERROR 👉', error)
-        return {
-            error: error.message,
-            details: error.details,
-            hint: error.hint,
-            code: error.code
-        }
+  if (error) {
+    console.error('SUPABASE ERROR 👉', error)
+    return {
+      error: error.message,
+      details: error.details,
+      hint: error.hint,
+      code: error.code
     }
+  }
 
-    const getDetail = (p, name) =>
-        p.technical_details?.find(d => d.name === name)?.value
+  const getDetail = (p, name: string) =>
+    p.technical_details?.find(d => d.name === name)?.value
 
 
-    const xml = `<?xml version="1.0" encoding="UTF-8"?>
+  const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss xmlns:g="http://base.google.com/ns/1.0" version="2.0">
 <channel>
   <title>Tiplast.pl</title>
@@ -67,9 +67,8 @@ Home & Garden > Lawn & Garden > Gardening > Plant Pots & Planters
 </channel>
 </rss>`
 
-    // ✅ TU JEST KLUCZ
-    setHeader(event, 'Content-Type', 'application/xml; charset=utf-8')
-    setHeader(event, 'Cache-Control', 's-maxage=3600, stale-while-revalidate')
+  setHeader(event, 'Content-Type', 'application/xml; charset=utf-8')
+  setHeader(event, 'Cache-Control', 's-maxage=3600, stale-while-revalidate')
 
-    return xml
+  return xml
 })

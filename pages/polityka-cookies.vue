@@ -1,34 +1,113 @@
 <template>
   <section class="legal-page">
     <h1>Polityka plików cookies</h1>
-
     <p>
       Strona internetowa <strong>tiplast.pl</strong> wykorzystuje pliki cookies
-      w celu zapewnienia jej prawidłowego działania oraz analizy ruchu na
-      stronie.
+      w celu zapewnienia prawidłowego działania serwisu, zapamiętywania ustawień
+      użytkownika oraz – po wyrażeniu zgody – w celach analitycznych.
     </p>
 
     <h2>1. Czym są pliki cookies</h2>
     <p>
-      Cookies to małe pliki tekstowe zapisywane w urządzeniu użytkownika, które
-      pomagają w działaniu strony oraz poprawiają wygodę korzystania z niej.
+      Cookies to niewielkie pliki tekstowe zapisywane na urządzeniu końcowym
+      użytkownika (komputer, tablet, smartfon). Cookies umożliwiają poprawne
+      działanie strony oraz zapamiętywanie preferencji użytkownika.
     </p>
 
-    <h2>2. Jakie cookies stosujemy</h2>
+    <h2>2. Rodzaje stosowanych cookies</h2>
+    <p>Serwis wykorzystuje następujące kategorie plików cookies:</p>
     <ul>
-      <li>Cookies techniczne – niezbędne do działania strony,</li>
-      <li>
-        Cookies analityczne – np. Google Analytics, pozwalające zrozumieć, jak
-        użytkownicy korzystają ze strony.
-      </li>
+      <li><strong>Obowiązkowe (mandatory)</strong> – wymagane do działania strony</li>
+      <li><strong>Funkcjonalne (functional)</strong> – zapamiętywanie ustawień</li>
+      <li><strong>Analityczne (analytics)</strong> – statystyki i analiza ruchu</li>
     </ul>
 
-    <h2>3. Jak zarządzać cookies</h2>
+    <h2>3. Cookies obowiązkowe</h2>
     <p>
-      Użytkownik może w każdej chwili zmienić ustawienia dotyczące plików
-      cookies w swojej przeglądarce internetowej lub usunąć istniejące pliki
-      cookies.
+      Te pliki cookies są zawsze aktywne i nie wymagają zgody użytkownika,
+      ponieważ są konieczne do prawidłowego funkcjonowania strony.
     </p>
+    <table>
+      <thead>
+        <tr>
+          <th>Nazwa</th>
+          <th>Dostawca</th>
+          <th>Cel</th>
+          <th>Rodzaj</th>
+          <th>Czas</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>cart_id</code></td>
+          <td>tiplast.pl</td>
+          <td>Przechowywanie identyfikatora koszyka</td>
+          <td>HTTP Cookie</td>
+          <td>30 dni</td>
+        </tr>
+        <tr>
+          <td><code>cookies_consent</code></td>
+          <td>tiplast.pl</td>
+          <td>Informacja o udzielonej zgodzie cookies</td>
+          <td>HTTP Cookie</td>
+          <td>12 miesięcy</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>4. Cookies funkcjonalne</h2>
+    <p>
+  Cookies funkcjonalne wykorzystywane są do zapamiętania ustawień
+  użytkownika, takich jak np. wybrana waluta czy język strony.
+</p>
+    <h2>5. Cookies analityczne</h2>
+    <p>
+      Cookies analityczne są zapisywane wyłącznie po wyrażeniu zgody użytkownika.
+      Służą do zbierania anonimowych statystyk dotyczących korzystania z serwisu.
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th>Nazwa</th>
+          <th>Dostawca</th>
+          <th>Cel</th>
+          <th>Rodzaj</th>
+          <th>Czas</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><code>_ga</code></td>
+          <td>Google Analytics</td>
+          <td>Statystyki użytkowników</td>
+          <td>HTTP Cookie</td>
+          <td>24 miesiące</td>
+        </tr>
+        <tr>
+          <td><code>_ga_*</code></td>
+          <td>Google Analytics</td>
+          <td>Analiza sesji</td>
+          <td>HTTP Cookie</td>
+          <td>24 miesiące</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2>6. Zarządzanie plikami cookies</h2>
+    <p>
+      Użytkownik może w każdej chwili zmienić ustawienia dotyczące cookies
+      za pomocą banera zgód lub ustawień przeglądarki internetowej.
+      Ograniczenie stosowania cookies może wpłynąć na niektóre funkcjonalności serwisu.
+    </p>
+
+    <h2>7. Zmiany polityki cookies</h2>
+    <p>
+      Administrator zastrzega sobie prawo do wprowadzania zmian w niniejszej
+      polityce cookies w przypadku zmian prawnych lub technologicznych.
+    </p>
+
+    <hr class="hr"/>
+    <h4>Ostatnia aktualizacja: 20.12.2025</h4>
   </section>
 </template>
 
@@ -37,24 +116,58 @@
   max-width: 1200px;
   margin: 40px auto;
   padding: 0 24px;
-  line-height: 1.6;
+  line-height: 1.7;
+  font-size: 15px;
 }
 
 h1 {
   font-size: 28px;
   color: #32aa27;
-  margin-bottom: 10px;
+  margin-bottom: 16px;
 }
+
 h2 {
-  margin-top: 30px;
+  margin-top: 32px;
   font-size: 20px;
   color: #333;
 }
-a {
-  color: #32aa27;
+
+p {
+  margin: 10px 0;
 }
 
-ul, ol {
-  margin: 10px 0 10px 40px;
+ul {
+  margin: 10px 0 10px 24px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 14px;
+}
+
+th,
+td {
+  border: 1px solid #e0e0e0;
+  padding: 10px;
+  text-align: left;
+}
+
+th {
+  background: #f7f7f7;
+  font-weight: 600;
+}
+
+code {
+  background: #f2f2f2;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 13px;
+}
+
+.hr {
+  margin-top: 50px;
+  margin-bottom: 15px;
 }
 </style>

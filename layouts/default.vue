@@ -7,7 +7,6 @@
     </v-main>
 
     <AppFooter />
-    <p>{{ consent }}</p>
     <CookieBanner v-if="!consent?.accepted" />
   </v-app>
 </template>
