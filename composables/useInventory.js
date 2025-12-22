@@ -24,7 +24,7 @@ export const useInventory = () => {
         const { data, error } = await $supabase
             .from("product_stock")
             .select("*")
-            .eq("product_id", productId)
+            .eq("record_id", productId)
             .maybeSingle()
 
         return data || null
@@ -44,11 +44,11 @@ export const useInventory = () => {
         const { data, error } = await $supabase
             .from("product_stock")
             .upsert({
-                product_id: productId,
+                record_id: productId,
                 quantity: newQty,
                 updated_by: user.id,
                 updated_at: new Date().toISOString()
-            }, { onConflict: "product_id" })  // 👈 KLUCZOWE !!!
+            }, { onConflict: "record_id" })  // 👈 KLUCZOWE !!!
             .select()
             .maybeSingle()
 

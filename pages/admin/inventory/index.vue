@@ -22,7 +22,7 @@ onMounted(async () => {
   const stock = await getAllStock()
 
   productsWithStock.value = products.map((p) => {
-    const s = stock.find((i) => i.product_id === p.id)
+    const s = stock.find((i) => i.record_id === p.id)
     return {
       ...p,
       quantity: s?.quantity ?? 0,

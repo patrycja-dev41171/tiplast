@@ -10,6 +10,7 @@ import { colors } from '../vars/colors';
         <NuxtLink to="/admin/kategorie"><v-icon icon="mdi-shape-plus" ></v-icon> Kategorie</NuxtLink>
         <NuxtLink to="/admin/kolory"><v-icon icon="mdi-palette"></v-icon> Kolory</NuxtLink>
         <NuxtLink to="/admin/inventory"><v-icon icon="mdi-warehouse"></v-icon>Stany magazynowe</NuxtLink>
+        <NuxtLink to="/admin/pakowanie"><v-icon icon="mdi-package-variant-closed"></v-icon>Pakowanie</NuxtLink>
       </div>
       <NuxtLink to="https://tiplast.pl/" target="_blank" class="web">www.tiplast.pl <v-icon icon="mdi-link"></v-icon></NuxtLink>
       <button class="logout-btn" @click="logout">Wyloguj <v-icon icon="mdi-logout"></v-icon></button>
