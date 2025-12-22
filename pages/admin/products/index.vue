@@ -174,7 +174,9 @@ const deleteProduct = async (productId) => {
           <td>
             <v-img aspect-ratio="16/9" cover :src="product.photos[0]?.url || ''" class="product_photo"></v-img>
           </td>
-          <td>{{ product.display_name }}</td>
+          <td class="link">
+          <NuxtLink :to="`/admin/products/view/${product.id}`">{{ product.display_name }}</NuxtLink>
+          </td>
           <td>{{ product.sku }}</td>
           <td>
             {{ product.prices.pln.base_price }} {{ product.prices.pln.symbol }}
@@ -197,14 +199,12 @@ const deleteProduct = async (productId) => {
               </template>
 
               <v-list>
+                 <v-list-item :to="`/admin/products/${product.id}`">
+                  <v-list-item-title>Edytuj</v-list-item-title>
+                </v-list-item>
                 <v-list-item @click="duplicateProduct(product)">
                   <v-list-item-title>Duplikuj</v-list-item-title>
                 </v-list-item>
-
-                <v-list-item :to="`/admin/products/${product.id}`">
-                  <v-list-item-title>Edytuj</v-list-item-title>
-                </v-list-item>
-
                 <v-list-item @click="deleteProduct(product.id)">
                   <v-list-item-title class="delete">Usuń</v-list-item-title>
                 </v-list-item>
@@ -317,4 +317,12 @@ const deleteProduct = async (productId) => {
   height: 80px;
 }
 
+.link {
+  a {
+    color: #1e4fc7;
+  }
+  a:hover {
+    text-decoration: underline;
+  }
+}
 </style>

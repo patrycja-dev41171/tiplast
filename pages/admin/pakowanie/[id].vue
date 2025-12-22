@@ -2,13 +2,13 @@
   <section class="product-admin-page">
     <h2>{{ cartoon?.display_name }}</h2>
 
-    <h4 class="mt-3">Aktualny stan: {{ cartoon?.stock }} sztuk</h4>
-    <h4 class="mt-3">Ostatnia Aktualizacja:{{ formatDate(cartoon?.updated_at)  }}</h4>
+    <h4 class="mt-3">Aktualny stan: {{ stock?.quantity }} sztuk</h4>
+    <h4 class="mt-3">Ostatnia Aktualizacja: {{ formatDate(cartoon?.updated_at)  }}</h4>
 
-    <InventoryActions
+    <CartoonActions
     v-if="cartoon"
-      :product-id="cartoon.id"
-      :current-stock="cartoon?.stock"
+      :cartoon-id="cartoon.id"
+      :current-stock="stock?.quantity"
       @updated="reload"
     />
 
@@ -44,9 +44,6 @@ definePageMeta({
   middleware: 'admin-client'
 });
 
-import InventoryActions from "~/components/InventoryActions.vue"
-import { useProducts } from "~/composables/useProducts"
-import { useInventory } from "~/composables/useInventory"
 import { useRoute } from "vue-router"
 import { ref, onMounted } from "vue"
 
@@ -61,12 +58,17 @@ const route = useRoute()
 
 // composables
 const { getCartoonById } = useCartoons()
+const { getCartoonLogs, getCartoonStock } = useCartoonsStock()
 
 // reactive data
 const cartoon = ref(null)
+const logs = ref(null)
+const stock = ref(null)
 
 const loadData = async () => {
   cartoon.value = await getCartoonById(route.params.id)
+  logs.value = await getCartoonLogs(route.params.id)
+  stock.value = await getCartoonStock(route.params.id)
 }
 
 onMounted(loadData)

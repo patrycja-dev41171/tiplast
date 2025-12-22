@@ -42,7 +42,7 @@ const columns = [
   { label: "Szerokość [cm]", key: "width" },
   { label: "Długość [cm]", key: "length" },
   { label: "Wysokość [cm]", key: "height" },
-  { label: "Dostępne", key: "stock" },
+  { label: "Dostępne", key: "quantity" },
   { label: "Ostatnia aktualizacja", key: "updated_at" },
   { label: "Akcja", key: "action" }
 ];

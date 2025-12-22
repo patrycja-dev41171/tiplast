@@ -1,7 +1,7 @@
 <template>
     <section class="inventory-page">
     <AdminPageHeader text="Kartony / Pakowanie" />
-    <PakowanieTable :cartoons="cartoons" />
+    <PakowanieTable :cartoons="cartoonsWithStock" />
   </section>
 </template>
 
@@ -13,11 +13,22 @@ definePageMeta({
 });
 
 const { getAllCartoons } = useCartoons();
+const { getAllCartoonsStock } = useCartoonsStock();
 
-const cartoons = ref([]);
+const cartoonsWithStock = ref([]);
 
 onMounted(async () => {
-  cartoons.value = await getAllCartoons()
+  const cartoons = await getAllCartoons()
+  const stock = await getAllCartoonsStock()
+
+  cartoonsWithStock.value = cartoons.map((p) => {
+    const s = stock.find((i) => i.record_id === p.id)
+    return {
+      ...p,
+      quantity: s?.quantity ?? 0,
+      updated_at: s?.updated_at
+    }
+  })
 })
 </script>
 
