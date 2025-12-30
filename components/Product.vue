@@ -25,7 +25,7 @@
           Cena: {{ product.prices.pln.base_price }}
           {{ product.prices.pln.symbol }}
         </p>
-        <AddToCart :product-id="product.id" :max="product.stock.quantity" :product-price="product.prices.pln.base_price" @added="onAdded" />
+        <AddToCart :product-id="product.id" :max="product?.stock?.quantity || 0" :product-price="product.prices.pln.base_price" @added="onAdded" />
       </div>
     </div>
 
