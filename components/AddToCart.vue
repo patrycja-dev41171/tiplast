@@ -1,7 +1,4 @@
 <script setup>
-import { ref, watch } from "vue"
-import { products } from "~/database/products/products"
-
 const props = defineProps({
   productId: {
     type: String,
@@ -50,12 +47,11 @@ const addToCart = async () => {
 </script>
 
 <template>
-  <div class="add-to-cart">
+  <div v-if="!max" class="add-to-cart">
     <div class="qty-control">
       <button @click="reduce" :disabled="qty <= min">−</button>
 
       <input
-        type="number"
         v-model.number="qty"
         :min="min"
         :max="max"
@@ -65,8 +61,12 @@ const addToCart = async () => {
     </div>
 
     <button class="add-btn" @click="addToCart">
-      🛒 Dodaj do koszyka
+     Dodaj do koszyka
     </button>
+  </div>
+  <div v-else >
+    <p>Produkt jest w tym momencie niedostępny.</p>
+    <button class="inquiry mt-3" @click="emit('inquiry')">Wyślij zapytanie</button>
   </div>
 </template>
 
@@ -101,13 +101,29 @@ const addToCart = async () => {
 }
 
 .add-btn {
+  min-width: 300px;
   padding: 10px 16px;
-  background: #2563eb;
+  background: #32aa27;
   color: white;
-  border-radius: 6px;
+  border-radius: 4px;
+  text-transform: uppercase;
   border: none;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.inquiry {
+    min-width: 300px;
+  padding: 10px 16px;
+  background: #7b7b7b;
+  color: white;
+  border-radius: 4px;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
 }
 
 .add-btn:hover {

@@ -2,7 +2,7 @@
   <form class="inquiry-form" @submit.prevent="handleSubmit">
     <h3>Jestem zaintersowany!</h3>
     <p class="subtitle">
-      Wypełnij formularz, a skontaktujemy się z Tobą w sprawie wyceny i zakupu.
+      Wypełnij i wyślij formularz, a my skontaktujemy się z Tobą w sprawie możliwej realizacji zamówienia i zakupu.
     </p>
 
     <v-text-field v-model="form.name" label="Imię i nazwisko" outlined dense required class="mb-4" />
