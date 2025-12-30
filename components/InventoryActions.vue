@@ -2,66 +2,144 @@
   <div class="actions">
     <h3>Zmiana stanu magazynowego</h3>
 
-    <label>Nowa ilość</label>
-    <input type="number" v-model.number="qty" />
+    <!-- TRYB ZMIANY -->
+    <label>Rodzaj zmiany</label>
+    <div class="modes">
 
+      <label>
+        <input type="radio" value="add" v-model="mode" />
+        Dodaj
+      </label>
+
+      <label>
+        <input type="radio" value="subtract" v-model="mode" />
+        Odejmij
+      </label>
+
+       <label>
+        <input type="radio" value="set" v-model="mode" />
+        Ustaw nową ilość
+      </label>
+    </div>
+
+    <!-- WARTOŚĆ -->
+    <label>
+      {{ mode === "set" ? "Nowa ilość" : "Ilość" }}
+    </label>
+    <input
+      type="number"
+      min="0"
+      v-model.number="value"
+    />
+
+    <!-- PODGLĄD -->
+    <p class="preview">
+      Aktualny stan: <strong>{{ currentStock }}</strong><br />
+      Nowy stan: <strong>{{ finalQty }}</strong>
+    </p>
+
+    <!-- POWÓD -->
     <label>Powód zmiany</label>
     <select v-model="changeType">
-      <option v-for="reason in stockUpdateResons" :key="reason.value" :value="reason.value" :disabled="reason.disabled">
+      <option
+        v-for="reason in stockUpdateResons"
+        :key="reason.value"
+        :value="reason.value"
+        :disabled="reason.disabled"
+      >
         {{ reason.label }}
       </option>
     </select>
 
+    <!-- NOTATKA -->
     <label>Notatka (opcjonalnie)</label>
-    <input type="text" v-model="note" placeholder="np. dostawa z hurtowni" />
+    <input
+      type="text"
+      v-model="note"
+      placeholder="np. dostawa z hurtowni"
+    />
 
-     <p v-if="error" class="error">{{ error }}</p>
+    <p v-if="error" class="error">{{ error }}</p>
 
     <button @click="submit" :disabled="loading">
       {{ loading ? "Zapisywanie..." : "Zapisz zmiany" }}
     </button>
 
-    <p v-if="saved">✔ Zmieniono stan magazynu</p>
+    <p v-if="saved" class="success">✔ Zmieniono stan magazynu</p>
   </div>
 </template>
 
 <script setup>
+import { ref, computed } from "vue"
 import stockUpdateResons from "~/vars/stockUpdateResons"
-import { ref } from "vue"
+import { useInventory } from "~/composables/useInventory"
 
 const props = defineProps({
-  productId: String,
-  currentStock: Number
+  productId: {
+    type: String,
+    required: true
+  },
+  currentStock: {
+    type: Number,
+    required: true
+  }
 })
 
 const emit = defineEmits(["updated"])
 const { updateStock, createStockLog } = useInventory()
 
-const qty = ref(props.currentStock)
+// state
+const mode = ref("set") // set | add | subtract
+const value = ref(0)
 const changeType = ref("manual_update")
 const note = ref("")
 const loading = ref(false)
 const saved = ref(false)
 const error = ref("")
 
+// obliczenie nowego stanu
+const finalQty = computed(() => {
+  if (mode.value === "set") {
+    return value.value
+  }
+
+  if (mode.value === "add") {
+    return props.currentStock + value.value
+  }
+
+  if (mode.value === "subtract") {
+    return Math.max(0, props.currentStock - value.value)
+  }
+
+  return props.currentStock
+})
+
+// submit
 const submit = async () => {
-   error.value = ""
+  error.value = ""
   saved.value = false
 
-  if (qty.value === null || qty.value === undefined || qty.value === "") {
-    error.value = "Podaj nową ilość!"
+  if (value.value === null || value.value === undefined) {
+    error.value = "Podaj ilość!"
     return
   }
 
-  if (!changeType.value) {
-    error.value = "Wybierz powód zmiany!"
+  if (finalQty.value < 0) {
+    error.value = "Stan nie może być ujemny!"
     return
   }
 
   loading.value = true
-  saved.value = false
 
-  const result = await updateStock(props.productId, qty.value)
+  const result = await updateStock(props.productId, finalQty.value)
+
+  console.log({
+    productId: props.productId,
+    before: result.before,
+    after: result.after,
+    changeType: changeType.value,
+    note: note.value
+  })
 
   await createStockLog({
     productId: props.productId,
@@ -84,6 +162,18 @@ const submit = async () => {
   flex-direction: column;
   gap: 10px;
 }
+
+.modes {
+  display: flex;
+  gap: 20px;
+}
+
+input,
+select {
+  padding: 8px;
+  border: 1px solid #ccc;
+}
+
 button {
   padding: 10px 14px;
   background: #2563eb;
@@ -92,18 +182,25 @@ button {
   border-radius: 4px;
   cursor: pointer;
 }
-button:hover {
-  filter: brightness(90%);
-  cursor: pointer;
- 
+
+button:disabled {
+  opacity: 0.6;
 }
-input, select {
-  padding: 8px;
-  border: 1px solid #ccc;
+
+.preview {
+  background: #f8fafc;
+  padding: 10px;
+  border-radius: 6px;
+  font-size: 14px;
 }
 
 .error {
   color: #dc2626;
+  font-weight: 600;
+}
+
+.success {
+  color: #16a34a;
   font-weight: 600;
 }
 </style>
