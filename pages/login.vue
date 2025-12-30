@@ -1,8 +1,8 @@
 <script setup>
-
+const {getSession, login} = useAuth()
 
 onMounted(async () => {
-  const { data } = await $supabase.auth.getSession();
+  const { data } = getSession();
   if (data.session) {
     router.push("/admin/dashboard");
   }
@@ -13,14 +13,13 @@ const password = ref("");
 const loading = ref(false);
 const errorMsg = ref("");
 
-const { $supabase } = useNuxtApp();
 const router = useRouter();
 
-const login = async () => {
+const signin = async () => {
   loading.value = true;
   errorMsg.value = "";
 
-  const { data, error } = await $supabase.auth.signInWithPassword({
+  const { data, error } = await login({
     email: email.value,
     password: password.value,
   });
@@ -38,7 +37,7 @@ const login = async () => {
 
 <template>
   <div class="login-wrapper">
-    <form class="login-box" @submit.prevent="login">
+    <form class="login-box" @submit.prevent="signin">
       <h1>Panel administratora</h1>
 
       <label>Email</label>

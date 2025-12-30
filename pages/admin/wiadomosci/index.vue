@@ -4,16 +4,13 @@ definePageMeta({
   middleware: 'admin-client',
 });
 
-const { $supabase } = useNuxtApp();
+const { getAllMessages } = useMessages()
 
 const messages = ref([]);
 const loading = ref(true);
 
 const fetchMessages = async () => {
-  const { data, error } = await $supabase
-    .from("messages")
-    .select("*")
-    .order("created_at", { ascending: false });
+  const { data, error } = await getAllMessages();
 
   if (!error) messages.value = data;
 

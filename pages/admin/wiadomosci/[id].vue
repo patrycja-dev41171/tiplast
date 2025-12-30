@@ -5,7 +5,8 @@ definePageMeta({
 });
 
 const route = useRoute();
-const { $supabase } = useNuxtApp();
+const { getMessageById } = useMessages()
+const { getAllMessagesRepliesById } = useMessagesReplies()
 
 const message = ref(null);
 const replies = ref([]);
@@ -14,19 +15,11 @@ const loading = ref(true);
 const fetchData = async () => {
   const id = route.params.id;
 
-  const { data: msg } = await $supabase
-    .from("messages")
-    .select("*")
-    .eq("id", id)
-    .single();
+  const { data: msg } = await getMessageById(id)
 
   message.value = msg;
 
-  const { data: rep } = await $supabase
-    .from("messages_replies")
-    .select("*")
-    .eq("message_id", id)
-    .order("created_at", { ascending: true });
+  const { data: rep } = await getAllMessagesRepliesById(id);
 
   replies.value = rep ?? [];
 

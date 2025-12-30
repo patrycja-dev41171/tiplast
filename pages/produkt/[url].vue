@@ -15,9 +15,9 @@ import { useRoute } from "vue-router";
 const route = useRoute();
 const url = route.params.url
 
-const { getProduct } = useProducts()
+const { getProductByUrl } = useProducts()
 
-const data = await getProduct(url);
+const data = await getProductByUrl(url);
 const product = computed(() => data)
 
 const stripHtml = (html) => {

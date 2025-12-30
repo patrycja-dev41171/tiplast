@@ -4,7 +4,7 @@ definePageMeta({
   middleware: "admin-client",
 });
 
-const { 
+const {
   getAllColors,
   createColor,
   updateColor,
@@ -17,7 +17,8 @@ const loading = ref(true);
 
 const loadColors = async () => {
   loading.value = true;
-  colors.value = await getAllColors();
+  const { data } = await getAllColors();
+  colors.value = data;
   loading.value = false;
 };
 
@@ -76,12 +77,7 @@ const columns = [
     <AdminPageHeader text="Kolory" />
 
     <div v-if="loading">Ładowanie...</div>
-    <Table
-      v-else
-      :columns="columns"
-      :rows="colors"
-      idKey="id"
-    >
+    <Table v-else :columns="columns" :rows="colors" idKey="id">
       <!-- Edycja nazwy -->
       <template #cell-display_name="{ row }">
         <input v-model="row.display_name" />
@@ -109,7 +105,7 @@ const columns = [
       </template>
     </Table>
 
-   <AddNewColor @add="addColor" />
+    <AddNewColor @add="addColor" />
 
   </div>
 </template>

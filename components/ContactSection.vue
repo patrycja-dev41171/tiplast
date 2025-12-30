@@ -48,7 +48,7 @@
           </div>
           <small v-if="errors.consent" class="error-text">{{
             errors.consent
-          }}</small>
+            }}</small>
 
           <div class="checkbox">
             <input type="checkbox" id="marketing" v-model="form.marketing" />
@@ -96,8 +96,6 @@
 </template>
 
 <script setup>
-const { $supabase } = useNuxtApp();
-
 import { reactive, ref } from "vue";
 
 const form = reactive({
@@ -126,6 +124,8 @@ function validate() {
   return !Object.values(errors).some(Boolean);
 }
 
+const { addMessage } = useMessages()
+
 async function handleSubmit() {
   successMessage.value = "";
   errorMessage.value = "";
@@ -142,16 +142,8 @@ async function handleSubmit() {
         <p><strong>Wiadomość:</strong><br>${form.message}</p>
       `
 
-    const { error: dbError } = await $supabase.from("messages").insert({
-      form_type: "formularz kontaktowy",
-      name: form.name,
-      email: form.email,
-      phone: form.phone,
-      message: message,
-      status: "nowa",
-      subject: `Wiadomość z formularza kontaktowego`,
-    });
-
+    const { error: dbError } = await addMessage(form, message, "formularz kontaktowy", `Wiadomość z formularza kontaktowego`)
+console.log(dbError)
     if (dbError) {
       console.error("DB ERROR", dbError);
       throw new Error("Błąd zapisu do bazy");

@@ -4,14 +4,16 @@ const props = defineProps({
   customerEmail: { type: String, required: true }, // dodajemy email klienta
 });
 
+const {addMessageReplies} = useMessagesReplies()
+
 const emit = defineEmits(["sent"]);
 const replyText = ref("");
 
-const { $supabase } = useNuxtApp();
+const { getUser } = useAuth()
 const user = ref(null);
 
 onMounted(async () => {
-  const { data } = await $supabase.auth.getUser();
+  const { data } = await getUser();
   user.value = data.user;
 });
 
@@ -19,7 +21,7 @@ const sendReply = async () => {
   if (!replyText.value.trim()) return alert("Wpisz treść odpowiedzi.");
 
   // 1️⃣ ZAPIS ODPOWIEDZI DO BAZY
-  const { error: saveError } = await $supabase.from("messages_replies").insert({
+  const { error: saveError } = await addMessageReplies({
     message_id: props.messageId,
     author_id: user.value.id,
     author_name: user.value.email,

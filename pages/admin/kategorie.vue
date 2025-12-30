@@ -4,7 +4,7 @@ definePageMeta({
     middleware: "admin-client",
 });
 
-const { $supabase } = useNuxtApp();
+const { getAllCategories, addNewCategory, updateCategory, deleteCategoryById } = useCategories()
 
 const categories = ref([]);
 const loading = ref(true);
@@ -17,10 +17,7 @@ const newCategory = ref({
 const loadCategories = async () => {
     loading.value = true;
 
-    const { data, error } = await $supabase
-        .from("categories")
-        .select("*")
-        .order("id");
+    const { data, error } = await getAllCategories("id");
 
     if (!error) categories.value = data;
 
@@ -38,7 +35,7 @@ const addCategory = async () => {
             .replace(/[^\w-]+/g, "");
     }
 
-    const { error } = await $supabase.from("categories").insert(newCategory.value);
+    const { error } = await addNewCategory(newCategory.value);
 
     if (!error) {
         newCategory.value = { display_name: "", slug: "" };
@@ -47,30 +44,20 @@ const addCategory = async () => {
 };
 
 // Zapisz edycję
-const updateCategory = async (cat) => {
-    const { error } = await $supabase
-        .from("categories")
-        .update({
-            display_name: cat.display_name,
-            slug: cat.slug,
-        })
-        .eq("id", cat.id);
+const updateCat = async (cat) => {
+    const { error } = await updateCategory(cat)
 
-    if (error) { 
-        alert("Błąd przy aktualizacji kategorii") 
+    if (error) {
+        alert("Błąd przy aktualizacji kategorii")
     } else {
-alert("Zapisano zmiany!") 
+        alert("Zapisano zmiany!")
     };
 };
 
 const deleteCategory = async (id) => {
     if (!confirm("Na pewno chcesz usunąć?")) return;
-    const categoryId = Number(id);
 
-    const { error } = await $supabase
-        .from("categories")
-        .delete()
-        .eq("id", categoryId);
+    const { error } = await deleteCategoryById(id)
 
     if (error) {
         alert(error.message);
@@ -114,8 +101,10 @@ onMounted(() => {
                     </td>
 
                     <td class="actions">
-                        <button class="save-btn" @click="updateCategory(cat)"><v-icon icon="mdi-content-save" size="small"></v-icon> Zapisz</button>
-                        <button class="delete-btn" @click="deleteCategory(cat.id)"><v-icon icon="mdi-delete" size="small"></v-icon> Usuń</button>
+                        <button class="save-btn" @click="updateCat(cat)"><v-icon icon="mdi-content-save"
+                                size="small"></v-icon> Zapisz</button>
+                        <button class="delete-btn" @click="deleteCategory(cat.id)"><v-icon icon="mdi-delete"
+                                size="small"></v-icon> Usuń</button>
                     </td>
                 </tr>
             </tbody>
@@ -267,10 +256,13 @@ h1 {
     display: flex;
     gap: 12px;
     margin: 10px auto;
-     button, input {
+
+    button,
+    input {
         height: 44px;
         margin-top: 0;
     }
+
     button {
         display: flex;
         align-items: center;

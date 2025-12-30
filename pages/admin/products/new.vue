@@ -2,18 +2,23 @@
 import draggable from "vuedraggable";
 
 definePageMeta({
- layout: 'admin',
+  layout: 'admin',
   middleware: "admin-client",
 });
 
-const { $supabase } = useNuxtApp();
+const { getAllCategories } = useCategories();
+const { getAllColors } = useColors()
+const { addProduct } = useProducts()
+const { uploadFiles, removeFile } = useStorageProducts()
+
+
 const router = useRouter();
 
 const saving = ref(false);
 const colors = ref([]);
 
 
-// 🔹 1. PUSTY PRODUKT STARTOWY
+// 1. PUSTY PRODUKT STARTOWY
 const product = ref({
   sku: "",
   display_name: "",
@@ -37,65 +42,53 @@ const product = ref({
 });
 
 const categories = ref([]);
-const loadCategories = async () => {
-  const { data, error } = await $supabase
-    .from("categories")
-    .select("*")
-    .order("id");
 
+const loadCategories = async () => {
+  const { data, error } = await getAllCategories("id")
   if (!error) categories.value = data;
 };
 
 const loadColors = async () => {
-  const { data, error } = await $supabase.from("colors").select("*").order("id");
-
+  const { data, error } = await getAllColors();
   if (!error) {
     colors.value = data;
   }
 };
 
 
-// 🔹 2. Upload zdjęć (identyczny jak w edycji)
 const uploadPhotos = async (event) => {
-  const files = event.target.files;
-  if (!files.length) return;
+  const files = event.target.files
+  if (!files.length) return
 
   if (!product.value.sku) {
-    alert("Najpierw wpisz SKU – zdjęcia muszą mieć folder!");
-    return;
+    alert("Najpierw wpisz SKU – zdjęcia muszą mieć folder!")
+    return
   }
 
-  const folder = product.value.sku;
+  const uploaded = await uploadFiles({
+    folder: product.value.sku,
+    files,
+  })
 
-  for (const file of files) {
-    const filename = `${Date.now()}-${file.name}`;
-
-    const { data, error } = await $supabase.storage
-      .from("products")
-      .upload(`${folder}/${filename}`, file);
-
-    if (error) {
-      console.error("Upload error:", error);
-      continue;
-    }
-
-    const publicUrl = $supabase.storage
-      .from("products")
-      .getPublicUrl(`${folder}/${filename}`).data.publicUrl;
-
+  uploaded.forEach(file => {
     product.value.photos.push({
-      url: publicUrl,
+      url: file.publicUrl,
       alt: product.value.display_name,
-    });
-  }
+    })
+  })
 
-  event.target.value = "";
-};
+  event.target.value = ""
+}
 
-// 🔹 3. Usuwanie zdjęcia
-const removePhoto = (i) => {
-  product.value.photos.splice(i, 1);
-};
+const removePhoto = async (i) => {
+  const photo = product.value.photos[i]
+  if (!photo?.url) return
+
+  const path = photo.url.split("/products/")[1]
+
+  await removeFile(path)
+  product.value.photos.splice(i, 1)
+}
 
 // 🔹 4. Zapis nowego produktu (INSERT)
 const saveProduct = async () => {
@@ -117,7 +110,7 @@ const saveProduct = async () => {
         : product.value.categories,
   };
 
-  const { error } = await $supabase.from("products").insert(payload);
+  const { error } = await addProduct();
 
   saving.value = false;
 

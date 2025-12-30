@@ -7,7 +7,10 @@ definePageMeta({
 import draggable from "vuedraggable";
 
 const route = useRoute();
-const { $supabase } = useNuxtApp();
+const { uploadFiles, removeFile } = useStorageProducts()
+const { getAllCategories } = useCategories()
+const { getProductById, updateProductById } = useProducts()
+const { getAllColors } = useColors()
 
 const product = ref(null);
 const categories = ref([]);
@@ -15,21 +18,12 @@ const saving = ref(false);
 const colors = ref([]);
 
 const loadCategories = async () => {
-  const { data, error } = await $supabase
-    .from("categories")
-    .select("*")
-    .order("id");
-
+  const { data, error } = await getAllCategories("id")
   if (!error) categories.value = data;
 };
 
 const loadProduct = async () => {
-  const { data, error } = await $supabase
-    .from("products")
-    .select("*")
-    .eq("id", route.params.id)
-    .single();
-
+  const { data, error } = await getProductById(route.params.id);
   product.value = data;
 
   if (product.value.categories && !Array.isArray(product.value.categories)) {
@@ -38,7 +32,9 @@ const loadProduct = async () => {
 };
 
 const loadColors = async () => {
-  const { data, error } = await $supabase.from("colors").select("*").order("id");
+  const { data, error } = await getAllColors();
+
+  console.log(data)
 
   if (!error) {
     colors.value = data;
@@ -65,23 +61,20 @@ const counterClass = computed(() => {
 const saveProduct = async () => {
   saving.value = true;
 
-  const { error } = await $supabase
-    .from("products")
-    .update({
-      sku: product.value.sku,
-      display_name: product.value.display_name,
-      url: product.value.url,
-      categories: product.value.categories,
-      color: product.value.color,
-      description: product.value.description,
-      delivery_description: product.value.delivery_description,
-      hidden: product.value.hidden,
-      prices: product.value.prices,
-      technical_details: product.value.technical_details,
-      photos: product.value.photos,
-      short_description: product.value.short_description,
-    })
-    .eq("id", product.value.id);
+  const { error } = await updateProductById({
+    sku: product.value.sku,
+    display_name: product.value.display_name,
+    url: product.value.url,
+    categories: product.value.categories,
+    color: product.value.color,
+    description: product.value.description,
+    delivery_description: product.value.delivery_description,
+    hidden: product.value.hidden,
+    prices: product.value.prices,
+    technical_details: product.value.technical_details,
+    photos: product.value.photos,
+    short_description: product.value.short_description,
+  }, product.value.id)
 
   saving.value = false;
 
@@ -93,44 +86,40 @@ const saveProduct = async () => {
 };
 
 const uploadPhotos = async (event) => {
-  const files = event.target.files;
-  if (!files.length) return;
+  const files = event.target.files
+  if (!files.length) return
 
-  const folder = product.value.sku;
-
-  for (const file of files) {
-    const filename = `${Date.now()}-${file.name}`;
-
-    // Upload pojedynczego pliku
-    const { data, error } = await $supabase.storage
-      .from("products")
-      .upload(`${folder}/${filename}`, file);
-
-    if (error) {
-      console.error("Upload error:", error);
-      continue;
-    }
-
-    // Pobranie publicznego URL
-    const publicUrl = $supabase.storage
-      .from("products")
-      .getPublicUrl(`${folder}/${filename}`).data.publicUrl;
-
-    // Dodanie do listy zdjęć
-    product.value.photos.push({
-      url: publicUrl,
-      alt: product.value.display_name,
-    });
+  if (!product.value?.sku) {
+    alert("Brak SKU – nie można dodać zdjęć")
+    return
   }
 
-  // Czyścimy input po wysłaniu
-  event.target.value = "";
-};
+  const uploaded = await uploadFiles({
+    folder: product.value.sku,
+    files,
+  })
 
-// 🚀 Usuwanie zdjęcia
-const removePhoto = (index) => {
-  product.value.photos.splice(index, 1);
-};
+  uploaded.forEach(file => {
+    product.value.photos.push({
+      url: file.publicUrl,
+      alt: product.value.display_name,
+    })
+  })
+
+  event.target.value = ""
+}
+
+
+const removePhoto = async (index) => {
+  const photo = product.value.photos[index]
+  if (!photo?.url) return
+
+  const path = photo.url.split("/products/")[1]
+
+  await removeFile(path)
+  product.value.photos.splice(index, 1)
+}
+
 </script>
 
 <template>
@@ -452,19 +441,22 @@ textarea {
 
 /* Kolorowanie pod SEO */
 .char-counter.too-short {
-  color: #c0392b; /* czerwony */
+  color: #c0392b;
+  /* czerwony */
 }
 
 .char-counter.ok {
-  color: #e67e22; /* pomarańczowy */
+  color: #e67e22;
+  /* pomarańczowy */
 }
 
 .char-counter.perfect {
-  color: #27ae60; /* zielony */
+  color: #27ae60;
+  /* zielony */
 }
 
 .char-counter.too-long {
-  color: #c0392b; /* czerwony */
+  color: #c0392b;
+  /* czerwony */
 }
-
 </style>

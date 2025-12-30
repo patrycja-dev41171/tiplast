@@ -1,15 +1,13 @@
 export const useColors = () => {
     const { $supabase } = useNuxtApp();
 
-    /** Pobiera wszystkie kolory */
     const getAllColors = async () => {
-        const { data, error } = await $supabase
+        const res = await $supabase
             .from("colors")
             .select("*")
             .order("id");
 
-        if (error) throw error;
-        return data || [];
+        return res;
     };
 
     /** Pobiera pojedynczy kolor po ID */

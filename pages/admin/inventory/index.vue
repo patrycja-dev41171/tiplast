@@ -18,10 +18,10 @@ const { getAllStock } = useInventory();
 const productsWithStock = ref([])
 
 onMounted(async () => {
-  const products = await getAllProducts()
+  const {data, error} = await getAllProducts()
   const stock = await getAllStock()
 
-  productsWithStock.value = products.map((p) => {
+  productsWithStock.value = data.map((p) => {
     const s = stock.find((i) => i.record_id === p.id)
     return {
       ...p,

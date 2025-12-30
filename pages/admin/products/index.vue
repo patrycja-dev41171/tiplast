@@ -4,13 +4,14 @@ definePageMeta({
   middleware: "admin-client",
 });
 
-const { $supabase } = useNuxtApp();
+const {getAllProducts, getLastSku, getProductsByUrlPrefix, addProduct, deleteProductsById} = useProducts()
+const {getAllCategories} = useCategories()
 
 const products = ref([]);
 const loading = ref(true);
 
 const fetchProducts = async () => {
-  const { data, error } = await $supabase.from("products").select("*");
+  const { data, error } = await getAllProducts();
 
   if (error) {
     console.error(error);
@@ -23,10 +24,7 @@ const fetchProducts = async () => {
 
 const categories = ref([]);
 const loadCategories = async () => {
-  const { data, error } = await $supabase
-    .from("categories")
-    .select("*")
-    .order("id");
+  const { data, error } = await getAllCategories("id");
 
   if (!error) categories.value = data;
 };
@@ -50,11 +48,7 @@ const getCategoryNames = (ids) => {
 };
 
 const getNextSku = async () => {
-  const { data, error } = await $supabase
-    .from("products")
-    .select("sku")
-    .order("sku", { ascending: false })
-    .limit(1);
+  const { data, error } = await getLastSku();
 
   if (error) {
     console.error(error);
@@ -69,10 +63,7 @@ const getNextSku = async () => {
 };
 
 const getNextUrl = async (baseUrl) => {
-  const { data, error } = await $supabase
-    .from("products")
-    .select("url")
-    .like("url", `${baseUrl}%`);
+  const { data, error } = await getProductsByUrlPrefix(baseUrl)
 
   if (error) {
     console.error(error);
@@ -111,10 +102,7 @@ const duplicateProduct = async (product) => {
   newProduct.sku = newSku;
   newProduct.url = newUrl;
 
-  const { data, error } = await $supabase
-    .from("products")
-    .insert([newProduct])
-    .select();
+  const { data, error } = await addProduct([newProduct])
 
   if (error) {
     console.error(error);
@@ -128,10 +116,7 @@ const duplicateProduct = async (product) => {
 const deleteProduct = async (productId) => {
   if (!confirm("Czy na pewno chcesz usunąć ten produkt?")) return;
 
-  const { error } = await $supabase
-    .from("products")
-    .delete()
-    .eq("id", productId);
+  const { error } = await deleteProductsById(productId)
 
   if (error) {
     console.error(error);

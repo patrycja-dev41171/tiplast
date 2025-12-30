@@ -1,8 +1,9 @@
 export const useCartoonsStock = () => {
     const { $supabase } = useNuxtApp()
+    const { getUser } = useAuth()
 
     const getCurrentUser = async () => {
-        const { data } = await $supabase.auth.getUser()
+        const { data } = await getUser();
         return data.user
     }
 

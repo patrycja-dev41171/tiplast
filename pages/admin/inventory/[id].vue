@@ -69,10 +69,10 @@ const stock = ref(null)
 const logs = ref([])
 
 const loadData = async () => {
-  product.value = await getProductById(route.params.id)
+  const {data}= await getProductById(route.params.id)
+  product.value = data;
   stock.value = await getStock(route.params.id) || { quantity: 0 }
   logs.value = await getLogs(route.params.id)
-  console.log(logs.value[0])
 }
 
 onMounted(loadData)

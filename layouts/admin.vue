@@ -13,7 +13,7 @@ import { colors } from '../vars/colors';
         <NuxtLink to="/admin/pakowanie"><v-icon icon="mdi-package-variant-closed"></v-icon>Pakowanie</NuxtLink>
       </div>
       <NuxtLink to="https://tiplast.pl/" target="_blank" class="web">www.tiplast.pl <v-icon icon="mdi-link"></v-icon></NuxtLink>
-      <button class="logout-btn" @click="logout">Wyloguj <v-icon icon="mdi-logout"></v-icon></button>
+      <button class="logout-btn" @click="signOut">Wyloguj <v-icon icon="mdi-logout"></v-icon></button>
     </nav>
 
     <main class="admin-content">
@@ -23,11 +23,11 @@ import { colors } from '../vars/colors';
 </template>
 
 <script setup>  
-const { $supabase } = useNuxtApp();
+const { logout } = useAuth()
 const router = useRouter();
 
-const logout = async () => {
-  await $supabase.auth.signOut();
+const signOut = async () => {
+  await logout();
   router.push("/admin");
 };
 </script>

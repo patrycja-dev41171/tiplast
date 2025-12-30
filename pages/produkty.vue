@@ -24,17 +24,15 @@
 </template>
 
 <script setup>
-const { $supabase } = useNuxtApp();
+const { getAllProducts } = useProducts()
+const { getAllCategories } = useCategories()
 const products = ref([]);
 const categories = ref([]);
 const selectedCategory = ref(0);
 const mobileFiltersOpen = ref(false);
 
 const loadCategories = async () => {
-  const { data, error } = await $supabase
-    .from("categories")
-    .select("*")
-    .order("display_name");
+  const { data, error } = await getAllCategories("display_name");
 
   if (!error) categories.value = data.sort((a, b) => a.id - b.id);
 };
@@ -42,12 +40,10 @@ const loadCategories = async () => {
 onMounted(async () => {
   await loadCategories();
 
-  const { data, error } = await $supabase
-    .from("products")
-    .select("*")
-    .eq("hidden", false);
+  const {data, error} = await getAllProducts(false)
 
   if (error) console.error(error);
+
   else {
     products.value = data.sort((a, b) => a.sku.localeCompare(b.sku));
   }

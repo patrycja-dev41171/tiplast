@@ -4,11 +4,11 @@ definePageMeta({
   middleware: 'admin-client'
 })
 
-const { $supabase } = useNuxtApp();
+const { getUser } = useAuth()
 const user = ref(null);
 
 onMounted(async () => {
-  const { data } = await $supabase.auth.getUser();
+  const { data } = await getUser();
   user.value = data.user;
 });
 </script>

@@ -46,7 +46,6 @@
 <script setup>
 import { ref } from "vue";
 import { useFetch } from "#app";
-const { $supabase } = useNuxtApp();
 
 const props = defineProps({
   product: {
@@ -82,6 +81,8 @@ function validate() {
   return !Object.values(errors).some(Boolean);
 }
 
+const { addMessage } = useMessages()
+
 const handleSubmit = async () => {
 
   if (!validate()) return;
@@ -105,15 +106,7 @@ const handleSubmit = async () => {
         <p><strong>Wiadomość:</strong><br>${form.value.message}</p>
       `
 
-    const { error: dbError } = await $supabase.from("messages").insert({
-      form_type: "formularz kontaktowy",
-      name: form.value.name,
-      email: form.value.email,
-      phone: form.value.phone,
-      message: message,
-      status: "nowa",
-      subject: `Zapytanie o produkt`,
-    });
+    const { error: dbError } = await addMessage(form.value, message, "formularz kontaktowy", `Zapytanie o produkt`)
 
     if (dbError) {
       console.error("DB ERROR", dbError);
