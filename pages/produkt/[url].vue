@@ -21,9 +21,6 @@ const { getProductByUrl } = useProducts()
 const data = await getProductByUrl(url);
 const product = computed(() => data)
 
-console.log(product.value.stock.quantity)
-
-
 const stripHtml = (html) => {
   if (!html) return "";
   return html.replace(/<[^>]*>?/gm, "").trim();
