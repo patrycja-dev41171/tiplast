@@ -34,6 +34,11 @@ export default defineNuxtConfig({
     supabaseUrl: process.env.SUPABASE_URL,
     supabaseAnonKey: process.env.SUPABASE_ANON_KEY,
     supabaseServiceKey: process.env.SUPABASE_SERVICE_ROLE_KEY, // server only
+    furgonetkaApiUrl: process.env.FURGONETKA_API_URL, // server only
+    furgonetkaUsername: process.env.FURGONETKA_LOGIN,
+    furgonetkaPassword: process.env.FURGONETKA_PASSWORD,
+    furgonetkaClientId: process.env.FURGONETKA_CLIENT_ID,
+    furgonetkaClientSecret: process.env.FURGONETKA_CLIENT_SECRET,
     public: {
       supabaseUrl: process.env.SUPABASE_URL,
       supabaseAnonKey: process.env.SUPABASE_ANON_KEY,
