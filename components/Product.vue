@@ -6,24 +6,15 @@
         <img :src="activePhoto.url" :alt="activePhoto.alt" class="main-photo" />
 
         <div class="thumbnails">
-          <img
-            v-for="(photo, i) in product.photos"
-            :key="i"
-            :src="photo.url"
-            :alt="photo.alt"
-            :class="{ active: i === activeIndex }"
-            @click="activeIndex = i"
-          />
+          <img v-for="(photo, i) in product.photos" :key="i" :src="photo.url" :alt="photo.alt"
+            :class="{ active: i === activeIndex }" @click="activeIndex = i" />
         </div>
       </div>
 
       <!-- Info -->
       <div class="product-info">
         <h1>{{ product.display_name }}</h1>
-        <div
-          class="d-none d-md-flex flex-column technical mt-6"
-          v-if="product.technical_details?.length"
-        >
+        <div class="d-none d-md-flex flex-column technical mt-6" v-if="product.technical_details?.length">
           <ul>
             <li v-for="(item, i) in product.technical_details" :key="i">
               <strong>{{ item.name }}:</strong> {{ item.value }}
@@ -34,17 +25,14 @@
           Cena: {{ product.prices.pln.base_price }}
           {{ product.prices.pln.symbol }}
         </p>
+        <AddToCart :product-id="product.id" :max="product.stock.quantity" :product-price="product.prices.pln.base_price" @added="onAdded" />
       </div>
     </div>
 
     <!-- ZAKŁADKI -->
     <div class="tabs">
-      <button
-        v-for="tab in tabs"
-        :key="tab.value"
-        :class="{ active: activeTab === tab.value }"
-        @click="activeTab = tab.value"
-      >
+      <button v-for="tab in tabs" :key="tab.value" :class="{ active: activeTab === tab.value }"
+        @click="activeTab = tab.value">
         {{ tab.label }}
       </button>
     </div>
@@ -85,7 +73,7 @@
 </template>
 
 <script setup>
-import { ref, computed} from "vue";
+import { ref, computed } from "vue";
 
 const { product } = defineProps({
   product: {
@@ -94,6 +82,8 @@ const { product } = defineProps({
   },
 });
 
+
+console.log(product)
 
 const activeIndex = ref(0);
 const activePhoto = computed(() => product?.photos?.[activeIndex.value]);
@@ -106,6 +96,11 @@ const tabs = [
 ];
 
 const activeTab = ref("description");
+
+const onAdded = () => {
+  console.log('dodane')
+}
+
 </script>
 
 <style lang="scss">
@@ -132,6 +127,7 @@ const activeTab = ref("description");
     max-width: 620px;
     width: 100%;
     max-height: 500px !important;
+
     @include md {
       max-height: 700px !important;
     }
@@ -142,6 +138,7 @@ const activeTab = ref("description");
       height: 400px;
       object-fit: cover;
       border: 1px solid #e0e0e0;
+
       @include md {
         max-height: 500px !important;
         height: 500px;
@@ -290,5 +287,4 @@ const activeTab = ref("description");
     padding: 5px 0;
   }
 }
-
 </style>

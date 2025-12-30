@@ -1,0 +1,71 @@
+<script setup>
+import { onMounted, ref } from "vue"
+import { useCarts } from "~/composables/useCarts"
+
+import CartItem from "~/components/cart/CartItem.vue"
+import CartSummary from "~/components/cart/CartSummary.vue"
+
+const { getCart } = useCarts()
+
+const cart = ref(null)
+const loading = ref(true)
+
+const loadCart = async () => {
+  loading.value = true
+  cart.value = await getCart()
+  loading.value = false
+}
+
+onMounted(loadCart)
+</script>
+
+<template>
+  <section class="cart-page mt-10 ">
+    <h1 class="mb-6">Twój koszyk</h1>
+
+    <div v-if="loading">Ładowanie koszyka…</div>
+
+    <div v-else-if="!cart || cart.items.length === 0">
+      <p>Twój koszyk jest pusty.</p>
+    </div>
+
+    <div v-else class="cart-layout">
+      <!-- LISTA PRODUKTÓW -->
+      <div class="cart-items">
+        <CartItem
+          v-for="item in cart.items"
+          :key="item.id"
+          :item="item"
+          @update="loadCart"
+          @remove="loadCart"
+        />
+      </div>
+
+      <!-- PODSUMOWANIE -->
+      <CartSummary
+        :totalPrice="cart.total_price"
+        :totalQuantity="cart.total_quantity"
+      />
+    </div>
+  </section>
+</template>
+
+<style scoped>
+.cart-page {
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
+}
+
+.cart-layout {
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 50px;
+}
+
+@media (max-width: 768px) {
+  .cart-layout {
+    grid-template-columns: 1fr;
+  }
+}
+</style>

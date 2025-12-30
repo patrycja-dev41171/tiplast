@@ -43,7 +43,13 @@ export const useProducts = () => {
     const getProductByUrl = async (url) => {
         const { data, error } = await $supabase
             .from("products")
-            .select("*")
+            .select(`
+      *,
+      stock:product_stock (
+        quantity,
+        updated_at
+      )
+    `)
             .eq("url", url)
             .single();
 

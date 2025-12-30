@@ -60,6 +60,13 @@
       >
       <v-spacer></v-spacer>
       <v-app-bar-nav-icon
+        icon="mdi-cart-outline"
+        class="d-md-none no-ripple"
+        style="font-size: 20px"
+        :ripple="false"
+        @click="navigateTo('/koszyk')"
+      />
+      <v-app-bar-nav-icon
         :icon="drawer ? 'mdi-close' : 'mdi-menu'"
         @click.stop="drawer = !drawer"
         class="d-md-none no-ripple"
@@ -95,10 +102,14 @@
         <v-divider />
 
         <v-list-item
-          class="list-item contact"
+          class="list-item"
           title="Kontakt"
           @click="navigateTo('/kontakt')"
         />
+         <v-list-item
+          class="list-item contact"
+          @click="navigateTo('/koszyk')"
+        ><v-icon  icon="mdi-cart-outline" class="mr-2"></v-icon>Koszyk</v-list-item>
       </v-list>
     </v-container>
   </v-app-bar>
@@ -121,6 +132,10 @@ const navigateTo = (path) => {
 .img {
   z-index: 10000;
   cursor: pointer;
+  max-width: 180px;
+  @media screen and (min-width: 900px) {
+  max-width: 3000px;
+  }
 }
 
 .app-bar {
@@ -165,7 +180,6 @@ const navigateTo = (path) => {
   .contact {
     text-align: center;
     padding: 10px;
-    border: 2px solid black;
     ::v-deep(.v-list-item-title) {
       text-transform: uppercase !important;
     }
@@ -181,9 +195,13 @@ const navigateTo = (path) => {
     }
   }
   .contact {
-    border: 2px solid black;
-    padding: 0 40px;
+    padding: 0 20px;
     margin-left: 30px;
+    color: #32aa27;
+    font-size: 16px;
+    font-weight: 700;
+    // background-color: #32aa27;
+    text-transform: uppercase;
     ::v-deep(.v-list-item-title) {
       text-transform: uppercase !important;
     }
