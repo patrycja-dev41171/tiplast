@@ -4,7 +4,12 @@ export const useProducts = () => {
     const getAllProducts = async (hidden) => {
         let query = $supabase
             .from("products")
-            .select("*")
+            .select(`
+      *,
+      packaging_options (
+       *
+      )
+    `)
 
         if (hidden !== undefined) {
             query = query.eq("hidden", hidden)

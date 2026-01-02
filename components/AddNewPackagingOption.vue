@@ -30,6 +30,12 @@
         placeholder="Max waga [kg]"
       />
 
+      <input
+        type="text"
+        v-model="form.instructions"
+        placeholder="Instrukcja"
+      />
+
       <button class="add-btn" @click="submit">
         <v-icon icon="mdi-plus" size="small" /> Dodaj
       </button>
@@ -50,7 +56,8 @@ defineProps({
 const form = reactive({
   cartoon_id: '',
   quantity_per_cartoon: 1,
-  max_weight: null
+  max_weight: null,
+  instructions: ''
 })
 
 const submit = () => {
@@ -61,7 +68,8 @@ const submit = () => {
   // reset
   form.cartoon_id = ''
   form.quantity_per_cartoon = 1
-  form.max_weight = null
+  form.max_weight = null,
+  form.instructions = ''
 }
 </script>
 

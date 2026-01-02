@@ -21,6 +21,10 @@
                 <input type="number" min="0" step="0.01" class="input" v-model.number="row.weight" />
             </template>
 
+             <template #cell-instructions="{ row }">
+                <textarea rows="1" type="text"  class="input wide" v-model="row.instructions" />
+            </template>
+
 
 
             <template #cell-actions="{ row }">
@@ -54,12 +58,6 @@ const { getAllCartoons } = useCartoons()
 const product = ref(null)
 const options = ref([])
 const cartoons = ref([])
-const newRule = ref({
-    cartoon_id: '',
-    quantity_per_cartoon: 1,
-    max_weight: null
-})
-
 
 const getProduct = async () => {
     const { data } = await getProductById(route.params.id)
@@ -77,9 +75,11 @@ const getCartoons = async () => {
 }
 
 const loadData = async () => {
-    await getProduct(),
-        await getOptions(),
-        await getCartoons()
+    await Promise.all([
+    getProduct(),
+    getOptions(),
+    getCartoons()
+  ])
 }
 
 
@@ -105,7 +105,8 @@ const tableData = computed(() => {
             cartoon_lenght: cartoon?.length,
             cartoon_height: cartoon?.height,
             quantity_per_cartoon: option.quantity_per_cartoon,
-            weight: option.max_weight
+            weight: option.max_weight,
+            instructions: option.instructions,
         }
     })
 })
@@ -116,14 +117,19 @@ const columns = [
     { label: "Karton", key: "cartoon_sku" },
     { label: "Max ilość [sztuk]", key: "quantity_per_cartoon" },
     { label: "Max waga [kg]", key: "weight" },
+    { label: "Instrukcje pakowania", key: "instructions" },
     { label: "Akcje", key: "actions" }
 ];
 
 const saveRow = async (row) => {
     await updatePackagingOption(row.id, {
+        cartoon_id: row.cartoon_id,
         quantity_per_cartoon: row.quantity_per_cartoon,
-        max_weight: row.weight
+        max_weight: row.weight,
+        instructions: row.instructions
     })
+
+    alert("Zapisano zmiany!")
 
     await getOptions()
 }
@@ -136,26 +142,16 @@ const deleteRow = async (row) => {
     await getOptions()
 }
 
-const addRule = async () => {
-    if (!newRule.value.cartoon_id) {
-        alert('Wybierz karton')
-        return
-    }
+const addRule = async (rule) => {
+     await createPackagingOption({
+    product_id: product.value.id,
+    cartoon_id: rule.cartoon_id,
+    quantity_per_cartoon: rule.quantity_per_cartoon,
+    max_weight: rule.max_weight,
+    instructions: rule.instructions
+  })
 
-    await createPackagingOption({
-        product_id: product.value.id,
-        cartoon_id: newRule.value.cartoon_id,
-        quantity_per_cartoon: newRule.value.quantity_per_cartoon,
-        max_weight: newRule.value.max_weight
-    })
-
-    newRule.value = {
-        cartoon_id: '',
-        quantity_per_cartoon: 1,
-        max_weight: null
-    }
-
-    await getOptions()
+  await getOptions()
 }
 
 
@@ -214,8 +210,8 @@ const addRule = async () => {
 }
 
 input,
-select {
-    width: 150px;
+select, textarea {
+    width: 140px;
     padding: 10px 12px;
     border-radius: 6px;
     border: 1px solid #cbd5e1; 
@@ -232,8 +228,9 @@ select {
     }
 }
 
-select {
-    width: 400px;
+select, .wide {
+    width: 350px;
+    height: auto;
 }
 
 td input {

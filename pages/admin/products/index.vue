@@ -148,6 +148,7 @@ const deleteProduct = async (productId) => {
           <th>SKU</th>
           <th>Cena</th>
           <th>Kategorie</th>
+          <th>Pakowanie</th>
           <th>Widoczny</th>
           <th>Kolor</th>
           <th></th>
@@ -167,6 +168,10 @@ const deleteProduct = async (productId) => {
             {{ product.prices.pln.base_price }} {{ product.prices.pln.symbol }}
           </td>
           <td>{{ getCategoryNames(product.categories).join(", ") }}</td>
+          <td class="centered">
+             <v-icon v-if="!product.packaging_options?.length" icon="mdi-alert-box" color="red" size="x-large"/>
+             <v-icon v-else icon="mdi-checkbox-marked" color="green"  size="x-large"/>
+            </td>
           <td>
             <span :class="product.hidden ? 'hidden-flag' : 'visible-flag'">
               {{ product.hidden ? "NIE" : "TAK" }}
