@@ -8,6 +8,9 @@ export const useProducts = () => {
       *,
       packaging_options (
        *
+      ),
+      product_stock (
+       *
       )
     `)
 

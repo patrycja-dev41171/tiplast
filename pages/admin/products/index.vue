@@ -12,6 +12,7 @@ const loading = ref(true);
 
 const fetchProducts = async () => {
   const { data, error } = await getAllProducts();
+  console.log(data)
 
   if (error) {
     console.error(error);
@@ -148,6 +149,7 @@ const deleteProduct = async (productId) => {
           <th>SKU</th>
           <th>Cena</th>
           <th>Kategorie</th>
+          <th>Magazyn</th>
           <th>Pakowanie</th>
           <th>Widoczny</th>
           <th>Kolor</th>
@@ -168,6 +170,7 @@ const deleteProduct = async (productId) => {
             {{ product.prices.pln.base_price }} {{ product.prices.pln.symbol }}
           </td>
           <td>{{ getCategoryNames(product.categories).join(", ") }}</td>
+          <td>{{ product?.product_stock?.quantity || 0 }}</td>
           <td class="centered">
              <v-icon v-if="!product.packaging_options?.length" icon="mdi-alert-box" color="red" size="x-large"/>
              <v-icon v-else icon="mdi-checkbox-marked" color="green"  size="x-large"/>
