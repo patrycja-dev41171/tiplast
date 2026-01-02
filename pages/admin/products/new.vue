@@ -110,7 +110,7 @@ const saveProduct = async () => {
         : product.value.categories,
   };
 
-  const { error } = await addProduct();
+  const { error } = await addProduct(payload);
 
   saving.value = false;
 
