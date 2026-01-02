@@ -29,8 +29,6 @@ const form = reactive({
 
 const submit = () => {
   if (!form.display_name || !form.value) return;
-  console.log({ ...form })
-
   emit("add", { ...form });
 
   form.display_name = "";

@@ -38,25 +38,39 @@ const reduce = () => {
   if (qty.value > props.min) qty.value--
 }
 
+const basketQty = useCookie('cart_quantity', {
+  default: () => 0,
+  maxAge: 60 * 60 * 24 * 30,
+  sameSite: 'lax',
+})
+
+const basketTotal = useCookie('cart_total', {
+  default: () => 0,
+  maxAge: 60 * 60 * 24 * 30,
+  sameSite: 'lax',
+})
+
 const addToCart = async () => {
     await add(props.productId, qty.value, props.productPrice)
     qty.value = 1
     const cart = await getCart()
-    console.log(cart)
+    basketQty.value = cart.total_quantity
+    basketTotal.value = cart.total_price
 }
+
 </script>
 
 <template>
-  <div v-if="!max" class="add-to-cart">
+<div class="mb-5"><v-icon color="#32aa27" icon="mdi-truck-delivery-outline" class="mr-2"></v-icon>Wysyłka w ciągu 24 godzin</div>
+  <div v-if="max > 0" class="add-to-cart mb-5">
     <div class="qty-control">
-      <button @click="reduce" :disabled="qty <= min">−</button>
+      <button @click="reduce" :disabled="qty === 1">−</button>
 
       <input
         v-model.number="qty"
         :min="min"
         :max="max"
       />
-
       <button @click="increase" :disabled="qty >= max">+</button>
     </div>
 
@@ -82,6 +96,7 @@ const addToCart = async () => {
   border: 1px solid #ccc;
   border-radius: 6px;
   overflow: hidden;
+  min-width: 100px
 }
 
 .qty-control button {
@@ -101,7 +116,7 @@ const addToCart = async () => {
 }
 
 .add-btn {
-  min-width: 300px;
+  width: 100%;
   padding: 10px 16px;
   background: #32aa27;
   color: white;
@@ -114,7 +129,7 @@ const addToCart = async () => {
 }
 
 .inquiry {
-    min-width: 300px;
+  min-width: 300px;
   padding: 10px 16px;
   background: #7b7b7b;
   color: white;

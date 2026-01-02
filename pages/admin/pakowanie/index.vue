@@ -18,7 +18,7 @@ const { getAllCartoonsStock } = useCartoonsStock();
 const cartoonsWithStock = ref([]);
 
 onMounted(async () => {
-  const cartoons = await getAllCartoons()
+  const { data:cartoons } = await getAllCartoons()
   const stock = await getAllCartoonsStock()
 
   cartoonsWithStock.value = cartoons.map((p) => {

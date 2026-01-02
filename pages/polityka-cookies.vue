@@ -45,6 +45,20 @@
           <td>HTTP Cookie</td>
           <td>30 dni</td>
         </tr>
+         <tr>
+          <td><code>cart_quantity</code></td>
+          <td>tiplast.pl</td>
+          <td>Przechowywanie ilości produktów w koszyku</td>
+          <td>HTTP Cookie</td>
+          <td>30 dni</td>
+        </tr>
+         <tr>
+          <td><code>cart_total</code></td>
+          <td>tiplast.pl</td>
+          <td>Przechowywanie  wartości koszyka</td>
+          <td>HTTP Cookie</td>
+          <td>30 dni</td>
+        </tr>
         <tr>
           <td><code>cookies_consent</code></td>
           <td>tiplast.pl</td>

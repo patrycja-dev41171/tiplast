@@ -45,10 +45,6 @@ definePageMeta({
 });
 
 import InventoryActions from "~/components/InventoryActions.vue"
-import { useProducts } from "~/composables/useProducts"
-import { useInventory } from "~/composables/useInventory"
-import { useRoute } from "vue-router"
-import { ref, onMounted } from "vue"
 
 import stockUpdateResons from "~/vars/stockUpdateResons"
 

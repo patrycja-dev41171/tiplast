@@ -277,16 +277,12 @@ const onInquiry = async () => {
       transition: all 0.2s;
 
       &.active {
-        background: #32aa27;
-        color: #fff;
+        // background: #32aa27;
+        color: #32aa27;
         border-color: #32aa27;
+        border-width: 2px;
       }
 
-      &:hover {
-        background: #32aa27;
-        color: #fff;
-        border-color: #32aa27;
-      }
     }
   }
 }

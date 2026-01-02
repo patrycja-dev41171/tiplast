@@ -10,9 +10,23 @@ const { getCart } = useCarts()
 const cart = ref(null)
 const loading = ref(true)
 
+const basketQty = useCookie('cart_quantity', {
+  default: () => 0,
+  maxAge: 60 * 60 * 24 * 30,
+  sameSite: 'lax',
+})
+
+const basketTotal = useCookie('cart_total', {
+  default: () => 0,
+  maxAge: 60 * 60 * 24 * 30,
+  sameSite: 'lax',
+})
+
 const loadCart = async () => {
   loading.value = true
   cart.value = await getCart()
+  basketQty.value = cart.value.total_quantity
+  basketTotal.value = cart.value.total_price
   loading.value = false
 }
 

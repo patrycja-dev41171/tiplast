@@ -43,7 +43,6 @@ const goToProductPage = () => {
       <div class="qty-controls">
         <button @click="changeQty(qty - 1)">−</button>
         <input
-          type="number"
           min="1"
           v-model.number="qty"
           @change="changeQty(qty)"

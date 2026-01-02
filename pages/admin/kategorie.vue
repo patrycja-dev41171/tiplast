@@ -73,7 +73,7 @@ onMounted(() => {
 </script>
 
 <template>
-    <div class="admin-categories">
+    <div class="admin-categories pa-7">
         <h1>Kategorie</h1>
 
         <div v-if="loading">Ładowanie...</div>

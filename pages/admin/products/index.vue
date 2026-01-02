@@ -187,6 +187,9 @@ const deleteProduct = async (productId) => {
                  <v-list-item :to="`/admin/products/${product.id}`">
                   <v-list-item-title>Edytuj</v-list-item-title>
                 </v-list-item>
+                <v-list-item  :to="`/admin/products/pakowanie/${product.id}`">
+                  <v-list-item-title>Reguły pakowania</v-list-item-title>
+                </v-list-item>
                 <v-list-item @click="duplicateProduct(product)">
                   <v-list-item-title>Duplikuj</v-list-item-title>
                 </v-list-item>
