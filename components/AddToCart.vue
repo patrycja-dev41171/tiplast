@@ -1,7 +1,4 @@
 <script setup>
-import { ref, watch } from "vue"
-import { products } from "~/database/products/products"
-
 const props = defineProps({
   productId: {
     type: String,
@@ -41,32 +38,49 @@ const reduce = () => {
   if (qty.value > props.min) qty.value--
 }
 
+const basketQty = useCookie('cart_quantity', {
+  default: () => 0,
+  maxAge: 60 * 60 * 24 * 30,
+  sameSite: 'lax',
+})
+
+const basketTotal = useCookie('cart_total', {
+  default: () => 0,
+  maxAge: 60 * 60 * 24 * 30,
+  sameSite: 'lax',
+})
+
 const addToCart = async () => {
     await add(props.productId, qty.value, props.productPrice)
     qty.value = 1
     const cart = await getCart()
-    console.log(cart)
+    basketQty.value = cart.total_quantity
+    basketTotal.value = cart.total_price
 }
+
 </script>
 
 <template>
-  <div class="add-to-cart">
+<div class="mb-5"><v-icon color="#32aa27" icon="mdi-truck-delivery-outline" class="mr-2"></v-icon>Wysyłka w ciągu 24 godzin</div>
+  <div v-if="max > 0" class="add-to-cart mb-5">
     <div class="qty-control">
-      <button @click="reduce" :disabled="qty <= min">−</button>
+      <button @click="reduce" :disabled="qty === 1">−</button>
 
       <input
-        type="number"
         v-model.number="qty"
         :min="min"
         :max="max"
       />
-
       <button @click="increase" :disabled="qty >= max">+</button>
     </div>
 
     <button class="add-btn" @click="addToCart">
-      🛒 Dodaj do koszyka
+     Dodaj do koszyka
     </button>
+  </div>
+  <div v-else >
+    <p>Produkt jest w tym momencie niedostępny.</p>
+    <button class="inquiry mt-3" @click="emit('inquiry')">Wyślij zapytanie</button>
   </div>
 </template>
 
@@ -82,6 +96,7 @@ const addToCart = async () => {
   border: 1px solid #ccc;
   border-radius: 6px;
   overflow: hidden;
+  min-width: 100px
 }
 
 .qty-control button {
@@ -101,13 +116,29 @@ const addToCart = async () => {
 }
 
 .add-btn {
+  width: 100%;
   padding: 10px 16px;
-  background: #2563eb;
+  background: #32aa27;
   color: white;
-  border-radius: 6px;
+  border-radius: 4px;
+  text-transform: uppercase;
   border: none;
   cursor: pointer;
-  font-size: 14px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.inquiry {
+  min-width: 300px;
+  padding: 10px 16px;
+  background: #7b7b7b;
+  color: white;
+  border-radius: 4px;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
 }
 
 .add-btn:hover {

@@ -10,8 +10,13 @@ export default defineEventHandler(async (event) => {
 
   const { data: products, error } = await supabase
     .from('products')
-    .select('*')
-    .eq("hidden", false);
+    .select(`
+    *,
+    stock:product_stock (
+      quantity
+    )
+  `)
+    .eq('hidden', false)
 
 
   if (error) {
@@ -26,6 +31,9 @@ export default defineEventHandler(async (event) => {
 
   const getDetail = (p, name: string) =>
     p.technical_details?.find(d => d.name === name)?.value
+
+  const getAvailability = (p) =>
+    p.stock?.quantity > 0 ? 'in stock' : 'out of stock'
 
 
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
@@ -45,7 +53,7 @@ ${(p.photos || []).slice(1).map(photo => `
   <g:additional_image_link>${photo.url}</g:additional_image_link>
 `).join('')}
   <g:price>${p.prices.pln.base_price.replace(',', '.')} PLN</g:price>
-  <g:availability>in stock</g:availability>
+  <g:availability>${getAvailability(p)}</g:availability>
   <g:brand>Tiplast</g:brand>
   <g:condition>new</g:condition>
   <g:color>${getDetail(p, 'kolor')}</g:color>
@@ -57,7 +65,6 @@ Home & Garden > Lawn & Garden > Gardening > Plant Pots & Planters
   <g:shipping>
     <g:country>PL</g:country>
     <g:service>Kurier</g:service>
-    <g:price>14.99 PLN</g:price>
   </g:shipping>
 <g:identifier_exists>false</g:identifier_exists>
   <g:mpn>${p.sku}</g:mpn>

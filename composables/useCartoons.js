@@ -2,11 +2,11 @@ export const useCartoons = () => {
     const { $supabase } = useNuxtApp()
 
     const getAllCartoons = async () => {
-        const { data, error } = await $supabase
+        const res = await $supabase
             .from("cartoons")
             .select("*")
 
-        return data || []
+        return res
     }
 
     const getCartoonById = async (id) => {

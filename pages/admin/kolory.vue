@@ -115,7 +115,7 @@ input {
   width: 260px;
   padding: 10px 12px;
   border-radius: 6px;
-  border: 1px solid #cbd5e1; // jasna ramka
+  border: 1px solid #cbd5e1;
   background: #fff;
   font-size: 15px;
   color: #111;

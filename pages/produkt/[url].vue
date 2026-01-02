@@ -17,6 +17,7 @@ const url = route.params.url
 
 const { getProductByUrl } = useProducts()
 
+
 const data = await getProductByUrl(url);
 const product = computed(() => data)
 
@@ -78,7 +79,7 @@ useHead({
            "price": Number(
                 (product.value?.prices?.pln?.base_price || '0').toString().replace(',', '.')
               ),
-          "availability": "http://schema.org/InStock",
+          "availability": product?.value?.stock?.quantity > 0 ? "http://schema.org/InStock" : "http://schema.org/OutOfStock",
           "itemCondition": "https://schema.org/NewCondition"
         },
         "publisher": {

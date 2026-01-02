@@ -25,7 +25,7 @@
           Cena: {{ product.prices.pln.base_price }}
           {{ product.prices.pln.symbol }}
         </p>
-        <AddToCart :product-id="product.id" :max="product?.stock?.quantity || 0" :product-price="product.prices.pln.base_price" @added="onAdded" />
+        <AddToCart :product-id="product.id" :max="product?.stock?.quantity || 0" :product-price="product.prices.pln.base_price" @added="onAdded" @inquiry="onInquiry" />
       </div>
     </div>
 
@@ -65,7 +65,7 @@
           <p>Informacje o dostawie będą dostępne wkrótce.</p>
         </div>
       </div>
-      <div v-else-if="activeTab === 'buy'">
+      <div v-else-if="activeTab === 'buy'" ref="buySection">
         <ProductInquiryForm :product="product" />
       </div>
     </div>
@@ -83,23 +83,42 @@ const { product } = defineProps({
 });
 
 
-console.log(product)
-
 const activeIndex = ref(0);
 const activePhoto = computed(() => product?.photos?.[activeIndex.value]);
 
 const tabs = [
   { label: "Opis Produktu", value: "description" },
   { label: "Parametry", value: "technical" },
-  { label: "Dostawa", value: "delivery" },
   { label: "Jestem zainteresowany", value: "buy" },
 ];
 
 const activeTab = ref("description");
+const buySection = ref(null);
 
 const onAdded = () => {
   console.log('dodane')
 }
+
+const HEADER_OFFSET = 85;
+
+const onInquiry = async () => {
+  activeTab.value = "buy";
+
+  await nextTick();
+
+  const el = buySection.value;
+  if (!el) return;
+
+  const y =
+    el.getBoundingClientRect().top +
+    window.pageYOffset -
+    HEADER_OFFSET;
+
+  window.scrollTo({
+    top: y,
+    behavior: "smooth",
+  });
+};
 
 </script>
 
@@ -258,16 +277,12 @@ const onAdded = () => {
       transition: all 0.2s;
 
       &.active {
-        background: #32aa27;
-        color: #fff;
+        // background: #32aa27;
+        color: #32aa27;
         border-color: #32aa27;
+        border-width: 2px;
       }
 
-      &:hover {
-        background: #32aa27;
-        color: #fff;
-        border-color: #32aa27;
-      }
     }
   }
 }

@@ -112,6 +112,5 @@ const signOut = async () => {
 /* Treść */
 .admin-content {
   flex: 1;
-  padding: 30px;
 }
 </style>
