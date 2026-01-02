@@ -11,7 +11,10 @@ export const useProducts = () => {
       ),
       product_stock (
        *
-      )
+      ),
+      kit_stock (
+      quantity
+    )
     `)
 
         if (hidden !== undefined) {
@@ -32,7 +35,10 @@ export const useProducts = () => {
     const getProductById = async (id) => {
         const res = await $supabase
             .from("products")
-            .select("*")
+            .select(`*,
+                kit_stock (
+      quantity
+    )`)
             .eq("id", id)
             .single()
 
@@ -56,7 +62,10 @@ export const useProducts = () => {
             stock:product_stock (
                 quantity,
              updated_at
-            )
+            ),
+            kit_stock (
+      quantity
+    )
             `)
             .eq("url", url)
             .maybeSingle();
@@ -71,6 +80,7 @@ export const useProducts = () => {
 
 
     const addProduct = async (payload) => {
+        console.log(payload)
         const res = await $supabase.from("products").insert(payload)
 
         return res

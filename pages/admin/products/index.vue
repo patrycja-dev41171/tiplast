@@ -12,7 +12,6 @@ const loading = ref(true);
 
 const fetchProducts = async () => {
   const { data, error } = await getAllProducts();
-  console.log(data)
 
   if (error) {
     console.error(error);
@@ -99,11 +98,14 @@ const duplicateProduct = async (product) => {
   delete newProduct.id;
   delete newProduct.created_at;
   delete newProduct.updated_at;
+  delete newProduct.packaging_options;
+  delete newProduct.product_stock;
+  delete newProduct.kit_stock
 
   newProduct.sku = newSku;
   newProduct.url = newUrl;
 
-  const { data, error } = await addProduct([newProduct])
+  const { data, error } = await addProduct(newProduct)
 
   if (error) {
     console.error(error);
@@ -128,7 +130,12 @@ const deleteProduct = async (productId) => {
   }
 };
 
-
+const getStockQuantity = (product) => {
+  if (product.kit) {
+    return product.kit_stock?.[0]?.quantity ?? 0
+  }
+  return product.product_stock?.quantity ?? 0
+}
 </script>
 
 <template>
@@ -170,7 +177,7 @@ const deleteProduct = async (productId) => {
             {{ product.prices.pln.base_price }} {{ product.prices.pln.symbol }}
           </td>
           <td>{{ getCategoryNames(product.categories).join(", ") }}</td>
-          <td>{{ product?.product_stock?.quantity || 0 }}</td>
+          <td>{{ getStockQuantity(product) }}</td>
           <td class="centered">
              <v-icon v-if="!product.packaging_options?.length" icon="mdi-alert-box" color="red" size="x-large"/>
              <v-icon v-else icon="mdi-checkbox-marked" color="green"  size="x-large"/>

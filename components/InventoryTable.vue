@@ -1,16 +1,16 @@
 <template>
-  <Table
-    :columns="columns"
-    :rows="sortedProducts"
-  >
+  <Table :columns="columns" :rows="sortedProducts">
     <!-- Zdjęcie -->
     <template #cell-photo="{ row }">
-      <v-img
-        aspect-ratio="16/9"
-        cover
-        :src="row.photos[0]?.url"
-        class="product_photo"
-      />
+      <v-img aspect-ratio="16/9" cover :src="row.photos[0]?.url" class="product_photo" />
+    </template>
+
+    <template #cell-kit="{ value }">
+      {{ value ? 'Tak' : "Nie" }}
+    </template>
+
+     <template #cell-quantity="{ row }">
+      {{ getStockQuantity(row)}}
     </template>
 
     <!-- Ostatnia aktualizacja -->
@@ -20,7 +20,7 @@
 
     <!-- Akcja -->
     <template #cell-action="{ row }">
-      <NuxtLink :to="`/admin/inventory/${row.id}`" class="btn">
+      <NuxtLink v-if="!row.kit" :to="`/admin/inventory/${row.id}`" class="btn">
         Zarządzaj
       </NuxtLink>
     </template>
@@ -36,10 +36,13 @@ const props = defineProps({
   }
 });
 
+
+
 const columns = [
   { label: "", key: "photo" },
   { label: "Nazwa", key: "display_name" },
   { label: "SKU", key: "sku" },
+  { label: "Komplet", key: "kit" },
   { label: "Dostępne", key: "quantity" },
   { label: "Ostatnia aktualizacja", key: "updated_at" },
   { label: "Akcja", key: "action" }
@@ -50,6 +53,14 @@ const sortedProducts = computed(() =>
     a.sku.localeCompare(b.sku)
   )
 );
+
+
+const getStockQuantity = (product) => {
+  if (product.kit) {
+    return product.kit_stock?.[0]?.quantity ?? 0
+  }
+  return product.product_stock?.quantity ?? 0
+}
 
 </script>
 
