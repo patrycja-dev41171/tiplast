@@ -1,8 +1,7 @@
 <script setup>
 defineProps({
   totalPrice: Number,
-  totalQuantity: Number,
-  buttonLabel: String
+  totalQuantity: Number
 })
 </script>
 
@@ -21,9 +20,10 @@ defineProps({
     </div>
 
     <NuxtLink href="/zamow">
-      <button class="checkout">
-        {{ buttonLabel }}
+      <button  class="checkout">
+        Przejdź do zamówienia
       </button>
+      
     </NuxtLink>
   </aside>
 </template>
@@ -36,6 +36,7 @@ defineProps({
   background: #fafafa;
   position: sticky;
   top: 20px;
+  align-self: flex-start;
 }
 
 .row {

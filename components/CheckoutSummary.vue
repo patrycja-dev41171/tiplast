@@ -23,7 +23,7 @@ defineProps({
 
     <div class="row total">
       <span>Do zapłaty:</span>
-      <strong>{{ Number(totalPrice?.toFixed(2)) + Number(cart?.cart_shipping_details?.price_gross?.toFixed(2)) }} zł</strong>
+      <strong>{{ Number(totalPrice?.toFixed(2)) + Number(cart?.cart_shipping_details?.price_gross?.toFixed(2) || 0) }} zł</strong>
     </div>
 
    <button class="submit-btn" @click="$emit('place-order')">
@@ -40,6 +40,7 @@ defineProps({
   background: #fafafa;
   position: sticky;
   top: 20px;
+  align-self: flex-start;
 }
 
 .row {
@@ -52,7 +53,7 @@ defineProps({
   font-size: 18px;
 }
 
-.checkout {
+.submit-btn {
   width: 100%;
   margin-top: 20px;
   padding: 14px;
