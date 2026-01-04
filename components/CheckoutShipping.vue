@@ -4,11 +4,13 @@
             <h3 class="mb-4">Metoda wysyłki:</h3>
 
             <div class="mb-8">
-                <v-btn type="button" class="payment-btn mr-2" :class="{ active: cod === false }" @click="cod = false">
+                <v-btn type="button" class="payment-btn mr-2 mb-2 mb-md-0" :class="{ active: cod === false }"
+                    @click="cod = false">
                     Płatność online
                 </v-btn>
 
-                <v-btn type="button" class="payment-btn" :class="{ active: cod === true }" @click="cod = true">
+                <v-btn type="button" class="payment-btn mb-2 mb-md-0" :class="{ active: cod === true }"
+                    @click="cod = true">
                     Płatność przy odbiorze
                 </v-btn>
             </div>
@@ -53,12 +55,12 @@ defineExpose({
 })
 
 const methods = ref([])
-const cod = ref(false)
+const cod = ref(props.cart.cart_shipping_details.cod || false)
 const loading = ref(false)
 const error = ref(null)
 
 const form = reactive({
-    method_id: null
+    method_id: props.cart.cart_shipping_details.service_id || null
 })
 
 const errors = reactive({})
@@ -164,10 +166,13 @@ const onSubmit = () => {
 
 <style scoped lang="scss">
 .shipping-form section {
-    background: #fafafa;
-    padding: 24px;
-    margin-bottom: 24px;
     border-radius: 8px;
+
+    @media screen and (min-width: 960px) {
+        background: #fafafa;
+        padding: 24px;
+        margin-bottom: 24px;
+    }
 }
 
 .shipping-option {

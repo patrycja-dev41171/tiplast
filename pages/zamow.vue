@@ -1,20 +1,22 @@
 <template>
-    <section v-if="cart" class="cart-page mt-10">
-        <h1 class="mb-6">Finalizacja zamówienia</h1>
+    <section v-if="cart" class="cart-page mt-5 mt-mb-10">
+<h1 class="mb-6">Finalizacja zamówienia</h1>
 
+        <CheckoutSteps
+  :currentStep="step"
+  @change="step = $event"
+/>
+        
         <div class="cart-layout">
             <div>
                 <CheckoutForm v-if="step === 1 && cart" :cart="cart" ref="checkoutForm" @submit="onCustomerSubmit" />
-                <CheckoutShipping v-if="step === 2" ref="shippingRef" :cart="cart" @submit="onShippingSubmit" @update_cart="updateCart" />
+                <CheckoutShipping v-if="step === 2" ref="shippingRef" :cart="cart" @submit="onShippingSubmit"
+                    @update_cart="updateCart" />
+                <CheckoutPayment v-if="step === 3" ref="paymentRef" :cart="cart" @submit="onPaymentSubmit" />
             </div>
 
-            <CheckoutSummary
-  :totalPrice="cart.total_price"
-  :totalQuantity="cart.total_quantity"
-  :cart="cart"
-  :buttonLabel="step === 1 ? 'Dalej' : 'Złóż zamówienie'"
-  @place-order="placeOrder"
-/>
+            <CheckoutSummary :totalPrice="cart.total_price" :totalQuantity="cart.total_quantity" :cart="cart"
+                :buttonLabel="step === 1 || step === 2 ? 'Dalej' : 'Kupuję i płacę'" @place-order="placeOrder" />
         </div>
     </section>
 </template>
@@ -34,8 +36,10 @@ onMounted(async () => {
 
 const checkoutForm = ref(null)
 const shippingRef = ref(null)
+const paymentRef = ref(null)
 const customerData = ref(null)
 const shippingData = ref(null)
+const paymentData = ref(null)
 
 const updateCart = async () => {
     cart.value = await getCart()
@@ -49,45 +53,62 @@ const placeOrder = () => {
 
   if (step.value === 2) {
     shippingRef.value?.submit()
+    return
+  }
+
+  if (step.value === 3) {
+    paymentRef.value?.submit()
   }
 }
 
 
 const onCustomerSubmit = async (data) => {
-  customerData.value = data
-  await updateCartById(data)
-  cart.value = await getCart()
-  step.value = 2 
+    customerData.value = data
+    await updateCartById(data)
+    cart.value = await getCart()
+    step.value = 2
 }
 
-const onShippingSubmit = (data) => {
-    shippingData.value = data
-    tryPlaceOrder()
+const onShippingSubmit = async (data) => {
+  shippingData.value = data
+  step.value = 3
 }
+
+const onPaymentSubmit = async (data) => {
+  paymentData.value = data
+
+  tryPlaceOrder()
+}
+
+
 
 const tryPlaceOrder = () => {
-    if (!customerData.value || !shippingData.value) return
+  if (!customerData.value || !shippingData.value || !paymentData.value) return
 
-    // TU masz JUŻ WSZYSTKO
-    console.log("PLACE ORDER FINAL", {
-        customer: customerData.value,
-        shipping: shippingData.value,
-        cart: cart.value
-    })
+  console.log("PLACE ORDER FINAL", {
+    customer: customerData.value,
+    shipping: shippingData.value,
+    payment: paymentData.value,
+    cart: cart.value
+  })
 
-    // 🔜 dalej:
-    // await createOrderFromCart(...)
-    // navigateTo('/order/success')
+  // 🔜
+  // await createOrderFromCart()
+  // redirect to Przelewy24
 }
 
 </script>
 
 
-<style scoped>
+<style scoped lang="scss">
 .cart-page {
     max-width: 1200px;
     margin: auto;
     padding: 20px;
+
+    h1 {
+        font-size: 24px;
+    }
 }
 
 .cart-layout {

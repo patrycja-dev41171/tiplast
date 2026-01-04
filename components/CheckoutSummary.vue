@@ -18,7 +18,7 @@ defineProps({
 
     <div class="row">
       <span>Koszt przesyłki:</span>
-      <strong>{{ cart?.cart_shipping_details?.price_gross?.toFixed(2)}} zł</strong>
+      <strong>{{ cart?.cart_shipping_details?.price_gross?.toFixed(2) || 0.00}} zł</strong>
     </div>
 
     <div class="row total">
@@ -39,7 +39,7 @@ defineProps({
   border-radius: 4;
   background: #fafafa;
   position: sticky;
-  top: 20px;
+  top: 100px;
   align-self: flex-start;
 }
 

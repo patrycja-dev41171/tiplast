@@ -1,95 +1,95 @@
 <template>
     <form ref="formEl" class="checkout-form" @submit.prevent="onSubmit">
         <section>
-             <h3 class="mb-4">Dane kontaktowe:</h3>
+            <h3 class="mb-4">Dane kontaktowe:</h3>
 
-        <div class="field">
-            <label>Email *</label>
-            <input v-model="form.email" type="email" @blur="touch('email')" />
-            <span v-if="showError('email')" class="error">
-                {{ errors.email }}
-            </span>
-        </div>
-
-        <div class="field">
-            <label>Telefon *</label>
-
-            <div class="phone-input">
-                <span class="prefix">+48</span>
-
-                <input v-model="form.phone" @blur="touch('phone')" placeholder="123456789" maxlength="9"
-                    inputmode="numeric" />
+            <div class="field">
+                <label>Email *</label>
+                <input v-model="form.email" type="email" @blur="touch('email')" />
+                <span v-if="showError('email')" class="error">
+                    {{ errors.email }}
+                </span>
             </div>
 
-            <span v-if="showError('phone')" class="error">
-                {{ errors.phone }}
-            </span>
-        </div>
+            <div class="field">
+                <label>Telefon *</label>
+
+                <div class="phone-input">
+                    <span class="prefix">+48</span>
+
+                    <input v-model="form.phone" @blur="touch('phone')" placeholder="123456789" maxlength="9"
+                        inputmode="numeric" />
+                </div>
+
+                <span v-if="showError('phone')" class="error">
+                    {{ errors.phone }}
+                </span>
+            </div>
         </section>
-       
 
 
-<section>
-        <h3 class="mb-4">Adres Dostawy:</h3>
-        <div class="row">
-            <div class="field">
-                <label>Imię *</label>
-                <input v-model="form.firstname" @blur="touch('firstname')" />
-                <span v-if="showError('firstname')" class="error">
-                    {{ errors.firstname }}
-                </span>
+
+        <section>
+            <h3 class="mb-4">Adres Dostawy:</h3>
+            <div class="row">
+                <div class="field">
+                    <label>Imię *</label>
+                    <input v-model="form.firstname" @blur="touch('firstname')" />
+                    <span v-if="showError('firstname')" class="error">
+                        {{ errors.firstname }}
+                    </span>
+                </div>
+
+                <div class="field">
+                    <label>Nazwisko *</label>
+                    <input v-model="form.lastname" @blur="touch('lastname')" />
+                    <span v-if="showError('lastname')" class="error">
+                        {{ errors.lastname }}
+                    </span>
+                </div>
             </div>
+            <div class="field">
+                <label>Firma</label>
+                <input v-model="form.company" />
+            </div>
+            <div class="row">
+                <div class="field">
+                    <label>Ulica *</label>
+                    <input v-model="form.street" @blur="touch('street')" />
+                    <span v-if="showError('street')" class="error">
+                        {{ errors.street }}
+                    </span>
+                </div>
 
-            <div class="field">
-                <label>Nazwisko *</label>
-                <input v-model="form.lastname" @blur="touch('lastname')" />
-                <span v-if="showError('lastname')" class="error">
-                    {{ errors.lastname }}
-                </span>
+                <div class="field">
+                    <label>Numer domu / mieszkania *</label>
+                    <input v-model="form.street_number" @blur="touch('street_number')" />
+                    <span v-if="showError('street_number')" class="error">
+                        {{ errors.street_number }}
+                    </span>
+                </div>
             </div>
-        </div>
-        <div class="field">
-            <label>Firma</label>
-            <input v-model="form.company" />
-        </div>
-        <div class="row">
-            <div class="field">
-                <label>Ulica *</label>
-                <input v-model="form.street" @blur="touch('street')" />
-                <span v-if="showError('street')" class="error">
-                    {{ errors.street }}
-                </span>
-            </div>
-
-            <div class="field">
-                <label>Numer domu / mieszkania *</label>
-                <input v-model="form.street_number" @blur="touch('street_number')" />
-                <span v-if="showError('street_number')" class="error">
-                    {{ errors.street_number }}
-                </span>
-            </div>
-        </div>
-        <div class="row">
-            <div class="field">
-                <label>Kod pocztowy *</label>
-                <input v-model="form.zip" @blur="touch('zip')" @input="form.zip = form.zip
-                    .replace(/[^0-9]/g, '')
-                    .slice(0, 5)
-                    .replace(/^(\d{2})(\d{0,3})/, '$1-$2')" placeholder="00-000" />
-                <span v-if="showError('zip')" class="error">
-                    {{ errors.zip }}
-                </span>
-            </div>
+            <div class="row">
+                <div class="field">
+                    <label>Kod pocztowy *</label>
+                    <input v-model="form.zip" @blur="touch('zip')" @input="form.zip = form.zip
+                        .replace(/[^0-9]/g, '')
+                        .slice(0, 5)
+                        .replace(/^(\d{2})(\d{0,3})/, '$1-$2')" placeholder="00-000" />
+                    <span v-if="showError('zip')" class="error">
+                        {{ errors.zip }}
+                    </span>
+                </div>
 
 
 
-            <div class="field">
-                <label>Miasto *</label>
-                <input v-model="form.city" @blur="touch('city')" />
-                <span v-if="showError('city')" class="error">
-                    {{ errors.city }}
-                </span>
-            </div>
+                <div class="field">
+                    <label>Miasto *</label>
+                    <input v-model="form.city" @blur="touch('city')" />
+                    <span v-if="showError('city')" class="error">
+                        {{ errors.city }}
+                    </span>
+                </div>
             </div>
 
             <div class="field">
@@ -102,8 +102,52 @@
                 <span v-if="showError('country')" class="error">
                     {{ errors.country }}
                 </span>
-        </div>
-            </section>
+            </div>
+        </section>
+
+        <section>
+            <h3 class="mb-4">Zgody:</h3>
+            <div class="checkbox-field">
+                <label class="checkbox">
+                    <input type="checkbox" v-model="form.regulamin" @change="touch('regulamin')" />
+                    <span>
+                        Akceptuję
+                        <NuxtLink to="/regulamin" target="_blank">regulamin </NuxtLink>sklepu tiplast.pl *
+                    </span>
+                </label>
+
+                <span v-if="showError('regulamin')" class="error">
+                    {{ errors.regulamin }}
+                </span>
+            </div>
+
+            <div class="checkbox-field">
+                <label class="checkbox">
+                    <input type="checkbox" v-model="form.privacy" @change="touch('privacy')" />
+                    <span>
+                        Akceptuję
+                        <NuxtLink to="/polityka-prywatnosci" target="_blank">
+                            politykę prywatności
+                        </NuxtLink>
+                        *
+                    </span>
+                </label>
+
+                <span v-if="showError('privacy')" class="error">
+                    {{ errors.privacy }}
+                </span>
+            </div>
+
+            <div class="checkbox-field">
+                <label class="checkbox">
+                    <input type="checkbox" v-model="form.marketing" />
+                    <span>
+                        Wyrażam zgodę na otrzymywanie informacji handlowych
+                        drogą elektroniczną.
+                    </span>
+                </label>
+            </div>
+        </section>
 
     </form>
 </template>
@@ -112,7 +156,7 @@
 const emit = defineEmits(["submit"])
 
 const props = defineProps({
-  cart: Object,
+    cart: Object,
 })
 
 const formEl = ref(null)
@@ -132,7 +176,10 @@ const form = reactive({
     zip: props.cart.zip || "",
     city: props.cart.city || "",
     country: props.cart.country || "PL",
-    phone: props.cart.phone?.replace(/^\+48/, "") || ""
+    phone: props.cart.phone?.replace(/^\+48/, "") || "",
+    regulamin: props.cart.regulamin || false,
+    privacy: props.cart.privacy || false,
+    marketing: props.cart.marketing || false,
 })
 
 const errors = reactive({})
@@ -197,6 +244,14 @@ const validateField = async (field) => {
 
         case "country":
             if (!form.country) errors.country = "Wybierz kraj"
+            break
+
+            case "regulamin":
+            if (!form.regulamin) errors.regulamin = "Pole wymagane"
+            break
+
+            case "privacy":
+            if (!form.privacy) errors.privacy = "Pole wymagane"
             break
     }
 }
@@ -270,10 +325,13 @@ const onSubmit = async () => {
 <style scoped lang="scss">
 .checkout-form {
     border-radius: 8px;
+
     section {
+        margin-bottom: 24px;
+        @media screen  and (min-width: 960px) {
         background-color: #fafafa;
-    padding: 24px;
-    margin-bottom: 24px;
+        padding: 24px;
+        }
     }
 }
 
@@ -299,11 +357,13 @@ select {
 }
 
 .row {
-    display: flex;
     gap: 16px;
 
     div {
         flex-basis: 100%;
+    }
+    @media screen and (min-width: 960px) {
+    display: flex;
     }
 }
 
@@ -332,4 +392,34 @@ select {
     border-radius: 0 6px 6px 0;
     border-left: none;
 }
+
+.checkbox-field {
+  margin-top: 12px;
+}
+
+.checkbox {
+    display: flex;
+  align-items: flex-start;
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  input {
+    width: 20px;
+    min-width: 20px;
+    min-height: 20px;
+    height: 20px;
+    margin-right: 15px;
+  }
+
+  a {
+    color: #2563eb;
+    text-decoration: underline;
+  font-size: 15px;
+  font-weight: 600;
+
+  }
+}
+
 </style>
