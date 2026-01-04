@@ -1,5 +1,6 @@
 <script setup>
 defineProps({
+  cart: Object,
   totalPrice: Number,
   totalQuantity: Number,
   buttonLabel: String
@@ -7,7 +8,7 @@ defineProps({
 </script>
 
 <template>
-  <aside class="summary">
+  <aside v-if="totalPrice" class="summary">
     <h2 class="mb-6">Podsumowanie</h2>
 
     <div class="row">
@@ -15,16 +16,19 @@ defineProps({
       <strong>{{ totalQuantity }}</strong>
     </div>
 
-    <div class="row total">
-      <span>Wartość zamówienia</span>
-      <strong>{{ totalPrice.toFixed(2) }} zł</strong>
+    <div class="row">
+      <span>Koszt przesyłki:</span>
+      <strong>{{ cart?.cart_shipping_details?.price_gross?.toFixed(2)}} zł</strong>
     </div>
 
-    <NuxtLink href="/zamow">
-      <button class="checkout">
-        {{ buttonLabel }}
-      </button>
-    </NuxtLink>
+    <div class="row total">
+      <span>Do zapłaty:</span>
+      <strong>{{ Number(totalPrice?.toFixed(2)) + Number(cart?.cart_shipping_details?.price_gross?.toFixed(2)) }} zł</strong>
+    </div>
+
+   <button class="submit-btn" @click="$emit('place-order')">
+  {{ buttonLabel }}
+</button>
   </aside>
 </template>
 
