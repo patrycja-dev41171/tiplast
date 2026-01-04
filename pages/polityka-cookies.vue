@@ -13,6 +13,11 @@
       użytkownika (komputer, tablet, smartfon). Cookies umożliwiają poprawne
       działanie strony oraz zapamiętywanie preferencji użytkownika.
     </p>
+    <p>
+      Szczegółowe informacje dotyczące przetwarzania danych osobowych,
+      w tym praw użytkownika, znajdują się w Polityce prywatności
+      dostępnej na stronie serwisu.
+    </p>
 
     <h2>2. Rodzaje stosowanych cookies</h2>
     <p>Serwis wykorzystuje następujące kategorie plików cookies:</p>
@@ -41,6 +46,20 @@
         <tr>
           <td><code>cart_id</code></td>
           <td>tiplast.pl</td>
+          <td>Przechowywanie wartości koszyka</td>
+          <td>HTTP Cookie</td>
+          <td>30 dni</td>
+        </tr>
+         <tr>
+          <td><code>cart_quantity</code></td>
+          <td>tiplast.pl</td>
+          <td>Przechowywanie infromacji o ilości produtków w koszyku</td>
+          <td>HTTP Cookie</td>
+          <td>30 dni</td>
+        </tr>
+         <tr>
+          <td><code>cart_id</code></td>
+          <td>tiplast.pl</td>
           <td>Przechowywanie identyfikatora koszyka</td>
           <td>HTTP Cookie</td>
           <td>30 dni</td>
@@ -52,14 +71,28 @@
           <td>HTTP Cookie</td>
           <td>12 miesięcy</td>
         </tr>
+        <tr>
+          <td><code>furgonetka_token</code></td>
+          <td>tiplast.pl</td>
+          <td>Token pozwalający na komunikację z furgonetka.pl</td>
+          <td>HTTP Cookie</td>
+          <td>Sesja</td>
+        </tr>
+        <tr>
+          <td><code>furgonetka_token_exp</code></td>
+          <td>tiplast.pl</td>
+          <td>Informacja o dacie wygaśniecia tokenu</td>
+          <td>HTTP Cookie</td>
+          <td>Sesja</td>
+        </tr>
       </tbody>
     </table>
 
     <h2>4. Cookies funkcjonalne</h2>
     <p>
-  Cookies funkcjonalne wykorzystywane są do zapamiętania ustawień
-  użytkownika, takich jak np. wybrana waluta czy język strony.
-</p>
+      Cookies funkcjonalne wykorzystywane są do zapamiętania ustawień
+      użytkownika, takich jak np. wybrana waluta czy język strony.
+    </p>
     <h2>5. Cookies analityczne</h2>
     <p>
       Cookies analityczne są zapisywane wyłącznie po wyrażeniu zgody użytkownika.
@@ -92,6 +125,17 @@
         </tr>
       </tbody>
     </table>
+    <p>
+      Dane zbierane za pośrednictwem Google Analytics mogą być
+      przekazywane do państw trzecich (w szczególności do USA)
+      zgodnie z zasadami określonymi przez dostawcę narzędzia
+      oraz na podstawie standardowych klauzul umownych.
+    </p>
+    <p>
+      Użytkownik może w dowolnym momencie cofnąć wyrażoną zgodę
+      na cookies analityczne, bez wpływu na zgodność z prawem
+      przetwarzania dokonanego przed jej cofnięciem.
+    </p>
 
     <h2>6. Zarządzanie plikami cookies</h2>
     <p>
@@ -106,7 +150,7 @@
       polityce cookies w przypadku zmian prawnych lub technologicznych.
     </p>
 
-    <hr class="hr"/>
+    <hr class="hr" />
     <h4>Ostatnia aktualizacja: 20.12.2025</h4>
   </section>
 </template>

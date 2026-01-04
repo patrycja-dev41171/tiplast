@@ -24,6 +24,10 @@
       Kontakt w sprawach związanych z ochroną danych osobowych:
       <strong><a href="mailto:kontakt.tiplast@gmail.com">kontakt.tiplast@gmail.com</a></strong>
     </p>
+    <p>
+Administrator nie powołał Inspektora Ochrony Danych (IOD).
+</p>
+
 
     <!-- 2 -->
     <h2>2. Zakres gromadzonych danych osobowych</h2>
@@ -94,6 +98,9 @@
     </p>
     <ul>
       <li>dostawcom usług IT i hostingu,</li>
+      <li>operatorom płatności, w szczególności PayPro S.A. (Przelewy24),</li>
+      <li>platformom logistycznym i firmom kurierskim, w tym Furgonetka.pl,</li>
+      <li>dostawcom usług chmurowych i baz danych (np. Supabase),</li>
       <li>dostawcom narzędzi analitycznych,</li>
       <li>biurom księgowym i doradcom prawnym.</li>
     </ul>
@@ -127,6 +134,13 @@
       <li>wniesienia sprzeciwu wobec przetwarzania,</li>
       <li>cofnięcia zgody w dowolnym momencie.</li>
     </ul>
+    <p>
+Podanie danych osobowych jest dobrowolne,
+jednak niepodanie danych oznaczonych jako
+niezbędne może uniemożliwić zawarcie umowy
+lub realizację zamówienia.
+</p>
+
 
     <!-- 10 -->
     <h2>10. Prawo wniesienia skargi</h2>
@@ -144,8 +158,18 @@
       dostępem lub nieuprawnionym ujawnieniem.
     </p>
 
+    <h2>12. Zautomatyzowane podejmowanie decyzji</h2>
+
+<p>
+Dane osobowe nie są wykorzystywane
+do zautomatyzowanego podejmowania decyzji,
+w tym profilowania, które wywoływałoby
+skutki prawne wobec użytkownika.
+</p>
+
+
     <!-- 12 -->
-    <h2>12. Zmiany polityki prywatności</h2>
+    <h2>13. Zmiany polityki prywatności</h2>
     <p>
       Administrator zastrzega sobie prawo do wprowadzania zmian w niniejszej
       polityce prywatności. Aktualna wersja dokumentu jest zawsze dostępna

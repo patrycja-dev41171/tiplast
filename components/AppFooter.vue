@@ -27,14 +27,14 @@
       <div class="footer-col">
         <h3>Informacje</h3>
         <ul>
+           <li>
+            <NuxtLink href="/regulamin">Regulamin Sklepu</NuxtLink>
+          </li>
           <li>
-            <NuxtLink href="/polityka-prywatnosci">Polityka prywatości</NuxtLink>
+            <NuxtLink href="/polityka-prywatnosci">Polityka prywatności</NuxtLink>
           </li>
           <li>
             <NuxtLink href="/polityka-cookies">Polityka Cookies</NuxtLink>
-          </li>
-          <li>
-            <NuxtLink href="/warunki-korzystania">Warunki Korzystania</NuxtLink>
           </li>
           <li>
             <NuxtLink href="/faq">FAQ</NuxtLink>
