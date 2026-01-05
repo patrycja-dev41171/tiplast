@@ -55,7 +55,7 @@ defineExpose({
 })
 
 const methods = ref([])
-const cod = ref(props.cart.cart_shipping_details.cod || false)
+const cod = ref(props?.cart?.cart_shipping_details?.cod || false)
 const loading = ref(false)
 const error = ref(null)
 

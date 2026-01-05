@@ -44,7 +44,7 @@ const allMethods = [
 ]
 
 const filterAllMethods = (all) => {
-    if (props.cart.cart_shipping_details.cod) {
+    if (props?.cart?.cart_shipping_details?.cod) {
         return all.filter((e) => e.id === "cod")
     } else {
         return all
@@ -69,7 +69,7 @@ const select = async (id) => {
         service: id,
         label: method.label,
         description: method.description,
-        cod: props.cart.cart_shipping_details.cod
+        cod: props?.cart?.cart_shipping_details?.cod
     })
 
     form.method = id
