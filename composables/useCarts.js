@@ -97,6 +97,13 @@ export const useCarts = () => {
       price_net,
       created_at
     ),
+    cart_payment_details (
+     *
+    ),
+    cart_parcels (*,
+    cart_parcel_items (*),
+    cart_packing_instructions (*)
+    ),
     cart_items (
       id,
       quantity,
@@ -281,7 +288,7 @@ export const useCarts = () => {
                 packing_instruction: {
                     quantity_per_cartoon: smallest.quantity_per_cartoon,
                     max_weight: smallest.max_weight,
-                    note: smallest.note || null
+                    note: smallest.instructions || null
                 }
             })
         }

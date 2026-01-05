@@ -80,17 +80,19 @@ const onPaymentSubmit = async (data) => {
   tryPlaceOrder()
 }
 
+const {addOrder} = useOrder()
 
-
-const tryPlaceOrder = () => {
+const tryPlaceOrder = async () => {
   if (!customerData.value || !shippingData.value || !paymentData.value) return
 
-  console.log("PLACE ORDER FINAL", {
+  await addOrder({
     customer: customerData.value,
     shipping: shippingData.value,
     payment: paymentData.value,
     cart: cart.value
   })
+
+
 
   // 🔜
   // await createOrderFromCart()
