@@ -1,5 +1,5 @@
 <template>
-    <div class="row-3">
+    <div class="row-3 mt-8">
         <div class="column">
             <div class="line">
                 <p class="label">Kwota do zapłaty:</p>

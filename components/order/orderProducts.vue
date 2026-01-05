@@ -1,5 +1,5 @@
 <template>
-        <div class="row-3">
+        <div class="row-3 mt-8">
 
             <table class="order-items">
                 <thead>

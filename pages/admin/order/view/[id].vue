@@ -6,8 +6,8 @@
             <div class="order-status">Status: <strong :style="{ color: getOrderStatusMeta(order.status).color }">{{
                 getOrderStatusMeta(order.status).label }}</strong></div>
 
-            <div class="order-status">Płatność: <strong :style="{ color: getOrderStatusMeta(order.status).color }">{{
-                getOrderStatusMeta(order.status).label }}</strong></div>
+            <div class="order-status">Płatność: <strong :style="{ color: getPaymentStatusMeta(order.payment_status).color }">{{
+                getPaymentStatusMeta(order.payment_status).label }}</strong></div>
         </div>
         <div class="row-2">
             <div>

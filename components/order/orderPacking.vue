@@ -108,7 +108,7 @@ const props = defineProps({
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 8px 40px;
-  font-size: 15px;
+  font-size: 16px;
   margin-bottom: 16px;
 }
 
@@ -116,9 +116,10 @@ const props = defineProps({
   margin-bottom: 16px;
 
   table {
-    width: 100%;
+    margin: 20px 0 30px 0;
+    width: 50%;
     border-collapse: collapse;
-    font-size: 14px;
+    font-size: 16px;
   }
 
   th {
@@ -133,8 +134,8 @@ const props = defineProps({
   }
 
   img {
-    width: 40px;
-    height: 40px;
+    width: 58px;
+    height: 58px;
     object-fit: cover;
     border-radius: 4px;
     margin-right: 8px;
@@ -154,7 +155,7 @@ const props = defineProps({
   background: #f9fafb;
   padding: 12px;
   border-radius: 4px;
-  font-size: 14px;
+  font-size: 16px;
 
   h4 {
     margin-bottom: 6px;
