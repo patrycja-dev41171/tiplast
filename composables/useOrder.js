@@ -3,7 +3,6 @@ export const useOrder = () => {
 
     const addOrder = async ({ cart, customer, shipping, payment }) => {
 
-        console.log(cart.cart_parcels)
         // 1️⃣ ORDER
         const { data: order, error } = await $supabase
             .from('orders')
@@ -11,8 +10,8 @@ export const useOrder = () => {
                 ...customer,
                 order_number: null,
                 order_id: cart.id,
-                status: shipping.cod ? 'processing' : 'awaiting_payment',
-                payment_status: shipping.cod ? 'cod' : 'pending',
+                status: cart.cart_payment_details.cod ? 'pending_approval' : 'awaiting_payment',
+                payment_status: cart.cart_payment_details.cod ? 'cod' : 'pending',
             })
             .select()
             .single()
@@ -79,7 +78,6 @@ export const useOrder = () => {
 
         const {
             cart_id,
-            created_at,
             ...paymentDetails
         } = cart.cart_payment_details
 
@@ -100,7 +98,6 @@ export const useOrder = () => {
         if (!cartParcels?.length) return
 
         for (const cartParcel of cartParcels) {
-            console.log(cartParcel)
             const { data: orderParcel, error } = await $supabase
                 .from('order_parcels')
                 .insert({
@@ -126,7 +123,6 @@ export const useOrder = () => {
     const addOrderParcelItems = async (orderParcelId, cartParcelItems = []) => {
         if (!cartParcelItems.length) return
 
-        console.log("addOrderParcelItems")
         const payload = cartParcelItems.map(i => ({
             order_parcel_id: orderParcelId,
             product_id: i.product_id,
@@ -160,9 +156,76 @@ export const useOrder = () => {
         if (error) throw error
     }
 
+    const deleteOrder = async (orderId) => {
+        if (!orderId) throw new Error("orderId required")
 
+        const { error } = await $supabase
+            .from('orders')
+            .delete()
+            .eq('order_id', orderId)
+
+        if (error) throw error
+    }
+
+    const getOrders = async () => {
+        const { data, error } = await $supabase
+            .from('orders')
+            .select(`
+        *,
+        order_shipping_details (*),
+        order_payment_details (*),
+        order_items (*)
+      `)
+
+        if (error) {
+            console.error('[getOrders]', error)
+            throw error
+        }
+
+        return data
+    }
+
+    const getOrderById = async (orderId) => {
+        const { data, error } = await $supabase
+            .from('orders')
+            .select(`
+        *,
+        order_items (
+          *,
+          product:products (
+            *
+          )
+        ),
+        order_shipping_details (*),
+        order_payment_details (*),
+        order_parcels (
+          *,
+          order_parcel_items (
+           *,
+            product:products (
+              *
+            )
+          ),
+          order_packing_instructions (
+            *
+          )
+        )
+      `)
+            .eq('order_id', orderId)
+            .single()
+
+        if (error) {
+            console.error('[getOrderById]', error)
+            throw error
+        }
+
+        return data
+    }
 
     return {
         addOrder,
+        deleteOrder,
+        getOrders,
+        getOrderById
     }
 }

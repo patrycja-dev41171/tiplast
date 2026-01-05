@@ -4,6 +4,7 @@ import { colors } from '../vars/colors';
     <nav class="admin-nav">
       <div class="nav-top">
         <NuxtLink to="/admin/dashboard"><v-icon icon="mdi-home"></v-icon>Dashboard</NuxtLink>
+        <NuxtLink to="/admin/orders"><v-icon icon="mdi-cart-variant"></v-icon>Zamówienia</NuxtLink>
         <NuxtLink to="/admin/wiadomosci"><v-icon icon="mdi-message-alert"></v-icon>Wiadomości</NuxtLink>
         <NuxtLink to="/admin/kontakty"><v-icon icon="mdi-account-multiple"></v-icon>Kontakty</NuxtLink>
         <NuxtLink to="/admin/products"><v-icon icon="mdi-list-box"></v-icon> Produkty</NuxtLink>

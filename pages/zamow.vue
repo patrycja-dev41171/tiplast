@@ -1,37 +1,34 @@
 <template>
-    <section v-if="cart" class="cart-page mt-5 mt-mb-10">
-<h1 class="mb-6">Finalizacja zamówienia</h1>
+  <section v-if="cart" class="cart-page mt-5 mt-mb-10">
+    <h1 class="mb-6">Finalizacja zamówienia</h1>
 
-        <CheckoutSteps
-  :currentStep="step"
-  @change="step = $event"
-/>
-        
-        <div class="cart-layout">
-            <div>
-                <CheckoutForm v-if="step === 1 && cart" :cart="cart" ref="checkoutForm" @submit="onCustomerSubmit" />
-                <CheckoutShipping v-if="step === 2" ref="shippingRef" :cart="cart" @submit="onShippingSubmit"
-                    @update_cart="updateCart" />
-                <CheckoutPayment v-if="step === 3" ref="paymentRef" :cart="cart" @submit="onPaymentSubmit" />
-            </div>
+    <CheckoutSteps :currentStep="step" @change="step = $event" />
 
-            <CheckoutSummary :totalPrice="cart.total_price" :totalQuantity="cart.total_quantity" :cart="cart"
-                :buttonLabel="step === 1 || step === 2 ? 'Dalej' : 'Kupuję i płacę'" @place-order="placeOrder" />
-        </div>
-    </section>
+    <div class="cart-layout">
+      <div>
+        <CheckoutForm v-if="step === 1 && cart" :cart="cart" ref="checkoutForm" @submit="onCustomerSubmit" />
+        <CheckoutShipping v-if="step === 2" ref="shippingRef" :cart="cart" @submit="onShippingSubmit"
+          @update_cart="updateCart" />
+        <CheckoutPayment v-if="step === 3" ref="paymentRef" :cart="cart" @submit="onPaymentSubmit" />
+      </div>
+
+      <CheckoutSummary :totalPrice="cart.total_price" :totalQuantity="cart.total_quantity" :cart="cart"
+        :buttonLabel="step === 1 || step === 2 ? 'Dalej' : 'Kupuję i płacę'" @place-order="placeOrder" />
+    </div>
+  </section>
 </template>
 
 <script setup>
 import CheckoutForm from "@/components/CheckoutForm.vue"
 
+const router = useRouter();
 const step = ref(1) // 1 = adres, 2 = wysyłka
-
 
 const { getCart, updateCartById } = useCarts()
 const cart = ref(null)
 
 onMounted(async () => {
-    cart.value = await getCart()
+  cart.value = await getCart()
 })
 
 const checkoutForm = ref(null)
@@ -42,7 +39,7 @@ const shippingData = ref(null)
 const paymentData = ref(null)
 
 const updateCart = async () => {
-    cart.value = await getCart()
+  cart.value = await getCart()
 }
 
 const placeOrder = () => {
@@ -61,12 +58,11 @@ const placeOrder = () => {
   }
 }
 
-
 const onCustomerSubmit = async (data) => {
-    customerData.value = data
-    await updateCartById(data)
-    cart.value = await getCart()
-    step.value = 2
+  customerData.value = data
+  await updateCartById(data)
+  cart.value = await getCart()
+  step.value = 2
 }
 
 const onShippingSubmit = async (data) => {
@@ -76,27 +72,37 @@ const onShippingSubmit = async (data) => {
 
 const onPaymentSubmit = async (data) => {
   paymentData.value = data
-
   tryPlaceOrder()
 }
 
-const {addOrder} = useOrder()
+const { addOrder } = useOrder()
+
+const clearCartCookies = () => {
+  const basketQty = useCookie('cart_quantity')
+  const basketTotal = useCookie('cart_total')
+  const cartId = useCookie('cart_id')
+  cartId.value = null
+  basketTotal.value = null
+  basketQty.value = null
+}
 
 const tryPlaceOrder = async () => {
   if (!customerData.value || !shippingData.value || !paymentData.value) return
+  cart.value = await getCart()
 
-  await addOrder({
+  const order = await addOrder({
     customer: customerData.value,
     shipping: shippingData.value,
     payment: paymentData.value,
     cart: cart.value
   })
 
-
-
-  // 🔜
-  // await createOrderFromCart()
-  // redirect to Przelewy24
+  if (order) {
+    clearCartCookies()
+    router.replace(`/zamowienie/${order.order_id}`);
+  } else {
+    alert("Wystąpił błąd podczas składania zamówienia. Spróbuj ponownie.")
+  }
 }
 
 </script>
@@ -104,24 +110,24 @@ const tryPlaceOrder = async () => {
 
 <style scoped lang="scss">
 .cart-page {
-    max-width: 1200px;
-    margin: auto;
-    padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+  padding: 20px;
 
-    h1 {
-        font-size: 24px;
-    }
+  h1 {
+    font-size: 24px;
+  }
 }
 
 .cart-layout {
-    display: grid;
-    grid-template-columns: 1fr 360px;
-    gap: 50px;
+  display: grid;
+  grid-template-columns: 1fr 360px;
+  gap: 50px;
 }
 
 @media (max-width: 768px) {
-    .cart-layout {
-        grid-template-columns: 1fr;
-    }
+  .cart-layout {
+    grid-template-columns: 1fr;
+  }
 }
 </style>

@@ -118,8 +118,6 @@ export default defineEventHandler(async (event) => {
       }
     }))
 
-  console.log(shippingMethods)
-
   return {
     response,
     methods: shippingMethods

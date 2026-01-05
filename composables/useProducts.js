@@ -80,7 +80,6 @@ export const useProducts = () => {
 
 
     const addProduct = async (payload) => {
-        console.log(payload)
         const res = await $supabase.from("products").insert(payload)
 
         return res

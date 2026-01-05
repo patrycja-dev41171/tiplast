@@ -33,9 +33,6 @@ const loadProduct = async () => {
 
 const loadColors = async () => {
   const { data, error } = await getAllColors();
-
-  console.log(data)
-
   if (!error) {
     colors.value = data;
   }

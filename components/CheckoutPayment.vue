@@ -47,14 +47,14 @@ const filterAllMethods = (all) => {
     if (props?.cart?.cart_shipping_details?.cod) {
         return all.filter((e) => e.id === "cod")
     } else {
-        return all
+        return all.filter((e) => e.id !== "cod")
     }
 }
 
 const methods = filterAllMethods(allMethods)
 
 const form = reactive({
-    method: null
+    method: props?.cart?.cart_payment_details?.service || null
 })
 
 const { savePaymentDetails } = useCartPaymentDetails()

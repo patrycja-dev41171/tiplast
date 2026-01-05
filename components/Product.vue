@@ -96,7 +96,6 @@ const activeTab = ref("description");
 const buySection = ref(null);
 
 const onAdded = () => {
-  console.log('dodane')
 }
 
 const HEADER_OFFSET = 85;

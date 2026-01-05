@@ -104,7 +104,6 @@ const stock = ref(null)
 const loadData = async () => {
   const { data }= await getProductById(route.params.id)
   product.value = data;
-  console.log(data)
   stock.value = await getStock(route.params.id) || { quantity: 0 }
 }
 
