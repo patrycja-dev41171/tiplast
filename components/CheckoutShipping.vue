@@ -60,7 +60,7 @@ const loading = ref(false)
 const error = ref(null)
 
 const form = reactive({
-    method_id: props.cart.cart_shipping_details.service_id || null
+    method_id: props?.cart?.cart_shipping_details?.service_id || null
 })
 
 const errors = reactive({})
