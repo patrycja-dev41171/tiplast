@@ -6,7 +6,8 @@ export const getOrderStatusMeta = (status) => {
         },
         pending_approval: {
             label: "Do zatwierdzenia",
-            color: "#d8c516ff" // niebieski
+            color: "#d8c516ff",
+            customer_label: "Oczekuje na zatwierdzenie"
         },
         processing: {
             label: "W przygotowaniu",
