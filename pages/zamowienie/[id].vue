@@ -3,7 +3,7 @@
 
         <div class="section">
             <h2 class="mb-3">Dziękujemy za złożenie zamówienia!</h2>
-            <h1>Zamówienie: {{ order.order_number }} <v-icon icon="mdi-content-copy" size="18" class="ml-2 copy" @click="copy"></v-icon></h1>
+            <h1>Zamówienie: {{ order.order_number }}</h1>
             <h3 class="mt-2">Status: <span :style="{ color: getOrderStatusMeta(order.status).color }">{{
                 getOrderStatusMeta(order.status).customer_label || getOrderStatusMeta(order.status).label }}</span>
             </h3>
