@@ -33,8 +33,6 @@ export const useOrder = () => {
         return order
     }
 
-
-
     const addOrderItems = async (orderId, cartItems) => {
         const orderItems = cartItems.map(item => ({
             order_id: orderId,
@@ -222,10 +220,30 @@ export const useOrder = () => {
         return data
     }
 
+    const updateOrderStatus = async (orderId, status) => {
+        if (!orderId) throw new Error("orderId required");
+        if (!status) throw new Error("status required");
+
+        // opcjonalnie: czy chcesz też zaktualizować timestamp
+        const payload = {
+            status,
+            updated_at: new Date().toISOString(),
+        };
+
+        const { error } = await $supabase
+            .from("orders")
+            .update(payload)
+            .eq("order_id", orderId);
+
+        if (error) throw error;
+    };
+
+
     return {
         addOrder,
         deleteOrder,
         getOrders,
-        getOrderById
+        getOrderById,
+        updateOrderStatus
     }
 }

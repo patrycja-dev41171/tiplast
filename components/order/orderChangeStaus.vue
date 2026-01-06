@@ -48,7 +48,7 @@ const props = defineProps({
 const emit = defineEmits(["update:modelValue", "saved"]);
 
 const selectedStatus = ref(props.currentStatus);
-const notifyByEmail = ref(false);
+const notifyByEmail = ref(true);
 
 const loading = ref(false);
 const error = ref("");

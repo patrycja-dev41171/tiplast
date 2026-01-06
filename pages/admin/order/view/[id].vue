@@ -75,8 +75,9 @@ definePageMeta({
 });
 
 const route = useRoute();
+const router = useRouter();
 
-const { getOrderById } = useOrder()
+const { getOrderById, updateOrderStatus } = useOrder()
 const order = ref(null);
 const tab = ref("products")
 const showChangeStatus = ref(false)
@@ -99,19 +100,26 @@ const calculateProductsTotal = (order) => {
 }
 
 async function saveStatus({ orderId, status }) {
-  // tu robisz request do API:
-  // await fetch('/api/orders/status', { method:'POST', body: JSON.stringify({ orderId, status }) })
-//   order.value.status = status;
-console.log('nowy status:', status)
+await updateOrderStatus(orderId, status)
 }
 
-async function sendStatusEmail({ orderId, status }) {
-  // tu robisz request do API wysyłającego maila
-  console.log("Wysyłam maila o zmianie:", orderId, status);
+async function sendStatusEmail({ status }) {
+  if(status === 'processing') {
+      await useFetch('/api/order/processed', { method:'POST', body: {order: order.value} })
+  }
+  if(status === 'shipped') {
+      await useFetch('/api/order/shipped', { method:'POST', body: {order: order.value} })
+  }
+  if(status === 'completed') {
+      await useFetch('/api/order/completed', { method:'POST', body: {order: order.value} })
+  }
+  if(status === 'cancelled') {
+      await useFetch('/api/order/cancelled', { method:'POST', body: {order: order.value} })
+  }
 }
 
 function onSaved(payload) {
-  console.log("Zapisane:", payload);
+console.log('zapisano')
 }
 
 </script>
