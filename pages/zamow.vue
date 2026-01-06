@@ -99,7 +99,7 @@ const tryPlaceOrder = async () => {
 
   if (order) {
     clearCartCookies()
-    if(order.order_shipping_details.cod) {
+    if(shippingData?.cod) {
       await useFetch('/api/order/placed_cod', { method:'POST', body: {order: order} })
     } else {
       await useFetch('/api/order/placed', { method:'POST', body: {order: order.value} })
