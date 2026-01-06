@@ -99,6 +99,11 @@ const tryPlaceOrder = async () => {
 
   if (order) {
     clearCartCookies()
+    if(order.order_shipping_details.cod) {
+      await useFetch('/api/order/placed_cod', { method:'POST', body: {order: order} })
+    } else {
+      await useFetch('/api/order/placed', { method:'POST', body: {order: order.value} })
+    }
     router.replace(`/zamowienie/${order.order_id}`);
   } else {
     alert("Wystąpił błąd podczas składania zamówienia. Spróbuj ponownie.")

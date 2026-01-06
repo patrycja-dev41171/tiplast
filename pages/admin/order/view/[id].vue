@@ -1,6 +1,10 @@
+import { OrderChangeStaus } from '../../../../.nuxt/components';
 <template>
     <div v-if="order" class="admin-products">
+        <div class="buttons mb-6">
         <AdminPageHeader :text="`Zamówienie ${order.order_number}`" />
+            <v-btn class="tab-btn ml-auto mt-8" @click="showChangeStatus = true">Zmień status zamówienia</v-btn>
+        </div>
 
         <div class="row-1">
             <div class="order-status">Status: <strong :style="{ color: getOrderStatusMeta(order.status).color }">{{
@@ -52,6 +56,15 @@
         <OrderPayment v-if="tab === 'payment_details'" :order="order" />
         <OrderShipping v-if="tab === 'shipping_details'" :order="order" />
         <OrderPacking v-if="tab === 'packing'" :order="order" />
+
+        <OrderChangeStaus
+    v-model="showChangeStatus"
+    :orderId="order.order_id"
+    :currentStatus="order.status"
+    :saveStatus="saveStatus"
+    :sendEmail="sendStatusEmail"
+    @saved="onSaved"
+  />
     </div>
 </template>
 
@@ -66,6 +79,7 @@ const route = useRoute();
 const { getOrderById } = useOrder()
 const order = ref(null);
 const tab = ref("products")
+const showChangeStatus = ref(false)
 
 const fetchOrder = async () => {
     const id = route.params.id;
@@ -82,6 +96,22 @@ const calculateProductsTotal = (order) => {
     }, 0)
 
     return Number(total.toFixed(2))
+}
+
+async function saveStatus({ orderId, status }) {
+  // tu robisz request do API:
+  // await fetch('/api/orders/status', { method:'POST', body: JSON.stringify({ orderId, status }) })
+//   order.value.status = status;
+console.log('nowy status:', status)
+}
+
+async function sendStatusEmail({ orderId, status }) {
+  // tu robisz request do API wysyłającego maila
+  console.log("Wysyłam maila o zmianie:", orderId, status);
+}
+
+function onSaved(payload) {
+  console.log("Zapisane:", payload);
 }
 
 </script>
