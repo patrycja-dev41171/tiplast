@@ -23,7 +23,7 @@ defineProps({
 
     <div class="row total">
       <span>Do zapłaty:</span>
-      <strong>{{ Number(totalPrice?.toFixed(2)) + Number(cart?.cart_shipping_details?.price_gross?.toFixed(2) || 0) }} zł</strong>
+      <strong>{{ (totalPrice + Number(cart?.cart_shipping_details?.price_gross || '0')).toFixed(2) || 0.00 }} zł</strong>
     </div>
 
    <button class="submit-btn" @click="$emit('place-order')">
