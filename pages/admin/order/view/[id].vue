@@ -1,9 +1,9 @@
-import { OrderChangeStaus } from '../../../../.nuxt/components';
 <template>
     <div v-if="order" class="admin-products">
         <div class="buttons mb-6">
         <AdminPageHeader :text="`Zamówienie ${order.order_number}`" />
             <v-btn class="tab-btn ml-auto mt-8" @click="showChangeStatus = true">Zmień status zamówienia</v-btn>
+            <v-btn class="tab-btn ml-0 mt-8" @click="showChangePaymentStatus = true">Zmień status płatności</v-btn>
         </div>
 
         <div class="row-1">
@@ -65,6 +65,13 @@ import { OrderChangeStaus } from '../../../../.nuxt/components';
     :sendEmail="sendStatusEmail"
     @saved="onSaved"
   />
+   <OrderChangePaymentStaus
+    v-model="showChangePaymentStatus"
+    :orderId="order.order_id"
+    :currentStatus="order.payment_status"
+    :savePaymentStatus="savePaymentStatus"
+    @saved="onSaved"
+  />
     </div>
 </template>
 
@@ -77,10 +84,11 @@ definePageMeta({
 const route = useRoute();
 const router = useRouter();
 
-const { getOrderById, updateOrderStatus } = useOrder()
+const { getOrderById, updateOrderStatus, updatePaymentStatus } = useOrder()
 const order = ref(null);
 const tab = ref("products")
 const showChangeStatus = ref(false)
+const showChangePaymentStatus = ref(false)
 
 const fetchOrder = async () => {
     const id = route.params.id;
@@ -100,7 +108,13 @@ const calculateProductsTotal = (order) => {
 }
 
 async function saveStatus({ orderId, status }) {
-await updateOrderStatus(orderId, status)
+await updateOrderStatus(orderId, status, order.value)
+await fetchOrder()
+}
+
+async function savePaymentStatus({orderId, status}) {
+    await updatePaymentStatus(orderId, status, order.value)
+await fetchOrder()
 }
 
 async function sendStatusEmail({ status }) {

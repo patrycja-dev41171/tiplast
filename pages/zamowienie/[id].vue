@@ -15,10 +15,21 @@
                 getPaymentStatusMeta(order.payment_status).label }}</span></h3>
             <p class="mt-2">Metoda płatności: {{ order.order_payment_details.label }} - {{
                 order.order_payment_details.description }}</p>
-                <h3 class="mt-4">Do zapłaty: {{ (calculateProductsTotal(order) +
-                        order.order_shipping_details.price_gross).toFixed(2) }} zł</h3>
+            <h3 class="mt-4">Do zapłaty: {{ (calculateProductsTotal(order) +
+                order.order_shipping_details.price_gross).toFixed(2) }} zł</h3>
         </div>
 
+        <div class="section"
+            v-if="order.payment_status === 'pending' && order.order_payment_details.service === 'bank_transfer'">
+        <h3 class="mb-2">
+            Dane do przelewu:
+        </h3>
+        <p class="mb-1">Numer konta: <strong>94132015372252938930000001</strong></p>
+        <p class="mb-1">Odbiorca: <strong>TIPLAST Iński Tomasz</strong></p>
+        <p class="mb-1">Tytuł przelewu: <strong>Zamówienie {{ order.order_number }}</strong></p>
+        <p>Kwota do zapłaty: <strong>{{ (calculateProductsTotal(order) +
+            order.order_shipping_details.price_gross).toFixed(2) }} zł</strong></p>
+            </div>
         <div class="section">
 
 

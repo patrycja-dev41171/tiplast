@@ -220,11 +220,10 @@ export const useOrder = () => {
         return data
     }
 
-    const updateOrderStatus = async (orderId, status) => {
+    const updateOrderStatus = async (orderId, status, order) => {
         if (!orderId) throw new Error("orderId required");
         if (!status) throw new Error("status required");
 
-        // opcjonalnie: czy chcesz też zaktualizować timestamp
         const payload = {
             status,
             updated_at: new Date().toISOString(),
@@ -236,14 +235,39 @@ export const useOrder = () => {
             .eq("order_id", orderId);
 
         if (error) throw error;
+
+        if (status === 'cancelled') {
+            await updatePaymentStatus(orderId, status)
+        }
+        if (status === 'awaiting_payment') {
+            const payStatus = order.order_payment_details.cod ? "cod" : "pending"
+            await updatePaymentStatus(orderId, payStatus)
+        }
     };
 
+    const updatePaymentStatus = async (orderId, payment_status) => {
+        if (!orderId) throw new Error("orderId required");
+        if (!payment_status) throw new Error("status required");
+
+        const payload = {
+            payment_status,
+            updated_at: new Date().toISOString(),
+        };
+
+        const { error } = await $supabase
+            .from("orders")
+            .update(payload)
+            .eq("order_id", orderId);
+
+        if (error) throw error;
+    };
 
     return {
         addOrder,
         deleteOrder,
         getOrders,
         getOrderById,
-        updateOrderStatus
+        updateOrderStatus,
+        updatePaymentStatus
     }
 }
