@@ -22,11 +22,24 @@ const basketTotal = useCookie('cart_total', {
   sameSite: 'lax',
 })
 
+const cartId = useCookie('cart_id', {
+  default: () => 0,
+  maxAge: 60 * 60 * 24 * 30,
+  sameSite: 'lax',
+})
+
 const loadCart = async () => {
   loading.value = true
-  cart.value = await getCart()
-  basketQty.value = cart.value.total_quantity
-  basketTotal.value = cart.value.total_price
+  try {
+    cart.value = await getCart()
+    basketQty.value = cart.value.total_quantity
+    basketTotal.value = cart.value.total_price
+  } catch (err) {
+    basketQty.value = null
+    basketTotal.value = null
+    cartId.value = null
+  }
+
   loading.value = false
 }
 
@@ -46,20 +59,11 @@ onMounted(loadCart)
     <div v-else class="cart-layout">
       <!-- LISTA PRODUKTÓW -->
       <div class="cart-items">
-        <CartItem
-          v-for="item in cart.items"
-          :key="item.id"
-          :item="item"
-          @update="loadCart"
-          @remove="loadCart"
-        />
+        <CartItem v-for="item in cart.items" :key="item.id" :item="item" @update="loadCart" @remove="loadCart" />
       </div>
 
       <!-- PODSUMOWANIE -->
-      <CartSummary
-        :totalPrice="cart.total_price"
-        :totalQuantity="cart.total_quantity"
-      />
+      <CartSummary :totalPrice="cart.total_price" :totalQuantity="cart.total_quantity" />
     </div>
   </section>
 </template>

@@ -24,11 +24,26 @@ export const useCarts = () => {
 
     const getOrCreateCart = async () => {
         if (cartId.value) {
-            return cartId.value
+            const { data, error } = await $supabase
+                .from("carts")
+                .select("id")
+                .eq("id", cartId.value)
+                .maybeSingle()
+
+            if (error) {
+                console.error("[getOrCreateCart] select error", error)
+            }
+
+            if (data) {
+                return data.id
+            }
+
+            cartId.value = null
         }
 
         return await createCart()
     }
+
 
     const normalizePrice = (value) => {
         if (typeof value === "string") {
@@ -47,7 +62,7 @@ export const useCarts = () => {
             .select("id, quantity")
             .eq("cart_id", cart_id)
             .eq("product_id", product_id)
-            .single()
+            .maybeSingle()
 
         if (existingItem) {
             const { error } = await $supabase
