@@ -51,7 +51,7 @@ const calculateProductsTotal = (order) => {
   <div class="admin-products">
     <AdminPageHeader text="Zamówienia" />
 
-    <NuxtLink to="/admin/products/new" class="add-btn">
+    <NuxtLink to="/admin/order/add" class="add-btn">
       + Dodaj zamówienie
     </NuxtLink>
 
