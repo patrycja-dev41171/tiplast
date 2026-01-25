@@ -3,6 +3,7 @@ export default [
     { value: "restock", label: "Uzupełnienie magazynu" },
     { value: "inventory_adjustment", label: "Inwentaryzacja" },
     { value: "return_from_customer", label: "Zwrot od klienta" },
+    { value: "order_cancelled", label: "Anulowane zamówienie" },
     { value: "order_online", label: "Sprzedaż online" },
     { value: "order_store", label: "Sprzedaż na miejscu" },
     { value: "damage_loss", label: "Strata / Uszkodzenie" }

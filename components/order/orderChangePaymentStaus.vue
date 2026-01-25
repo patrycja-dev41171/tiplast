@@ -34,7 +34,7 @@ const props = defineProps({
     modelValue: { type: Boolean, default: false }, // sterowanie otwarciem
     orderId: { type: [String, Number], required: true },
     currentStatus: { type: String, required: true },
-    statuses: { type: Array, default: () => [{ id: 'pending', label: 'Oczekuje na płatność' }, { id: 'cod', label: 'Przy odbiorze' }, { id: 'paid', label: 'Opłacone' }, { id: 'paid_cod', label: 'Opłacone przy odbiorze' },  { id: 'cancelled', label: 'Anulowane' }, { id: 'refunded:', label: 'Zwrócone' }] },
+    statuses: { type: Array, default: () => [{ id: 'pending', label: 'Oczekuje na płatność' }, { id: 'cod', label: 'Przy odbiorze' }, { id: 'paid', label: 'Opłacone' }, { id: 'paid_cod', label: 'Opłacone przy odbiorze' },  { id: 'cancelled', label: 'Anulowane' }, { id: 'refunded', label: 'Zwrócone' }] },
     savePaymentStatus: { type: Function, required: true }, // async ({ orderId, status }) => void
 });
 

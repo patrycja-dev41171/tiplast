@@ -38,7 +38,7 @@ const props = defineProps({
     modelValue: { type: Boolean, default: false }, // sterowanie otwarciem
     orderId: { type: [String, Number], required: true },
     currentStatus: { type: String, required: true },
-    statuses: { type: Array, default: () => [{ id: 'awaiting_payment', label: 'Oczekuje na płatność' }, { id: 'pending_approval', label: 'Do zatwierdzenia' }, { id: 'processing', label: 'W przygotowaniu' }, { id: 'shipped', label: 'Wysłane' }, { id: 'completed', label: 'Zrealizowane' }, { id: 'cancelled', label: 'Anulowane' }, { id: 'refunded:', label: 'Zwrócone' }] },
+    statuses: { type: Array, default: () => [{ id: 'awaiting_payment', label: 'Oczekuje na płatność' }, { id: 'pending_approval', label: 'Do zatwierdzenia' }, { id: 'processing', label: 'W przygotowaniu' }, { id: 'shipped', label: 'Wysłane' }, { id: 'completed', label: 'Zrealizowane' }, { id: 'cancelled', label: 'Anulowane' }, { id: 'refunded', label: 'Zwrócone' }] },
 
     // Funkcje z parenta (np. request do API)
     saveStatus: { type: Function, required: true }, // async ({ orderId, status }) => void
@@ -59,7 +59,6 @@ watch(
         if (isOpen) {
             // reset po otwarciu
             selectedStatus.value = props.currentStatus;
-            notifyByEmail.value = false;
             error.value = "";
         }
     }

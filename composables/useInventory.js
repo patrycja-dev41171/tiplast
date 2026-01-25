@@ -1,7 +1,7 @@
 export const useInventory = () => {
     const { $supabase } = useNuxtApp()
     const { getUser } = useAuth()
-    
+
     const getCurrentUser = async () => {
         const { data } = await getUser();
         return data.user
@@ -103,8 +103,8 @@ export const useInventory = () => {
         created_at,
         note,
         created_by,
-        profiles!inner (
-          email
+        profiles (
+              email
         )
     `)
             .eq("record_id", productId)

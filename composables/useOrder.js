@@ -173,7 +173,7 @@ export const useOrder = () => {
         order_shipping_details (*),
         order_payment_details (*),
         order_items (*)
-      `)
+      `).order('created_at', { ascending: false })
 
         if (error) {
             console.error('[getOrders]', error)

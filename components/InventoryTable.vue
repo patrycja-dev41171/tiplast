@@ -14,9 +14,12 @@
     </template>
 
     <!-- Ostatnia aktualizacja -->
-    <template #cell-updated_at="{ value }">
-      {{ formatDate(value) }}
-    </template>
+<template #cell-updated_at="{ row, value }">
+  <span v-if="!row.kit">
+    {{ formatDate(value) }}
+  </span>
+  <span v-else></span>
+</template>
 
     <!-- Akcja -->
     <template #cell-action="{ row }">

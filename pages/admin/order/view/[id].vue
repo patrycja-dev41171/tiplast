@@ -1,7 +1,7 @@
 <template>
     <div v-if="order" class="admin-products">
         <div class="buttons mb-6">
-        <AdminPageHeader :text="`Zamówienie ${order.order_number}`" />
+            <AdminPageHeader :text="`Zamówienie ${order.order_number}`" />
             <v-btn class="tab-btn ml-auto mt-8" @click="showChangeStatus = true">Zmień status zamówienia</v-btn>
             <v-btn class="tab-btn ml-0 mt-8" @click="showChangePaymentStatus = true">Zmień status płatności</v-btn>
         </div>
@@ -10,8 +10,9 @@
             <div class="order-status">Status: <strong :style="{ color: getOrderStatusMeta(order.status).color }">{{
                 getOrderStatusMeta(order.status).label }}</strong></div>
 
-            <div class="order-status">Płatność: <strong :style="{ color: getPaymentStatusMeta(order.payment_status).color }">{{
-                getPaymentStatusMeta(order.payment_status).label }}</strong></div>
+            <div class="order-status">Płatność: <strong
+                    :style="{ color: getPaymentStatusMeta(order.payment_status).color }">{{
+                        getPaymentStatusMeta(order.payment_status).label }}</strong></div>
         </div>
         <div class="row-2">
             <div>
@@ -57,21 +58,10 @@
         <OrderShipping v-if="tab === 'shipping_details'" :order="order" />
         <OrderPacking v-if="tab === 'packing'" :order="order" />
 
-        <OrderChangeStaus
-    v-model="showChangeStatus"
-    :orderId="order.order_id"
-    :currentStatus="order.status"
-    :saveStatus="saveStatus"
-    :sendEmail="sendStatusEmail"
-    @saved="onSaved"
-  />
-   <OrderChangePaymentStaus
-    v-model="showChangePaymentStatus"
-    :orderId="order.order_id"
-    :currentStatus="order.payment_status"
-    :savePaymentStatus="savePaymentStatus"
-    @saved="onSaved"
-  />
+        <OrderChangeStaus v-model="showChangeStatus" :orderId="order.order_id" :currentStatus="order.status"
+            :saveStatus="saveStatus" :sendEmail="sendStatusEmail" @saved="onSaved" />
+        <OrderChangePaymentStaus v-model="showChangePaymentStatus" :orderId="order.order_id"
+            :currentStatus="order.payment_status" :savePaymentStatus="savePaymentStatus" @saved="onSaved" />
     </div>
 </template>
 
@@ -108,32 +98,35 @@ const calculateProductsTotal = (order) => {
 }
 
 async function saveStatus({ orderId, status }) {
-await updateOrderStatus(orderId, status, order.value)
-await fetchOrder()
+    await updateOrderStatus(orderId, status, order.value)
+    await fetchOrder()
 }
 
-async function savePaymentStatus({orderId, status}) {
+async function savePaymentStatus({ orderId, status }) {
     await updatePaymentStatus(orderId, status, order.value)
-await fetchOrder()
+    if (status === "paid") {
+        await updateOrderStatus(orderId, "pending_approval", order.value)
+    }
+    await fetchOrder()
 }
 
 async function sendStatusEmail({ status }) {
-  if(status === 'processing') {
-      await useFetch('/api/order/processed', { method:'POST', body: {order: order.value} })
-  }
-  if(status === 'shipped') {
-      await useFetch('/api/order/shipped', { method:'POST', body: {order: order.value} })
-  }
-  if(status === 'completed') {
-      await useFetch('/api/order/completed', { method:'POST', body: {order: order.value} })
-  }
-  if(status === 'cancelled') {
-      await useFetch('/api/order/cancelled', { method:'POST', body: {order: order.value} })
-  }
+    if (status === 'processing') {
+        await useFetch('/api/order/processed', { method: 'POST', body: { order: order.value } })
+    }
+    if (status === 'shipped') {
+        await useFetch('/api/order/shipped', { method: 'POST', body: { order: order.value } })
+    }
+    if (status === 'completed') {
+        await useFetch('/api/order/completed', { method: 'POST', body: { order: order.value } })
+    }
+    if (status === 'cancelled') {
+        await useFetch('/api/order/cancelled', { method: 'POST', body: { order: order.value } })
+    }
 }
 
 function onSaved(payload) {
-console.log('zapisano')
+    console.log('zapisano')
 }
 
 </script>
