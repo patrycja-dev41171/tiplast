@@ -101,8 +101,10 @@ const tryPlaceOrder = async () => {
     clearCartCookies()
     if(order.payment_status === "cod") {
       await useFetch('/api/order/placed_cod', { method:'POST', body: {order: order} })
+      await useFetch('/api/order/info', { method:'POST', body: {order: order} })
     } else {
       await useFetch('/api/order/placed', { method:'POST', body: {order: order} })
+      await useFetch('/api/order/info', { method:'POST', body: {order: order} })
     }
     router.replace(`/zamowienie/${order.order_id}`);
   } else {
