@@ -4,7 +4,18 @@ export const useProducts = () => {
     const getAllProducts = async (hidden) => {
         let query = $supabase
             .from("products")
-            .select("*")
+            .select(`
+      *,
+      packaging_options (
+       *
+      ),
+      product_stock (
+       *
+      ),
+      kit_stock (
+      quantity
+    )
+    `)
 
         if (hidden !== undefined) {
             query = query.eq("hidden", hidden)
@@ -24,7 +35,10 @@ export const useProducts = () => {
     const getProductById = async (id) => {
         const res = await $supabase
             .from("products")
-            .select("*")
+            .select(`*,
+                kit_stock (
+      quantity
+    )`)
             .eq("id", id)
             .single()
 
@@ -43,12 +57,27 @@ export const useProducts = () => {
     const getProductByUrl = async (url) => {
         const { data, error } = await $supabase
             .from("products")
-            .select("*")
+            .select(`
+            *,
+            stock:product_stock (
+                quantity,
+             updated_at
+            ),
+            kit_stock (
+      quantity
+    )
+            `)
             .eq("url", url)
-            .single();
+            .maybeSingle();
 
-        return data
-    }
+        if (error) {
+            console.error("Error fetching product by URL:", error);
+            throw error;
+        }
+
+        return data;
+    };
+
 
     const addProduct = async (payload) => {
         const res = await $supabase.from("products").insert(payload)

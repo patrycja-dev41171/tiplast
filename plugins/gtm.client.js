@@ -32,7 +32,6 @@ export default defineNuxtPlugin(() => {
   watch(
     () => consent.value,
     (newValue) => {
-      console.log(newValue)
       if (hasAnalyticsConsent(newValue)) {
         loadGTM()
       }

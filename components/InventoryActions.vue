@@ -133,14 +133,6 @@ const submit = async () => {
 
   const result = await updateStock(props.productId, finalQty.value)
 
-  console.log({
-    productId: props.productId,
-    before: result.before,
-    after: result.after,
-    changeType: changeType.value,
-    note: note.value
-  })
-
   await createStockLog({
     productId: props.productId,
     before: result.before,

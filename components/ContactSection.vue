@@ -143,7 +143,6 @@ async function handleSubmit() {
       `
 
     const { error: dbError } = await addMessage(form, message, "formularz kontaktowy", `Wiadomość z formularza kontaktowego`)
-console.log(dbError)
     if (dbError) {
       console.error("DB ERROR", dbError);
       throw new Error("Błąd zapisu do bazy");

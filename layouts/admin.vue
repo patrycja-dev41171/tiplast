@@ -4,6 +4,7 @@ import { colors } from '../vars/colors';
     <nav class="admin-nav">
       <div class="nav-top">
         <NuxtLink to="/admin/dashboard"><v-icon icon="mdi-home"></v-icon>Dashboard</NuxtLink>
+        <NuxtLink to="/admin/orders"><v-icon icon="mdi-cart-variant"></v-icon>Zamówienia</NuxtLink>
         <NuxtLink to="/admin/wiadomosci"><v-icon icon="mdi-message-alert"></v-icon>Wiadomości</NuxtLink>
         <NuxtLink to="/admin/kontakty"><v-icon icon="mdi-account-multiple"></v-icon>Kontakty</NuxtLink>
         <NuxtLink to="/admin/products"><v-icon icon="mdi-list-box"></v-icon> Produkty</NuxtLink>
@@ -11,6 +12,7 @@ import { colors } from '../vars/colors';
         <NuxtLink to="/admin/kolory"><v-icon icon="mdi-palette"></v-icon> Kolory</NuxtLink>
         <NuxtLink to="/admin/inventory"><v-icon icon="mdi-warehouse"></v-icon>Stany magazynowe</NuxtLink>
         <NuxtLink to="/admin/pakowanie"><v-icon icon="mdi-package-variant-closed"></v-icon>Pakowanie</NuxtLink>
+        <NuxtLink to="/admin/email-signatures"><v-icon icon="mdi-email-fast-outline"></v-icon>Podpis E-mail</NuxtLink>
       </div>
       <NuxtLink to="https://tiplast.pl/" target="_blank" class="web">www.tiplast.pl <v-icon icon="mdi-link"></v-icon></NuxtLink>
       <button class="logout-btn" @click="signOut">Wyloguj <v-icon icon="mdi-logout"></v-icon></button>
@@ -112,6 +114,5 @@ const signOut = async () => {
 /* Treść */
 .admin-content {
   flex: 1;
-  padding: 30px;
 }
 </style>

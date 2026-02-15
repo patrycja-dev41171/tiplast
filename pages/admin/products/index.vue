@@ -98,11 +98,14 @@ const duplicateProduct = async (product) => {
   delete newProduct.id;
   delete newProduct.created_at;
   delete newProduct.updated_at;
+  delete newProduct.packaging_options;
+  delete newProduct.product_stock;
+  delete newProduct.kit_stock
 
   newProduct.sku = newSku;
   newProduct.url = newUrl;
 
-  const { data, error } = await addProduct([newProduct])
+  const { data, error } = await addProduct(newProduct)
 
   if (error) {
     console.error(error);
@@ -127,7 +130,12 @@ const deleteProduct = async (productId) => {
   }
 };
 
-
+const getStockQuantity = (product) => {
+  if (product.kit) {
+    return product.kit_stock?.[0]?.quantity ?? 0
+  }
+  return product.product_stock?.quantity ?? 0
+}
 </script>
 
 <template>
@@ -148,6 +156,8 @@ const deleteProduct = async (productId) => {
           <th>SKU</th>
           <th>Cena</th>
           <th>Kategorie</th>
+          <th>Magazyn</th>
+          <th>Pakowanie</th>
           <th>Widoczny</th>
           <th>Kolor</th>
           <th></th>
@@ -167,6 +177,11 @@ const deleteProduct = async (productId) => {
             {{ product.prices.pln.base_price }} {{ product.prices.pln.symbol }}
           </td>
           <td>{{ getCategoryNames(product.categories).join(", ") }}</td>
+          <td>{{ getStockQuantity(product) }}</td>
+          <td class="centered">
+             <v-icon v-if="!product.packaging_options?.length" icon="mdi-alert-box" color="red" size="x-large"/>
+             <v-icon v-else icon="mdi-checkbox-marked" color="green"  size="x-large"/>
+            </td>
           <td>
             <span :class="product.hidden ? 'hidden-flag' : 'visible-flag'">
               {{ product.hidden ? "NIE" : "TAK" }}
@@ -186,6 +201,9 @@ const deleteProduct = async (productId) => {
               <v-list>
                  <v-list-item :to="`/admin/products/${product.id}`">
                   <v-list-item-title>Edytuj</v-list-item-title>
+                </v-list-item>
+                <v-list-item  :to="`/admin/products/pakowanie/${product.id}`">
+                  <v-list-item-title>Reguły pakowania</v-list-item-title>
                 </v-list-item>
                 <v-list-item @click="duplicateProduct(product)">
                   <v-list-item-title>Duplikuj</v-list-item-title>

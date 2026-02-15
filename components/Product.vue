@@ -6,24 +6,15 @@
         <img :src="activePhoto.url" :alt="activePhoto.alt" class="main-photo" />
 
         <div class="thumbnails">
-          <img
-            v-for="(photo, i) in product.photos"
-            :key="i"
-            :src="photo.url"
-            :alt="photo.alt"
-            :class="{ active: i === activeIndex }"
-            @click="activeIndex = i"
-          />
+          <img v-for="(photo, i) in product.photos" :key="i" :src="photo.url" :alt="photo.alt"
+            :class="{ active: i === activeIndex }" @click="activeIndex = i" />
         </div>
       </div>
 
       <!-- Info -->
       <div class="product-info">
         <h1>{{ product.display_name }}</h1>
-        <div
-          class="d-none d-md-flex flex-column technical mt-6"
-          v-if="product.technical_details?.length"
-        >
+        <div class="d-none d-md-flex flex-column technical mt-6" v-if="product.technical_details?.length">
           <ul>
             <li v-for="(item, i) in product.technical_details" :key="i">
               <strong>{{ item.name }}:</strong> {{ item.value }}
@@ -34,17 +25,14 @@
           Cena: {{ product.prices.pln.base_price }}
           {{ product.prices.pln.symbol }}
         </p>
+        <AddToCart :product-id="product.id" :max="product?.stock?.quantity || product?.kit_stock?.[0].quantity || 0" :product-price="product.prices.pln.base_price" @added="onAdded" @inquiry="onInquiry" />
       </div>
     </div>
 
     <!-- ZAKŁADKI -->
     <div class="tabs">
-      <button
-        v-for="tab in tabs"
-        :key="tab.value"
-        :class="{ active: activeTab === tab.value }"
-        @click="activeTab = tab.value"
-      >
+      <button v-for="tab in tabs" :key="tab.value" :class="{ active: activeTab === tab.value }"
+        @click="activeTab = tab.value">
         {{ tab.label }}
       </button>
     </div>
@@ -77,7 +65,7 @@
           <p>Informacje o dostawie będą dostępne wkrótce.</p>
         </div>
       </div>
-      <div v-else-if="activeTab === 'buy'">
+      <div v-else-if="activeTab === 'buy'" ref="buySection">
         <ProductInquiryForm :product="product" />
       </div>
     </div>
@@ -85,7 +73,7 @@
 </template>
 
 <script setup>
-import { ref, computed} from "vue";
+import { ref, computed } from "vue";
 
 const { product } = defineProps({
   product: {
@@ -101,11 +89,36 @@ const activePhoto = computed(() => product?.photos?.[activeIndex.value]);
 const tabs = [
   { label: "Opis Produktu", value: "description" },
   { label: "Parametry", value: "technical" },
-  { label: "Dostawa", value: "delivery" },
   { label: "Jestem zainteresowany", value: "buy" },
 ];
 
 const activeTab = ref("description");
+const buySection = ref(null);
+
+const onAdded = () => {
+}
+
+const HEADER_OFFSET = 85;
+
+const onInquiry = async () => {
+  activeTab.value = "buy";
+
+  await nextTick();
+
+  const el = buySection.value;
+  if (!el) return;
+
+  const y =
+    el.getBoundingClientRect().top +
+    window.pageYOffset -
+    HEADER_OFFSET;
+
+  window.scrollTo({
+    top: y,
+    behavior: "smooth",
+  });
+};
+
 </script>
 
 <style lang="scss">
@@ -132,6 +145,7 @@ const activeTab = ref("description");
     max-width: 620px;
     width: 100%;
     max-height: 500px !important;
+
     @include md {
       max-height: 700px !important;
     }
@@ -142,6 +156,7 @@ const activeTab = ref("description");
       height: 400px;
       object-fit: cover;
       border: 1px solid #e0e0e0;
+
       @include md {
         max-height: 500px !important;
         height: 500px;
@@ -261,16 +276,12 @@ const activeTab = ref("description");
       transition: all 0.2s;
 
       &.active {
-        background: #32aa27;
-        color: #fff;
+        // background: #32aa27;
+        color: #32aa27;
         border-color: #32aa27;
+        border-width: 2px;
       }
 
-      &:hover {
-        background: #32aa27;
-        color: #fff;
-        border-color: #32aa27;
-      }
     }
   }
 }
@@ -290,5 +301,4 @@ const activeTab = ref("description");
     padding: 5px 0;
   }
 }
-
 </style>

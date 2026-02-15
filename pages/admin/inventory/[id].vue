@@ -45,10 +45,6 @@ definePageMeta({
 });
 
 import InventoryActions from "~/components/InventoryActions.vue"
-import { useProducts } from "~/composables/useProducts"
-import { useInventory } from "~/composables/useInventory"
-import { useRoute } from "vue-router"
-import { ref, onMounted } from "vue"
 
 import stockUpdateResons from "~/vars/stockUpdateResons"
 
@@ -129,6 +125,7 @@ const reload = () => loadData()
 .tag.damage_loss { background: #ef4444; }
 .tag.order_online,
 .tag.order_store { background: #2563eb; }
-.tag.return_customer { background: #f97316; }
+.tag.return_from_customer { background: #f97316; }
+.tag.order_cancelled { background: #f97316; }
 
 </style>

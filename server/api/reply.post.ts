@@ -3,9 +3,9 @@ import nodemailer from "nodemailer";
 export default defineEventHandler(async (event) => {
   const body = await readBody(event);
 
-  const { email, reply_text  } = body;
+  const { email, reply_text } = body;
 
-  if (!email || !reply_text ) {
+  if (!email || !reply_text) {
     throw createError({
       statusCode: 400,
       statusMessage: "Brak wymaganych pól."
@@ -17,7 +17,7 @@ export default defineEventHandler(async (event) => {
     port: 465,
     secure: true,
     auth: {
-      user: process.env.SMTP_USER,  
+      user: process.env.SMTP_USER,
       pass: process.env.SMTP_PASS
     }
   });
@@ -39,7 +39,7 @@ export default defineEventHandler(async (event) => {
           </p>
         </div>
       `
-     });
+    });
 
     return { ok: true };
   } catch (err) {
