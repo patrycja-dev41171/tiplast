@@ -107,8 +107,8 @@ export default defineEventHandler(async (event) => {
       service: r.service,
       label: carriersConfig[r.service]?.label || r.service,
       type: carriersConfig[r.service]?.type || "courier",
-      price_gross: r.service === 'inpost' ? r.pricing.price_gross + 3.44 : r.pricing.price_gross,
-      price_net: r.service === 'inpost' ? r.pricing.price_net + 3.44 : r.pricing.price_net,
+      price_gross: r.service === 'inpost' ? r.pricing.price_gross + 1.87 : r.pricing.price_gross,
+      price_net: r.service === 'inpost' ? r.pricing.price_net + 1.87 : r.pricing.price_net,
       currency: "PLN",
       breakdown: {
         base: r.pricing.price_net,

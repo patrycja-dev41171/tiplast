@@ -4,6 +4,7 @@
             <AdminPageHeader :text="`Zamówienie ${order.order_number}`" />
             <v-btn class="tab-btn ml-auto mt-8" @click="showChangeStatus = true">Zmień status zamówienia</v-btn>
             <v-btn class="tab-btn ml-0 mt-8" @click="showChangePaymentStatus = true">Zmień status płatności</v-btn>
+            <v-btn v-if="order.status === 'processing'" class="tab-btn ml-0 mt-8" @click="addToFurgonetka">Dodaj do Furgonetki</v-btn>
         </div>
 
         <div class="row-1">
@@ -62,6 +63,9 @@
             :saveStatus="saveStatus" :sendEmail="sendStatusEmail" @saved="onSaved" />
         <OrderChangePaymentStaus v-model="showChangePaymentStatus" :orderId="order.order_id"
             :currentStatus="order.payment_status" :savePaymentStatus="savePaymentStatus" @saved="onSaved" />
+        <v-alert v-if="alert" :type="alert.type" variant="tonal" class="mb-4" closable @click:close="alert = null">
+            {{ alert.message }}
+        </v-alert>
     </div>
 </template>
 
@@ -79,6 +83,7 @@ const order = ref(null);
 const tab = ref("products")
 const showChangeStatus = ref(false)
 const showChangePaymentStatus = ref(false)
+const alert = ref(null)
 
 const fetchOrder = async () => {
     const id = route.params.id;
@@ -123,6 +128,40 @@ async function sendStatusEmail({ status }) {
     if (status === 'cancelled') {
         await useFetch('/api/order/cancelled', { method: 'POST', body: { order: order.value } })
     }
+}
+
+const creatingShipment = ref(false)
+
+async function addToFurgonetka() {
+  if (!order.value) return
+
+  creatingShipment.value = true
+
+  try {
+    const { data, error } = await useFetch("/api/furgonetka/createShipment", {
+      method: "POST",
+      body: {
+        order: order.value
+      }
+    })
+
+    if (error.value) throw error.value
+
+    alert.value = {
+      type: "success",
+      message: "Paczka została dodana do zakładki 'Do wysłania' w Furgonetce."
+    }
+
+  } catch (err) {
+    console.error(err)
+
+    alert.value = {
+      type: "error",
+      message: "Nie udało się dodać przesyłki do Furgonetki."
+    }
+  }
+
+  creatingShipment.value = false
 }
 
 function onSaved(payload) {
