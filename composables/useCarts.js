@@ -245,17 +245,15 @@ export const useCarts = () => {
     }
 
     const packProduct = async (productId, quantity) => {
-        let remainingQty = quantity
-
         const { data: rules } = await $supabase
             .from('packaging_options')
             .select(`
-      id,
-      quantity_per_cartoon,
-      max_weight,
-      instructions,
-      cartoons (*)
-    `)
+            id,
+            quantity_per_cartoon,
+            max_weight,
+            instructions,
+            cartoons (*)
+        `)
             .eq('product_id', productId)
 
         if (!rules?.length) {
@@ -267,6 +265,62 @@ export const useCarts = () => {
             (a, b) => b.quantity_per_cartoon - a.quantity_per_cartoon
         )
 
+        const largest = sortedRules[0]
+
+        // ✅ opcja 1: tylko największe kartony
+        const boxesOnlyLargest = Math.ceil(
+            quantity / largest.quantity_per_cartoon
+        )
+
+        // ✅ opcja 2: greedy (Twoja obecna logika)
+        let greedyBoxes = 0
+        let tmpQty = quantity
+
+        for (const rule of sortedRules) {
+            const b = Math.floor(tmpQty / rule.quantity_per_cartoon)
+            greedyBoxes += b
+            tmpQty -= b * rule.quantity_per_cartoon
+        }
+
+        if (tmpQty > 0) greedyBoxes += 1
+
+        // ✅ WYBÓR LEPSZEJ OPCJI
+        if (boxesOnlyLargest <= greedyBoxes) {
+            let remaining = quantity
+
+            return Array.from({ length: boxesOnlyLargest }).map((_, index) => {
+                const qty = Math.min(
+                    largest.quantity_per_cartoon,
+                    remaining
+                )
+
+                remaining -= qty
+
+                return {
+                    cartoon_id: largest.cartoons.id,
+                    packaging_option_id: largest.id,
+
+                    length: largest.cartoons.length,
+                    width: largest.cartoons.width,
+                    height: largest.cartoons.height,
+                    max_weight: largest.max_weight,
+
+                    item: {
+                        product_id: productId,
+                        quantity: qty   // ✅ TERAZ POPRAWNIE
+                    },
+
+                    packing_instruction: {
+                        quantity_per_cartoon: largest.quantity_per_cartoon,
+                        max_weight: largest.max_weight,
+                        note: largest.instructions || null
+                    }
+                }
+            })
+        }
+
+        // 🔁 fallback → greedy (Twoja stara logika)
+        let remainingQty = quantity
         const result = []
 
         for (const rule of sortedRules) {
@@ -422,6 +476,8 @@ export const useCarts = () => {
             .from('cart_parcels')
             .delete()
             .eq('cart_id', cartId.value)
+
+        console.log(parcels)
 
         for (const parcel of parcels) {
             const { data: cartParcel, error } = await $supabase
