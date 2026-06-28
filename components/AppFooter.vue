@@ -37,6 +37,9 @@
             <NuxtLink href="/polityka-cookies">Polityka Cookies</NuxtLink>
           </li>
           <li>
+            <NuxtLink href="/zwroty-i-odstapienie-od-umowy">Zwroty i odstąpienie od umowy</NuxtLink>
+          </li>
+          <li>
             <NuxtLink href="/faq">FAQ</NuxtLink>
           </li>
           <li @click="showSettings = true"><p class="link" >Zarządzaj ciasteczkami</p></li>
