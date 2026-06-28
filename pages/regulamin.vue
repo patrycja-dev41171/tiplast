@@ -137,8 +137,30 @@
             </li>
 
             <li>
+                Oświadczenie o odstąpieniu od umowy można przesłać:
+                <ol type="a">
+                    <li>drogą elektroniczną na adres e-mail: <a href="mailto:kontakt.tiplast@gmail.com"><strong>kontakt.tiplast@gmail.com</strong></a>,</li>
+                    <li>pisemnie na adres: <strong>TIPLAST Iński Tomasz, Papowo Biskupie 31, 86-221 Papowo Biskupie</strong>,</li>
+                    <li>za pomocą formularza odstąpienia od umowy dostępnego na stronie: <NuxtLink to="/odstapienie-od-umowy"><strong>Formularz odstąpienia od umowy</strong></NuxtLink>.</li>
+                </ol>
+            </li>
+
+            <li>
+                Skorzystanie z formularza odstąpienia od umowy nie jest obowiązkowe.
+                Konsument może złożyć oświadczenie o odstąpieniu od umowy
+                również w inny jednoznaczny sposób.
+            </li>
+
+            <li>
                 Termin do odstąpienia od umowy zostaje zachowany,
                 jeżeli Konsument wyśle oświadczenie przed jego upływem.
+            </li>
+
+            <li>
+                Po otrzymaniu oświadczenia o odstąpieniu od umowy
+                Sprzedawca prześle Konsumentowi potwierdzenie jego otrzymania
+                na podany adres e-mail oraz informacje dotyczące
+                dalszej procedury zwrotu.
             </li>
 
             <li>
@@ -149,8 +171,19 @@
             </li>
 
             <li>
-                Bezpośrednie koszty zwrotu Produktu
-                ponosi Konsument.
+                Produkt należy odesłać na adres:<br />
+                <strong>TIPLAST Iński Tomasz, Papowo Biskupie 31, 86-221 Papowo Biskupie</strong>.
+            </li>
+
+            <li>
+                Prosimy o odesłanie Produktu po otrzymaniu od Sprzedawcy
+                potwierdzenia przyjęcia oświadczenia o odstąpieniu od umowy
+                oraz instrukcji dotyczących zwrotu,
+                z zachowaniem ustawowego terminu 14 dni na odesłanie Produktu.
+            </li>
+
+            <li>
+                Bezpośrednie koszty zwrotu Produktu ponosi Konsument.
             </li>
 
             <li>
@@ -161,12 +194,21 @@
 
             <li>
                 Sprzedawca dokona zwrotu wszystkich otrzymanych
-                od Konsumenta płatności, w tym kosztów dostawy
-                (z wyjątkiem dodatkowych kosztów wynikających
+                od Konsumenta płatności, w tym kosztów dostawy Produktu,
+                z wyjątkiem dodatkowych kosztów wynikających
                 z wybranego przez Konsumenta sposobu dostawy
-                innego niż najtańszy oferowany przez Sprzedawcę),
+                innego niż najtańszy zwykły sposób dostawy
+                oferowany przez Sprzedawcę, niezwłocznie,
                 nie później niż w terminie 14 dni od dnia
-                otrzymania zwracanego Produktu.
+                otrzymania oświadczenia Konsumenta o odstąpieniu od umowy.
+            </li>
+
+            <li>
+                Sprzedawca może wstrzymać się ze zwrotem płatności
+                do czasu otrzymania Produktu z powrotem
+                lub do czasu dostarczenia przez Konsumenta
+                dowodu jego odesłania,
+                w zależności od tego, które zdarzenie nastąpi wcześniej.
             </li>
 
             <li>
@@ -174,7 +216,8 @@
                 takiego samego sposobu zapłaty,
                 jakiego użył Konsument,
                 chyba że Konsument wyraźnie zgodzi się
-                na inny sposób zwrotu.
+                na inny sposób zwrotu, który nie wiąże się
+                dla niego z żadnymi dodatkowymi kosztami.
             </li>
 
             <li>
@@ -497,7 +540,7 @@
 
 
         <hr class="hr" />
-        <h4>Ostatnia aktualizacja: 20.12.2025</h4>
+        <h4>Ostatnia aktualizacja: 19.06.2026</h4>
     </section>
 
 </template>
