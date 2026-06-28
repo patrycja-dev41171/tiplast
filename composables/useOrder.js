@@ -1,7 +1,7 @@
 export const useOrder = () => {
     const { $supabase } = useNuxtApp()
 
-    const addOrder = async ({ cart, customer, shipping, payment }) => {
+    const addOrder = async ({ cart, customer }) => {
 
         // 1️⃣ ORDER
         const { data: order, error } = await $supabase
@@ -12,6 +12,7 @@ export const useOrder = () => {
                 order_id: cart.id,
                 status: cart.cart_payment_details.cod ? 'pending_approval' : 'awaiting_payment',
                 payment_status: cart.cart_payment_details.cod ? 'cod' : 'pending',
+                source: 'website',
             })
             .select()
             .single()
@@ -154,6 +155,86 @@ export const useOrder = () => {
         if (error) throw error
     }
 
+    const addOrderManual = async ({ customer, items, shipping, payment, status, payment_status, parcels = [] }) => {
+        const order_id = crypto.randomUUID()
+
+        const { data: order, error } = await $supabase
+            .from('orders')
+            .insert({
+                ...customer,
+                order_id,
+                order_number: null,
+                status,
+                payment_status,
+                source: 'manual',
+            })
+            .select()
+            .single()
+
+        if (error) throw error
+
+        const orderItems = items.map(i => ({
+            order_id,
+            product_id: i.product_id,
+            quantity: i.quantity,
+            price_snapshot: i.price_snapshot,
+        }))
+
+        const { error: itemsErr } = await $supabase.from('order_items').insert(orderItems)
+        if (itemsErr) throw itemsErr
+
+        const { error: shipErr } = await $supabase.from('order_shipping_details').insert({
+            order_id,
+            cod:        shipping.cod,
+            service:    shipping.service,
+            type:       shipping.type || null,
+            service_id: shipping.service_id || shipping.service,
+            price_gross: shipping.price_gross,
+            price_net:   shipping.price_net ?? shipping.price_gross,
+            currency:   'PLN',
+        })
+        if (shipErr) throw shipErr
+
+        const { error: payErr } = await $supabase.from('order_payment_details').insert({
+            order_id,
+            service: payment.service,
+            label: payment.label,
+            description: payment.description || '',
+            cod: payment.service === 'cod',
+        })
+        if (payErr) throw payErr
+
+        for (const parcel of parcels) {
+            const { data: op, error: opErr } = await $supabase
+                .from('order_parcels')
+                .insert({
+                    order_id,
+                    cartoon_id: parcel.cartoon_id ?? null,
+                    packaging_option_id: parcel.packaging_option_id ?? null,
+                    length: parcel.length,
+                    width: parcel.width,
+                    height: parcel.height,
+                    weight: parcel.weight,
+                })
+                .select()
+                .single()
+            if (opErr) throw opErr
+
+            if (parcel.items?.length) {
+                const { error: itemsErr } = await $supabase
+                    .from('order_parcel_items')
+                    .insert(parcel.items.map(i => ({
+                        order_parcel_id: op.id,
+                        product_id: i.product_id,
+                        quantity: i.quantity,
+                    })))
+                if (itemsErr) throw itemsErr
+            }
+        }
+
+        return order
+    }
+
     const deleteOrder = async (orderId) => {
         if (!orderId) throw new Error("orderId required")
 
@@ -264,6 +345,7 @@ export const useOrder = () => {
 
     return {
         addOrder,
+        addOrderManual,
         deleteOrder,
         getOrders,
         getOrderById,

@@ -49,17 +49,64 @@
             <NuxtLink :to="`/admin/order/view/${order.order_id}`" class="action-btn">
               <v-icon icon="mdi-pencil-outline" size="18" />
             </NuxtLink>
+            <button class="action-btn action-btn--danger" @click="confirmDelete(order)">
+              <v-icon icon="mdi-trash-can-outline" size="18" />
+            </button>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
+
+  <!-- Dialog potwierdzenia usunięcia -->
+  <v-dialog v-model="dialog" max-width="420" persistent>
+    <v-card class="confirm-dialog">
+      <v-card-title class="confirm-title">
+        <v-icon icon="mdi-alert-circle-outline" color="#ef4444" size="22" />
+        Usuń zamówienie
+      </v-card-title>
+      <v-card-text class="confirm-text">
+        Czy na pewno chcesz usunąć zamówienie
+        <strong>{{ pendingOrder?.order_number }}</strong>?
+        Tej operacji nie można cofnąć.
+      </v-card-text>
+      <v-card-actions class="confirm-actions">
+        <button class="btn-cancel" @click="dialog = false">Anuluj</button>
+        <button class="btn-delete" :disabled="deleting" @click="doDelete">
+          <v-icon v-if="deleting" icon="mdi-loading" size="16" class="spin" />
+          {{ deleting ? 'Usuwanie...' : 'Usuń zamówienie' }}
+        </button>
+      </v-card-actions>
+    </v-card>
+  </v-dialog>
 </template>
 
 <script setup>
+const emit = defineEmits(['delete']);
 defineProps({ orders: { type: Array, default: () => [] } });
 
 const { orderTotal, getInitials, getClientName, avatarColor, fmtMoney, badgeStyle } = useOrderHelpers();
+
+const dialog      = ref(false);
+const pendingOrder = ref(null);
+const deleting    = ref(false);
+
+const confirmDelete = (order) => {
+  pendingOrder.value = order;
+  dialog.value = true;
+};
+
+const doDelete = async () => {
+  if (!pendingOrder.value) return;
+  deleting.value = true;
+  try {
+    emit('delete', pendingOrder.value.order_id);
+    dialog.value = false;
+  } finally {
+    deleting.value = false;
+    pendingOrder.value = null;
+  }
+};
 </script>
 
 <style scoped lang="scss">
@@ -150,7 +197,69 @@ const { orderTotal, getInitials, getClientName, avatarColor, fmtMoney, badgeStyl
   border-radius: 6px;
   color: #6b7280;
   text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
   transition: background 0.15s, color 0.15s;
   &:hover { background: #f3f4f6; color: #111; }
+
+  &--danger:hover { background: #fee2e2; color: #ef4444; }
+}
+
+@keyframes spin { to { transform: rotate(360deg); } }
+.spin { animation: spin 0.8s linear infinite; }
+
+.confirm-dialog { padding: 8px; }
+
+.confirm-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #111;
+  padding-bottom: 8px;
+}
+
+.confirm-text {
+  font-size: 14px;
+  color: #374151;
+  padding-bottom: 16px;
+}
+
+.confirm-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  padding-top: 4px;
+}
+
+.btn-cancel {
+  padding: 8px 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  background: #fff;
+  font-size: 14px;
+  color: #374151;
+  cursor: pointer;
+  transition: background 0.15s;
+  &:hover { background: #f9fafb; }
+}
+
+.btn-delete {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 8px;
+  background: #ef4444;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background 0.15s;
+  &:hover:not(:disabled) { background: #dc2626; }
+  &:disabled { opacity: 0.6; cursor: default; }
 }
 </style>

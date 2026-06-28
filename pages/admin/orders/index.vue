@@ -1,7 +1,7 @@
 <script setup>
 definePageMeta({ layout: 'admin', middleware: 'admin-client' });
 
-const { getOrders } = useOrder();
+const { getOrders, deleteOrder } = useOrder();
 const { orderTotal, getClientName } = useOrderHelpers();
 
 const orders  = ref([]);
@@ -80,6 +80,15 @@ const paginatedOrders = computed(() => {
   return filteredOrders.value.slice(s, s + PER_PAGE);
 });
 
+const onDeleteOrder = async (orderId) => {
+  try {
+    await deleteOrder(orderId);
+    orders.value = orders.value.filter(o => o.order_id !== orderId);
+  } catch (e) {
+    console.error('[deleteOrder]', e);
+  }
+};
+
 // export csv
 const exportCSV = () => {
   const headers = ['Nr zamówienia', 'Klient', 'Email', 'Data', 'Status', 'Płatność', 'Wartość'];
@@ -128,7 +137,7 @@ const exportCSV = () => {
         @export="exportCSV"
       />
 
-      <OrdersTable        :orders="paginatedOrders" />
+      <OrdersTable        :orders="paginatedOrders" @delete="onDeleteOrder" />
       <OrdersMobileCards  :orders="paginatedOrders" />
 
       <OrdersPagination
