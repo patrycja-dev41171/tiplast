@@ -284,8 +284,8 @@ export const useCarts = () => {
 
         if (tmpQty > 0) greedyBoxes += 1
 
-        // ✅ WYBÓR LEPSZEJ OPCJI
-        if (boxesOnlyLargest <= greedyBoxes) {
+        // ✅ WYBÓR LEPSZEJ OPCJI — tylko-duże wygrywa gdy daje MNIEJ paczek, przy remisie greedy daje mniejszy karton na resztę
+        if (boxesOnlyLargest < greedyBoxes) {
             let remaining = quantity
 
             return Array.from({ length: boxesOnlyLargest }).map((_, index) => {
@@ -468,6 +468,59 @@ export const useCarts = () => {
         return parcels
     }
 
+    // Wersja calculateParcels bez koszyka – przyjmuje items:[{product_id, quantity}] bezpośrednio
+    const calculateParcelsForItems = async (items) => {
+        if (!items?.length) return []
+
+        const productIds = items.map(i => i.product_id)
+
+        const { data: groupData } = await $supabase
+            .from('packaging_group_products')
+            .select('product_id, packaging_group_id')
+            .in('product_id', productIds)
+
+        const grouped = {}
+        const standalone = []
+
+        for (const item of items) {
+            const groupId = groupData?.find(g => g.product_id === item.product_id)?.packaging_group_id
+            if (groupId) {
+                grouped[groupId] ??= []
+                grouped[groupId].push(item)
+            } else {
+                standalone.push(item)
+            }
+        }
+
+        const parcels = []
+
+        for (const item of standalone) {
+            const packed = await packProduct(item.product_id, item.quantity)
+            parcels.push(...packed.map(p => ({
+                cartoon_id: p.cartoon_id,
+                packaging_option_id: p.packaging_option_id,
+                length: p.length,
+                width: p.width,
+                height: p.height,
+                weight: p.max_weight,
+                items: [p.item],
+                packing_instruction: p.packing_instruction
+            })))
+        }
+
+        for (const groupId in grouped) {
+            const groupItems = grouped[groupId].map(i => ({ product_id: i.product_id, quantity: i.quantity }))
+            const totalQty = groupItems.reduce((sum, i) => sum + i.quantity, 0)
+            const baseProductId = grouped[groupId][0].product_id
+            const packed = await packProduct(baseProductId, totalQty)
+            const parcelCapacities = packed.map(p => ({ ...p, capacity: p.item.quantity }))
+            const groupParcels = allocateGroupItemsToParcels(groupItems, parcelCapacities)
+            parcels.push(...groupParcels)
+        }
+
+        return parcels
+    }
+
 
     const persistParcels = async (parcels) => {
         if (!cartId.value) return
@@ -551,6 +604,7 @@ export const useCarts = () => {
         removeItem,
         updateItemQuantity,
         calculateParcels,
+        calculateParcelsForItems,
         updateCartById
     }
 }
