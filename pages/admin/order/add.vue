@@ -205,14 +205,17 @@ const ORDER_STATUSES = [
   { value: 'shipped',          label: 'Wysłane' },
   { value: 'completed',        label: 'Zrealizowane' },
   { value: 'cancelled',        label: 'Anulowane' },
+  { value: 'partial_refund',   label: 'Częściowy zwrot' },
+  { value: 'full_refund',      label: 'Całkowity zwrot' },
 ];
 
 const PAYMENT_STATUSES = [
-  { value: 'pending',   label: 'Oczekuje na płatność' },
-  { value: 'paid',      label: 'Opłacone' },
-  { value: 'cod',       label: 'Przy odbiorze' },
-  { value: 'cancelled', label: 'Anulowane' },
-  { value: 'refunded',  label: 'Zwrócone' },
+  { value: 'pending',                label: 'Oczekuje na płatność' },
+  { value: 'paid',                   label: 'Opłacone' },
+  { value: 'cod',                    label: 'Przy odbiorze' },
+  { value: 'cancelled',              label: 'Anulowane' },
+  { value: 'partial_refund_issued',  label: 'Zlecono częściowy zwrot kosztów' },
+  { value: 'full_refund_issued',     label: 'Zlecono całkowity zwrot kosztów' },
 ];
 
 // ── Summary ───────────────────────────────────────────────────────────────────

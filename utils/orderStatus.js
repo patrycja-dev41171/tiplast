@@ -25,9 +25,13 @@ export const getOrderStatusMeta = (status) => {
             label: "Anulowane",
             color: "#e74c3c" // czerwony
         },
-        refunded: {
-            label: "Zwrócone",
-            color: "#95a5a6" // szary
+        partial_refund: {
+            label: "Częściowy zwrot",
+            color: "#f59e0b"
+        },
+        full_refund: {
+            label: "Całkowity zwrot",
+            color: "#6b7280"
         }
     }
 
@@ -41,27 +45,31 @@ export const getPaymentStatusMeta = (status) => {
     const map = {
         pending: {
             label: "Oczekuje na płatność",
-            color: "#e86006ff" // pomarańczowy
+            color: "#e86006ff"
         },
         cod: {
             label: "Przy odbiorze",
-            color: "#8e44ad" // niebieski
+            color: "#8e44ad"
         },
         paid: {
             label: "Opłacone",
-            color: "#2ecc71" // zielony
+            color: "#2ecc71"
         },
         paid_cod: {
             label: "Opłacone przy odbiorze",
-            color: "#2ecc71" // zielony jasny
+            color: "#2ecc71"
         },
         cancelled: {
             label: "Anulowane",
-            color: "#e74c3c" // czerwony
+            color: "#e74c3c"
         },
-        refunded: {
-            label: "Zwrócone",
-            color: "#95a5a6" // szary
+        partial_refund_issued: {
+            label: "Zlecono częściowy zwrot kosztów",
+            color: "#f59e0b"
+        },
+        full_refund_issued: {
+            label: "Zlecono całkowity zwrot kosztów",
+            color: "#6b7280"
         }
     }
 

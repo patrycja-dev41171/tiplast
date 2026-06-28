@@ -34,7 +34,7 @@ const statusCards = computed(() => {
     { label: 'W realizacji',  icon: 'mdi-package-variant',        color: '#3b82f6', count: cnt(all,    ['processing']),  vs: cnt(tod, ['processing'])  - cnt(yes, ['processing']) },
     { label: 'Wysłane',       icon: 'mdi-truck-delivery-outline', color: '#8b5cf6', count: cnt(all,    ['shipped']),     vs: cnt(tod, ['shipped'])     - cnt(yes, ['shipped']) },
     { label: 'Przy odbiorze', icon: 'mdi-map-marker-outline',     color: '#10b981', count: payCnt(all, ['cod','paid_cod']), vs: payCnt(tod, ['cod','paid_cod']) - payCnt(yes, ['cod','paid_cod']) },
-    { label: 'Zwrócone',      icon: 'mdi-refresh',                color: '#6b7280', count: cnt(all,    ['refunded']),   vs: cnt(tod, ['refunded'])    - cnt(yes, ['refunded']) },
+    { label: 'Zwroty',        icon: 'mdi-refresh',                color: '#6b7280', count: cnt(all,    ['partial_refund','full_refund']),   vs: cnt(tod, ['partial_refund','full_refund'])    - cnt(yes, ['partial_refund','full_refund']) },
   ];
 });
 </script>

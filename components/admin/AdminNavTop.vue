@@ -6,6 +6,7 @@
   <div class="nav-top">
     <NuxtLink to="/admin/dashboard"><v-icon icon="mdi-home" />Dashboard</NuxtLink>
     <NuxtLink to="/admin/orders"><v-icon icon="mdi-cart-variant" />Zamówienia</NuxtLink>
+    <NuxtLink to="/admin/zwroty"><v-icon icon="mdi-package-variant-closed-remove" />Zwroty</NuxtLink>
     <NuxtLink to="/admin/wiadomosci"><v-icon icon="mdi-message-alert" />Wiadomości</NuxtLink>
     <NuxtLink to="/admin/kontakty"><v-icon icon="mdi-account-multiple" />Kontakty</NuxtLink>
     <NuxtLink to="/admin/products"><v-icon icon="mdi-list-box" />Produkty</NuxtLink>
