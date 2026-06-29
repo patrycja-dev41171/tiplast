@@ -1,6 +1,6 @@
 <template>
         <div class="row-3 mt-8">
-
+            <div class="table-wrap">
             <table class="order-items">
                 <thead>
                     <tr>
@@ -46,6 +46,7 @@
                     </tr>
                 </tbody>
             </table>
+            </div>
         </div>
 </template>
 
@@ -64,6 +65,11 @@ const props = defineProps({
 </script>
 
 <style scoped lang="scss">
+.table-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
 .row-3 {
     background-color: rgb(244, 244, 244);
     border-radius: 4px;

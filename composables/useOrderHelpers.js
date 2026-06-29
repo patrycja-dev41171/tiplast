@@ -26,10 +26,18 @@ export const useOrderHelpers = () => {
   const fmtMoney = (v) =>
     Number(v).toLocaleString('pl-PL', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' zł';
 
+  const hexAlpha = (hex, a) => {
+    const h = hex.replace('#', '').slice(0, 6);
+    const r = parseInt(h.slice(0, 2), 16);
+    const g = parseInt(h.slice(2, 4), 16);
+    const b = parseInt(h.slice(4, 6), 16);
+    return `rgba(${r},${g},${b},${a})`;
+  };
+
   const badgeStyle = (color) => ({
-    color,
-    background: color + '18',
-    border: `1px solid ${color}30`,
+    color: '#' + color.replace('#', '').slice(0, 6),
+    background: hexAlpha(color, 0.1),
+    border: `1px solid ${hexAlpha(color, 0.25)}`,
   });
 
   const inWindow = (dateStr, from, to) => {

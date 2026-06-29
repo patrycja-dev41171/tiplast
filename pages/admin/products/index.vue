@@ -194,7 +194,7 @@ const getStockQuantity = (product) => {
             <v-menu>
               <template #activator="{ props }">
                 <v-btn icon v-bind="props" color="#2664eb">
-                  <v-icon>mdi-dots-vertical</v-icon>
+                  <v-icon icon="mdi-dots-vertical" />
                 </v-btn>
               </template>
 

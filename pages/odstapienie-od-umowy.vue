@@ -231,7 +231,7 @@ const fmtMoney = (v) => (Number(v) || 0).toFixed(2) + ' zł';
           <div v-if="order" class="order-found">
             <v-icon icon="mdi-check-circle-outline" size="18" color="#32aa27" />
             Znaleziono zamówienie <strong>{{ order.order_number }}</strong>
-            ({{ orderItems.length }} {{ orderItems.length === 1 ? 'produkt' : 'produkty/ów' }})
+            ({{ orderItems.length }} {{ orderItems.length === 1 ? 'produkt' : 'produkty' }})
           </div>
         </div>
 

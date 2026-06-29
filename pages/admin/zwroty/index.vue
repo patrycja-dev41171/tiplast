@@ -21,7 +21,8 @@ const STATUSES = [
 ];
 
 const statusMeta = (s) => STATUSES.find(x => x.value === s) ?? { label: s, color: '#9ca3af' };
-const badgeStyle = (color) => ({ color, background: color + '18', border: `1px solid ${color}30` });
+const hexAlpha = (hex, a) => { const h = hex.replace('#','').slice(0,6); return `rgba(${parseInt(h.slice(0,2),16)},${parseInt(h.slice(2,4),16)},${parseInt(h.slice(4,6),16)},${a})`; };
+const badgeStyle = (color) => ({ color: '#' + color.replace('#','').slice(0,6), background: hexAlpha(color, 0.1), border: `1px solid ${hexAlpha(color, 0.25)}` });
 
 // ── Fetch ─────────────────────────────────────────────────────────────────────
 onMounted(async () => {
