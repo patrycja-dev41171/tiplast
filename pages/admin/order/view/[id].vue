@@ -126,7 +126,7 @@
         <OrderProducts v-if="tab === 'products'" :order="order" />
         <OrderPayment v-if="tab === 'payment_details'" :order="order" />
         <OrderShipping v-if="tab === 'shipping_details'" :order="order" />
-        <OrderPacking v-if="tab === 'packing'" :order="order" />
+        <OrderPacking v-if="tab === 'packing'" :order="order" @updated="fetchOrder" />
 
         <v-alert v-if="alert" :type="alert.type" variant="tonal" class="mt-4" closable @click:close="alert = null">
             {{ alert.message }}

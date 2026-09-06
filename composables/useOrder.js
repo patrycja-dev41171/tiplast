@@ -326,6 +326,105 @@ export const useOrder = () => {
         }
     };
 
+    const updateOrderItemQuantity = async (itemId, quantity) => {
+        if (!itemId) throw new Error("itemId required");
+        if (!quantity || quantity < 1) throw new Error("quantity must be greater than 0");
+
+        const { error } = await $supabase
+            .from("order_items")
+            .update({ quantity })
+            .eq("id", itemId);
+
+        if (error) throw error;
+    };
+
+    // Zastępuje wszystkie paczki wysyłkowe zamówienia nową listą (usuwa stare wraz z ich
+    // zawartością i instrukcjami pakowania, po czym wstawia nowe).
+    const replaceOrderParcels = async (orderId, parcels) => {
+        if (!orderId) throw new Error("orderId required");
+
+        const { data: existingParcels, error: fetchErr } = await $supabase
+            .from('order_parcels')
+            .select('id')
+            .eq('order_id', orderId);
+
+        if (fetchErr) throw fetchErr;
+
+        const existingIds = (existingParcels || []).map(p => p.id);
+
+        if (existingIds.length) {
+            const { error: delItemsErr } = await $supabase
+                .from('order_parcel_items')
+                .delete()
+                .in('order_parcel_id', existingIds);
+            if (delItemsErr) throw delItemsErr;
+
+            const { error: delInstrErr } = await $supabase
+                .from('order_packing_instructions')
+                .delete()
+                .in('order_parcel_id', existingIds);
+            if (delInstrErr) throw delInstrErr;
+
+            const { error: delParcelsErr } = await $supabase
+                .from('order_parcels')
+                .delete()
+                .in('id', existingIds);
+            if (delParcelsErr) throw delParcelsErr;
+        }
+
+        for (const parcel of parcels) {
+            const { data: orderParcel, error } = await $supabase
+                .from('order_parcels')
+                .insert({
+                    order_id: orderId,
+                    cartoon_id: parcel.cartoon_id ?? null,
+                    packaging_option_id: parcel.packaging_option_id ?? null,
+                    length: parcel.length,
+                    width: parcel.width,
+                    height: parcel.height,
+                    weight: parcel.weight,
+                })
+                .select()
+                .single();
+
+            if (error) throw error;
+
+            if (parcel.items?.length) {
+                const { error: itemsErr } = await $supabase
+                    .from('order_parcel_items')
+                    .insert(parcel.items.map(i => ({
+                        order_parcel_id: orderParcel.id,
+                        product_id: i.product_id,
+                        quantity: i.quantity,
+                    })));
+                if (itemsErr) throw itemsErr;
+            }
+
+            const quantityPerCartoon = (parcel.items ?? []).reduce((sum, i) => sum + Number(i.quantity || 0), 0);
+
+            const { error: noteErr } = await $supabase
+                .from('order_packing_instructions')
+                .insert({
+                    order_parcel_id: orderParcel.id,
+                    quantity_per_cartoon: quantityPerCartoon,
+                    max_weight: parcel.weight,
+                    note: parcel.note || null,
+                });
+            if (noteErr) throw noteErr;
+        }
+    };
+
+    const updateOrderShipping = async (orderId, payload) => {
+        if (!orderId) throw new Error("orderId required");
+
+        const { error } = await $supabase
+            .from('order_shipping_details')
+            .update(payload)
+            .eq('order_id', orderId);
+
+        if (error) throw error;
+    };
+
     const updatePaymentStatus = async (orderId, payment_status) => {
         if (!orderId) throw new Error("orderId required");
         if (!payment_status) throw new Error("status required");
@@ -350,6 +449,9 @@ export const useOrder = () => {
         getOrders,
         getOrderById,
         updateOrderStatus,
+        updateOrderItemQuantity,
+        replaceOrderParcels,
+        updateOrderShipping,
         updatePaymentStatus
     }
 }
