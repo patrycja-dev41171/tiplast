@@ -41,6 +41,13 @@ defineProps({
   font-weight: 700;
 }
 
+.faq-container :deep(a) {
+  color: #32aa27;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
 .question {
   font-weight: 600;
   font-size: 17px;

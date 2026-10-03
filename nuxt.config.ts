@@ -1,5 +1,10 @@
 export default defineNuxtConfig({
   ssr: true,
+  routeRules: {
+    // stare adresy kategorii -> nowe podstrony /produkty/[slug]
+    "/kategoria/misy-do-kwiatow": { redirect: { to: "/produkty/misy-do-kwiatow", statusCode: 301 } },
+    "/kategoria/misy-wiszace-do-kwiatow": { redirect: { to: "/produkty/misy-wiszace", statusCode: 301 } },
+  },
   nitro: {
     externals: {
       external: ["@supabase/supabase-js"]
