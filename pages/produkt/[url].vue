@@ -19,6 +19,11 @@ const { getProductByUrl } = useProducts()
 
 
 const data = await getProductByUrl(url);
+
+if (!data) {
+  throw createError({ statusCode: 404, statusMessage: "Nie znaleziono produktu", fatal: true })
+}
+
 const product = computed(() => data)
 
 const stripHtml = (html) => {
