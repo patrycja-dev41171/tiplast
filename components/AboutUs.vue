@@ -32,6 +32,22 @@
           <v-icon color="#32aa27" icon="mdi-play" class="mr-4"></v-icon>
           Misy Wiszące</v-list-item
         >
+        <v-list-item to="/produkty/misy-do-chryzantem" class="list-item pa-0 ma-0">
+          <v-icon color="#32aa27" icon="mdi-play" class="mr-4"></v-icon>
+          Misy do Chryzantem</v-list-item
+        >
+        <v-list-item to="/produkty/do-stroikow" class="list-item pa-0 ma-0">
+          <v-icon color="#32aa27" icon="mdi-play" class="mr-4"></v-icon>
+          Do Stroików</v-list-item
+        >
+        <v-list-item to="/produkty/podstawki-do-doniczek-i-mis" class="list-item pa-0 ma-0">
+          <v-icon color="#32aa27" icon="mdi-play" class="mr-4"></v-icon>
+          Podstawki</v-list-item
+        >
+        <v-list-item to="/produkty/haki-uchwyty" class="list-item pa-0 ma-0">
+          <v-icon color="#32aa27" icon="mdi-play" class="mr-4"></v-icon>
+          Haki i Uchwyty</v-list-item
+        >
       </v-list>
       <p class="mt-10 link-content">Jesteś zainteresowany?</p>
       <NuxtLink href="/kontakt" class="link">Napisz do nas!</NuxtLink>

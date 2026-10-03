@@ -13,21 +13,29 @@
       </div>
     </div>
     <div class="products">
-      <category-card v-for="obj in categories" :key="obj.id" :obj="obj" />
+      <category-card v-for="obj in cards" :key="obj.id" :obj="obj" />
     </div>
   </div>
 </template>
 
-<script>
+<script setup>
 import { categories } from "../database/categories/categories";
 
-export default {
-  data() {
+const { products } = await useCatalog();
+
+// Kategorie bez własnego zdjęcia w /images/categories dostają zdjęcie pierwszego produktu z kategorii
+const cards = computed(() =>
+  categories.map((category) => {
+    if (category.photos?.length) return category;
+
+    const product = products.value.find((p) => p.categories?.map(Number).includes(category.id));
+    const photo = product?.photos?.[0];
     return {
-      categories,
+      ...category,
+      photos: photo ? [{ url: photo.url, alt: category.display_name }] : [],
     };
-  },
-};
+  })
+);
 </script>
 
 <style scoped lang="scss">
@@ -67,12 +75,9 @@ export default {
 
 .products {
   width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  @include md {
-    justify-content: space-between;
-  }
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 24px;
 }
 .see-all {
   text-align: end;

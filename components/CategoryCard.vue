@@ -5,7 +5,8 @@
         <v-img
           aspect-ratio="16/9"
           cover
-          :src="obj.photos[0].url"
+          :src="obj.photos[0]?.url"
+          :alt="obj.photos[0]?.alt || obj.display_name"
           class="img"
         ></v-img>
       </div>
@@ -28,12 +29,18 @@ defineProps({
 
 <style scoped lang="scss">
 
+a {
+  display: block;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+
 .category-card {
-  width: 320px;
-  height: 370px;
+  width: 100%;
+  height: 100%;
   background-color: white;
   padding: 20px;
-  margin: 0 20px 20px 0;
   box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px,
     rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
   transition: 0.3s;
