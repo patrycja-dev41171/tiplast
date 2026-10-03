@@ -1,5 +1,6 @@
 <template>
   <NuxtLink :href="`/produkt/${product.url}`" class="product-card">
+    <bestseller-badge v-if="isBestseller(product)" />
     <img
       :src="product.photos?.[0]?.url"
       :alt="product.photos?.[0]?.alt || product.display_name"
@@ -35,6 +36,7 @@ defineProps({
   background: #fff;
   border-radius: 0;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  position: relative;
   overflow: hidden;
   transition: transform 0.3s ease;
   cursor: pointer;

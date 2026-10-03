@@ -3,7 +3,10 @@
     <div class="product-header">
       <!-- Galeria -->
       <div class="gallery">
-        <img :src="activePhoto.url" :alt="activePhoto.alt" class="main-photo" />
+        <div class="main-photo-wrap">
+          <bestseller-badge v-if="isBestseller(product)" size="lg" />
+          <img :src="activePhoto.url" :alt="activePhoto.alt" class="main-photo" />
+        </div>
 
         <div class="thumbnails">
           <img v-for="(photo, i) in product.photos" :key="i" :src="photo.url" :alt="photo.alt"
@@ -141,6 +144,10 @@ const onInquiry = async () => {
   }
 
   /* --- GALERIA --- */
+  .main-photo-wrap {
+    position: relative;
+  }
+
   .gallery {
     max-width: 620px;
     width: 100%;

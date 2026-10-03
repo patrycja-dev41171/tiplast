@@ -1,6 +1,7 @@
 <template>
   <div class="container">
     <app-banner />
+    <bestsellers-slider />
     <about-us />
     <products-categories />
     <contact-section />
