@@ -122,13 +122,13 @@ export const categoryContent = {
 
   // Do stroików
   4: {
-    heading: "Misy do stroików",
-    title: "Misy do stroików i kompozycji nagrobnych | tiplast.pl",
+    heading: "Do stroików",
+    title: "Do stroików – misy i doniczki do kompozycji nagrobnych | tiplast.pl",
     description:
-      "Misy do stroików na Wszystkich Świętych i Boże Narodzenie. Idealne do kompozycji nagrobnych i dekoracji. Polski producent Tiplast.",
+      "Misy i doniczki do stroików na Wszystkich Świętych i Boże Narodzenie. Idealne do kompozycji nagrobnych i dekoracji. Polski producent Tiplast.",
     intro: [
-      "Misy do stroików to solidna baza do kompozycji nagrobnych, świątecznych i okolicznościowych. Są lekkie, stabilne i dostępne w kolorach, które dobrze komponują się z kwiatami, gałązkami i dekoracjami.",
-      "Misy i doniczki do stroików celowo nie mają otworów w dnie. Dzięki temu można je zalać gipsem, wypełnić kamieniami, piaskiem lub żwirkiem i wbić w nie gąbkę florystyczną albo sztuczne kwiaty – nic nie wycieknie, a kompozycja stoi stabilnie i nie przewraca się na wietrze.",
+      "Nasze misy i doniczki to solidna baza do kompozycji nagrobnych, świątecznych i okolicznościowych. Są lekkie, stabilne i dostępne w kolorach, które dobrze komponują się z kwiatami, gałązkami i dekoracjami.",
+      "Produkty z tej kategorii celowo nie mają otworów w dnie. Dzięki temu można je zalać gipsem, wypełnić kamieniami, piaskiem lub żwirkiem i wbić w nie gąbkę florystyczną albo sztuczne kwiaty – nic nie wycieknie, a kompozycja stoi stabilnie i nie przewraca się na wietrze.",
     ],
   },
 
