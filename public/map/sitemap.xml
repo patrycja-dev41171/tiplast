@@ -4,7 +4,7 @@
 >
     <url>
         <loc>https://tiplast.pl/</loc>
-        <lastmod>2025-12-08</lastmod>
+        <lastmod>2026-10-03</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
     </url>
@@ -287,6 +287,138 @@
         <lastmod>2025-12-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/produkt/antracyt-misa-fi-21</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/produkt/antracytowa-misa-fi-17</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/produkt/bia%C5%82a-podstawka%20</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/produkt/czarna-doniczka-fi-10-do-stroik%C3%B3w</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/produkt/czarna-misa-fi-25-26</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/produkt/grafit-podstawka%20</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/produkt/hak-bialy-do-doniczki-wiszacej</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/produkt/hak-fuksja-do-doniczki-wiszacej</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/produkt/hak-grafitowy-do-doniczki-wiszacej</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/produkt/hak-szary-bez-do-doniczki-wiszacej</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/produkt/hak-terakota-do-doniczki-wiszacej</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/produkt/hak-zielony%20jasny-do-doniczki-wiszacej</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/produkt/piaskowa-doniczka-fi-10-do-stroik%C3%B3w</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/produkt/terakota-doniczka-fi-10-do-stroik%C3%B3w</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/produkt/terakota-misa-fi-25-26</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/produkt/terakota-podstawka%20</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/produkt/zielona-jasna-doniczka-fi-10-do-stroik%C3%B3w</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/produkt/zlota-doniczka-fi-10-do-stroik%C3%B3w</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/produkt/zolta-doniczka-fi-10-do-stroik%C3%B3w</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/regulamin</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/zwroty-i-odstapienie-od-umowy</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/odstapienie-od-umowy</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.3</priority>
     </url>
 
 </urlset>
