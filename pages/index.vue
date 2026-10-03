@@ -10,11 +10,11 @@
 <script setup>
 useSeoMeta({
   title: 'Tiplast.pl – Produkcja i sprzedaż doniczek z tworzyw sztucznych',
-  description: 'Produkcja i sprzedaż wysokiej jakości doniczek z tworzyw sztucznych.Usługi wtryskowe w województwie kujawsko-pomorskiem. Jesteśmy na rynku od 2015 roku.',
+  description: 'Produkcja i sprzedaż wysokiej jakości doniczek z tworzyw sztucznych. Usługi wtryskowe w województwie kujawsko-pomorskim. Jesteśmy na rynku od 2015 roku.',
   
   // Open Graph (Facebook, LinkedIn)
   ogTitle: 'tiplast.pl',
-  ogDescription: 'Produkcja i dystrybucja doniczek i innych produktów z tworzyw sztucznych. Usługi wtryskowe w województwie kujawsko-pomorskiem.',
+  ogDescription: 'Produkcja i dystrybucja doniczek i innych produktów z tworzyw sztucznych. Usługi wtryskowe w województwie kujawsko-pomorskim.',
   ogImage: 'https://tiplast.pl/images/og-image.webp',
   ogUrl: 'https://tiplast.pl',
 

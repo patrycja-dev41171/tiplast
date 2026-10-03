@@ -6,7 +6,7 @@
         Produkcja i sprzedaż wysokiej jakości doniczek z tworzyw sztucznych
       </h3>
       <p>
-        TIPLAST firma produkcyjna działająca na rynku produkcji tworzyw
+        TIPLAST to firma produkcyjna działająca na rynku produkcji tworzyw
         sztucznych od 2015 roku. Głównym asortymentem naszej oferty jest
         doniczka plastikowa tworzona metodą wtryskową. Materiały używane do
         produkcji pochodzą częściowo z recyklingu. Wszystkie produkty w naszej
@@ -15,7 +15,7 @@
         jak i te hurtowe.
       </p>
       <p class="mt-3">
-        W naszej ofercie znajdą państwo zamówno doniczki przemysłowe idealnie
+        W naszej ofercie znajdą państwo zarówno doniczki przemysłowe idealnie
         nadające się na rozsady jak również misy, które świetnie sprawdzą się
         jako dekoracja ogrodu i domu.
       </p>
