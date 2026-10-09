@@ -13,14 +13,14 @@
         <div class="section">
             <h3>Status płatność: <span :style="{ color: getPaymentStatusMeta(order.payment_status).color }">{{
                 getPaymentStatusMeta(order.payment_status).label }}</span></h3>
-            <p class="mt-2">Metoda płatności: {{ order.order_payment_details.label }} - {{
-                order.order_payment_details.description }}</p>
+            <p class="mt-2">Metoda płatności: {{ order.order_payment_details?.label || '—' }}<template v-if="order.order_payment_details?.description"> - {{
+                order.order_payment_details.description }}</template></p>
             <h3 class="mt-4">Do zapłaty: {{ (calculateProductsTotal(order) +
-                order.order_shipping_details.price_gross).toFixed(2) }} zł</h3>
+                shippingPrice).toFixed(2) }} zł</h3>
         </div>
 
         <div class="section"
-            v-if="order.payment_status === 'pending' && order.order_payment_details.service === 'bank_transfer'">
+            v-if="order.payment_status === 'pending' && order.order_payment_details?.service === 'bank_transfer'">
         <h3 class="mb-2">
             Dane do przelewu:
         </h3>
@@ -28,7 +28,7 @@
         <p class="mb-1">Odbiorca: <strong>TIPLAST Iński Tomasz</strong></p>
         <p class="mb-1">Tytuł przelewu: <strong>Zamówienie {{ order.order_number }}</strong></p>
         <p>Kwota do zapłaty: <strong>{{ (calculateProductsTotal(order) +
-            order.order_shipping_details.price_gross).toFixed(2) }} zł</strong></p>
+            shippingPrice).toFixed(2) }} zł</strong></p>
             </div>
         <div class="section">
 
@@ -45,12 +45,10 @@
             <p>{{ order.country === "PL" ? "Polska" : order.country }}</p>
 
             <p>
-            <p class="mt-4">Metoda wysyłki: {{ order.order_shipping_details.service }} - {{
-                order.order_shipping_details.type === "courier" ? "kurier" : order.order_shipping_details.type ===
-                    "courier_cod" ? "Kurier COD" :
-                    order.order_payment_details.type }}</p>
+            <p class="mt-4">Metoda wysyłki: {{ shipping?.service || '—' }}<template v-if="shipping?.type"> - {{
+                shipping.type === "courier" ? "kurier" : shipping.type === "courier_cod" ? "Kurier COD" : shipping.type }}</template></p>
             </p>
-            <p> Koszt wysyłki: {{ order.order_shipping_details.price_gross.toFixed(2) }} zł</p>
+            <p> Koszt wysyłki: {{ shippingPrice.toFixed(2) }} zł</p>
         </div>
 
         <div class="section">
@@ -76,6 +74,9 @@ const fetchOrder = async () => {
 }
 
 onMounted(fetchOrder)
+
+const shipping = computed(() => order.value?.order_shipping_details || null)
+const shippingPrice = computed(() => Number(shipping.value?.price_gross ?? 0))
 
 const calculateProductsTotal = (order) => {
     if (!order?.order_items?.length) return 0
