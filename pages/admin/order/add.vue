@@ -248,6 +248,7 @@ const submit = async () => {
 
   submitting.value = true;
   try {
+    const isCustomShipping = selectedShipping.value.id === 'custom';
     const payMeta = PAYMENT_METHODS.find(p => p.id === paymentMethod.value);
     const phone = customer.phone ? `+48${customer.phone.replace(/^\+48/, '')}` : '';
     const order = await addOrderManual({
@@ -259,8 +260,8 @@ const submit = async () => {
       })),
       shipping: {
         cod:         cod.value,
-        service:     selectedShipping.value.service,
-        service_id:  selectedShipping.value.id,
+        service:     isCustomShipping ? customShippingLabel.value.trim() : selectedShipping.value.service,
+        service_id:  isCustomShipping ? null : selectedShipping.value.id,
         label:       shippingLabel.value,
         price_gross: shippingPrice.value,
         price_net:   shippingPrice.value,

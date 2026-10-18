@@ -173,6 +173,7 @@ export const useOrder = () => {
 
         if (error) throw error
 
+        try {
         const orderItems = items.map(i => ({
             order_id,
             product_id: i.product_id,
@@ -188,7 +189,7 @@ export const useOrder = () => {
             cod:        shipping.cod,
             service:    shipping.service,
             type:       shipping.type || null,
-            service_id: shipping.service_id || shipping.service,
+            service_id: shipping.service_id ?? null,
             price_gross: shipping.price_gross,
             price_net:   shipping.price_net ?? shipping.price_gross,
             currency:   'PLN',
@@ -230,6 +231,11 @@ export const useOrder = () => {
                     })))
                 if (itemsErr) throw itemsErr
             }
+        }
+        } catch (e) {
+            // brak transakcji — nie zostawiaj niekompletnego zamówienia
+            await $supabase.from('orders').delete().eq('order_id', order_id)
+            throw e
         }
 
         return order
