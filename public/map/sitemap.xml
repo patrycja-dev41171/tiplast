@@ -1,104 +1,77 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset
     xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
->
-    <url>
+>    <url>
         <loc>https://tiplast.pl/</loc>
         <lastmod>2026-10-03</lastmod>
         <changefreq>daily</changefreq>
         <priority>1.0</priority>
-    </url>
-    <url>
+    </url>    <url>
         <loc>https://tiplast.pl/kontakt</loc>
         <lastmod>2025-12-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.5</priority>
-    </url>
-    <url>
+    </url>    <url>
         <loc>https://tiplast.pl/polityka-cookies</loc>
         <lastmod>2025-12-08</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
-    </url>
-
-    <url>
+    </url>    <url>
         <loc>https://tiplast.pl/polityka-prywatnosci</loc>
         <lastmod>2025-12-08</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
-    </url>
-
-    <url>
+    </url>    <url>
         <loc>https://tiplast.pl/produkty</loc>
-        <lastmod>2025-12-08</lastmod>
+        <lastmod>2026-10-18</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
-    </url>
-
-    <url>
+    </url>    <url>
         <loc>https://tiplast.pl/produkty/doniczki</loc>
         <lastmod>2026-10-03</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
-    </url>
-
-    <url>
+    </url>    <url>
         <loc>https://tiplast.pl/produkty/misy-do-kwiatow</loc>
         <lastmod>2026-10-03</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
-    </url>
-
-    <url>
+    </url>    <url>
         <loc>https://tiplast.pl/produkty/misy-wiszace</loc>
         <lastmod>2026-10-03</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
-    </url>
-
-    <url>
+    </url>    <url>
         <loc>https://tiplast.pl/produkty/do-stroikow</loc>
-        <lastmod>2026-10-03</lastmod>
+        <lastmod>2026-10-18</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
-    </url>
-
-    <url>
+    </url>    <url>
         <loc>https://tiplast.pl/produkty/misy-do-chryzantem</loc>
-        <lastmod>2026-10-03</lastmod>
+        <lastmod>2026-10-18</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
-    </url>
-
-    <url>
+    </url>    <url>
         <loc>https://tiplast.pl/produkty/haki-uchwyty</loc>
-        <lastmod>2026-10-03</lastmod>
+        <lastmod>2026-10-18</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
-    </url>
-
-    <url>
+    </url>    <url>
         <loc>https://tiplast.pl/produkty/podstawki-do-doniczek-i-mis</loc>
-        <lastmod>2026-10-03</lastmod>
+        <lastmod>2026-10-18</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
-    </url>
-
-    <url>
+    </url>    <url>
         <loc>https://tiplast.pl/produkty/wazony-flakony-do-kwiatow</loc>
         <lastmod>2026-10-18</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.7</priority>
-    </url>
-
-    <url>
+    </url>    <url>
         <loc>https://tiplast.pl/faq</loc>
         <lastmod>2025-12-08</lastmod>
         <changefreq>weekly</changefreq>
         <priority>0.5</priority>
-    </url>
-
-    <url>
+    </url>    <url>
         <loc>https://tiplast.pl/zwroty</loc>
         <lastmod>2025-12-08</lastmod>
         <changefreq>monthly</changefreq>
@@ -106,53 +79,25 @@
     </url>
 
     <url>
-        <loc>https://tiplast.pl/produkt/terakota-misa-fi-21</loc>
-        <lastmod>2025-12-08</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>1.0</priority>
-    </url>
-
-    <url>
-        <loc>https://tiplast.pl/produkt/terakota-doniczka-produkcyjna-fi-14</loc>
-        <lastmod>2025-12-08</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>1.0</priority>
-    </url>
-
-    <url>
-        <loc>https://tiplast.pl/produkt/czarna-misa-fi-21</loc>
-        <lastmod>2025-12-08</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>1.0</priority>
-    </url>
-
-    <url>
-        <loc>https://tiplast.pl/produkt/złota-misa-fi-21</loc>
-        <lastmod>2025-12-08</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>1.0</priority>
-    </url>
-
-    <url>
-        <loc>https://tiplast.pl/produkt/zielona-jasna-misa-wiszaca-fi-23</loc>
-        <lastmod>2025-12-08</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>1.0</priority>
-    </url>
-    <url>
         <loc>https://tiplast.pl/produkt/czarna-doniczka-produkcyjna-fi-9</loc>
         <lastmod>2025-12-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>https://tiplast.pl/produkt/terakota-misa-fi-25</loc>
+        <loc>https://tiplast.pl/produkt/czarna-doniczka-produkcyjna-fi-10</loc>
         <lastmod>2025-12-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>https://tiplast.pl/produkt/terakota-misa-fi-23</loc>
+        <loc>https://tiplast.pl/produkt/czarna-doniczka-produkcyjna-fi-12</loc>
+        <lastmod>2025-12-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/produkt/czarna-doniczka-produkcyjna-fi-14</loc>
         <lastmod>2025-12-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
@@ -170,79 +115,13 @@
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>https://tiplast.pl/produkt/terakota-misa-fi-21-z-kolnierzykiem</loc>
-        <lastmod>2025-12-08</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>1.0</priority>
-    </url>
-    <url>
-        <loc>https://tiplast.pl/produkt/misa-fi-21-cm-z-konierzykiem-czarna</loc>
-        <lastmod>2025-12-08</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>1.0</priority>
-    </url>
-    <url>
-        <loc>https://tiplast.pl/produkt/grafitowa-misa-fi-23</loc>
-        <lastmod>2025-12-08</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>1.0</priority>
-    </url>
-    <url>
-        <loc>https://tiplast.pl/produkt/biala-misa-fi-25</loc>
-        <lastmod>2025-12-08</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>1.0</priority>
-    </url>
-    <url>
-        <loc>https://tiplast.pl/produkt/czarna-misa-fi-25</loc>
-        <lastmod>2025-12-08</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>1.0</priority>
-    </url>
-    <url>
-        <loc>https://tiplast.pl/produkt/terakota-misa-fi-17</loc>
-        <lastmod>2025-12-08</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>1.0</priority>
-    </url>
-    <url>
-        <loc>https://tiplast.pl/produkt/jasna-zielona-misa-fi-23</loc>
-        <lastmod>2025-12-08</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>1.0</priority>
-    </url>
-    <url>
-        <loc>https://tiplast.pl/produkt/biala-misa-fi-23</loc>
-        <lastmod>2025-12-08</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>1.0</priority>
-    </url>
-    <url>
         <loc>https://tiplast.pl/produkt/terakota-misa-wiszaca-fi-23</loc>
         <lastmod>2025-12-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>https://tiplast.pl/produkt/czarna-doniczka-produkcyjna-fi-12</loc>
-        <lastmod>2025-12-08</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>1.0</priority>
-    </url>
-    <url>
-        <loc>https://tiplast.pl/produkt/szary-bez-misa-fi-23</loc>
-        <lastmod>2025-12-08</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>1.0</priority>
-    </url>
-    <url>
-        <loc>https://tiplast.pl/produkt/czarna-doniczka-produkcyjna-fi-10</loc>
-        <lastmod>2025-12-08</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>1.0</priority>
-    </url>
-    <url>
-        <loc>https://tiplast.pl/produkt/czarna-doniczka-produkcyjna-fi-14</loc>
+        <loc>https://tiplast.pl/produkt/zielona-jasna-misa-wiszaca-fi-23</loc>
         <lastmod>2025-12-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
@@ -260,13 +139,73 @@
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>https://tiplast.pl/produkt/fuksja-misa-fi-23</loc>
+        <loc>https://tiplast.pl/produkt/biala-misa-fi-23</loc>
+        <lastmod>2025-12-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/produkt/grafitowa-misa-fi-23</loc>
+        <lastmod>2025-12-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/produkt/terakota-misa-fi-23</loc>
+        <lastmod>2025-12-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/produkt/biala-misa-fi-25</loc>
+        <lastmod>2025-12-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/produkt/czarna-misa-fi-25</loc>
+        <lastmod>2025-12-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/produkt/terakota-misa-fi-25</loc>
+        <lastmod>2025-12-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/produkt/terakota-misa-fi-17</loc>
+        <lastmod>2025-12-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/produkt/czarna-misa-fi-17</loc>
         <lastmod>2025-12-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
         <loc>https://tiplast.pl/produkt/zlota-misa-fi-17</loc>
+        <lastmod>2025-12-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/produkt/jasna-zielona-misa-fi-23</loc>
+        <lastmod>2025-12-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/produkt/fuksja-misa-fi-23</loc>
+        <lastmod>2025-12-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/produkt/szary-bez-misa-fi-23</loc>
         <lastmod>2025-12-08</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
@@ -290,8 +229,122 @@
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>https://tiplast.pl/produkt/czarna-misa-fi-17</loc>
+        <loc>https://tiplast.pl/produkt/terakota-misa-fi-21-z-kolnierzykiem</loc>
         <lastmod>2025-12-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/produkt/misa-fi-21-cm-z-konierzykiem-czarna</loc>
+        <lastmod>2025-12-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/produkt/terakota-misa-fi-21</loc>
+        <lastmod>2025-12-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/produkt/terakota-doniczka-produkcyjna-fi-14</loc>
+        <lastmod>2025-12-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/produkt/czarna-misa-fi-21</loc>
+        <lastmod>2025-12-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/produkt/z%C5%82ota-misa-fi-21</loc>
+        <lastmod>2025-12-08</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/produkt/zielona-jasna-doniczka-fi-10-do-stroik%C3%B3w</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/produkt/terakota-doniczka-fi-10-do-stroik%C3%B3w</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/produkt/czarna-doniczka-fi-10-do-stroik%C3%B3w</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/produkt/zolta-doniczka-fi-10-do-stroik%C3%B3w</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/produkt/piaskowa-doniczka-fi-10-do-stroik%C3%B3w</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/produkt/zlota-doniczka-fi-10-do-stroik%C3%B3w</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/produkt/hak-bialy-do-doniczki-wiszacej</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/produkt/hak-grafitowy-do-doniczki-wiszacej</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/produkt/hak-terakota-do-doniczki-wiszacej</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/produkt/hak-fuksja-do-doniczki-wiszacej</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/produkt/hak-szary-bez-do-doniczki-wiszacej</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/produkt/hak-zielony-jasny-do-doniczki-wiszacej</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/produkt/czarna-misa-fi-25-26</loc>
+        <lastmod>2026-10-03</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/produkt/terakota-misa-fi-25-26</loc>
+        <lastmod>2026-10-03</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
@@ -308,79 +361,7 @@
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>https://tiplast.pl/produkt/bia%C5%82a-podstawka%20</loc>
-        <lastmod>2026-10-03</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>1.0</priority>
-    </url>
-    <url>
-        <loc>https://tiplast.pl/produkt/czarna-doniczka-fi-10-do-stroik%C3%B3w</loc>
-        <lastmod>2026-10-03</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>1.0</priority>
-    </url>
-    <url>
-        <loc>https://tiplast.pl/produkt/czarna-misa-fi-25-26</loc>
-        <lastmod>2026-10-03</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>1.0</priority>
-    </url>
-    <url>
-        <loc>https://tiplast.pl/produkt/grafit-podstawka%20</loc>
-        <lastmod>2026-10-03</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>1.0</priority>
-    </url>
-    <url>
-        <loc>https://tiplast.pl/produkt/hak-bialy-do-doniczki-wiszacej</loc>
-        <lastmod>2026-10-03</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>1.0</priority>
-    </url>
-    <url>
-        <loc>https://tiplast.pl/produkt/hak-fuksja-do-doniczki-wiszacej</loc>
-        <lastmod>2026-10-03</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>1.0</priority>
-    </url>
-    <url>
-        <loc>https://tiplast.pl/produkt/hak-grafitowy-do-doniczki-wiszacej</loc>
-        <lastmod>2026-10-03</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>1.0</priority>
-    </url>
-    <url>
-        <loc>https://tiplast.pl/produkt/hak-szary-bez-do-doniczki-wiszacej</loc>
-        <lastmod>2026-10-03</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>1.0</priority>
-    </url>
-    <url>
-        <loc>https://tiplast.pl/produkt/hak-terakota-do-doniczki-wiszacej</loc>
-        <lastmod>2026-10-03</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>1.0</priority>
-    </url>
-    <url>
-        <loc>https://tiplast.pl/produkt/hak-zielony-jasny-do-doniczki-wiszacej</loc>
-        <lastmod>2026-10-03</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>1.0</priority>
-    </url>
-    <url>
-        <loc>https://tiplast.pl/produkt/piaskowa-doniczka-fi-10-do-stroik%C3%B3w</loc>
-        <lastmod>2026-10-03</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>1.0</priority>
-    </url>
-    <url>
-        <loc>https://tiplast.pl/produkt/terakota-doniczka-fi-10-do-stroik%C3%B3w</loc>
-        <lastmod>2026-10-03</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>1.0</priority>
-    </url>
-    <url>
-        <loc>https://tiplast.pl/produkt/terakota-misa-fi-25-26</loc>
+        <loc>https://tiplast.pl/produkt/grafit-podstawka</loc>
         <lastmod>2026-10-03</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
@@ -392,20 +373,38 @@
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>https://tiplast.pl/produkt/zielona-jasna-doniczka-fi-10-do-stroik%C3%B3w</loc>
+        <loc>https://tiplast.pl/produkt/bia%C5%82a-podstawka</loc>
         <lastmod>2026-10-03</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>https://tiplast.pl/produkt/zlota-doniczka-fi-10-do-stroik%C3%B3w</loc>
-        <lastmod>2026-10-03</lastmod>
+        <loc>https://tiplast.pl/produkt/czarny-wklad-do-flakonu-wazonu-do-stroikow</loc>
+        <lastmod>2026-10-18</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
     <url>
-        <loc>https://tiplast.pl/produkt/zolta-doniczka-fi-10-do-stroik%C3%B3w</loc>
-        <lastmod>2026-10-03</lastmod>
+        <loc>https://tiplast.pl/produkt/antracyt-wklad-do-flakonu-wazonu-do-stroikow</loc>
+        <lastmod>2026-10-18</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/produkt/zloty-wklad-do-flakonu-wazonu-do-stroikow</loc>
+        <lastmod>2026-10-18</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/produkt/zloty-flakon-na-grob-z-podstawa-fi-20</loc>
+        <lastmod>2026-10-18</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>1.0</priority>
+    </url>
+    <url>
+        <loc>https://tiplast.pl/produkt/antracytowy-flakon-na-grob-z-podstawa-fi-20</loc>
+        <lastmod>2026-10-18</lastmod>
         <changefreq>monthly</changefreq>
         <priority>1.0</priority>
     </url>
@@ -414,14 +413,12 @@
         <lastmod>2026-10-03</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
-    </url>
-    <url>
+    </url>    <url>
         <loc>https://tiplast.pl/zwroty-i-odstapienie-od-umowy</loc>
         <lastmod>2026-10-03</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.3</priority>
-    </url>
-    <url>
+    </url>    <url>
         <loc>https://tiplast.pl/odstapienie-od-umowy</loc>
         <lastmod>2026-10-03</lastmod>
         <changefreq>yearly</changefreq>
