@@ -130,6 +130,41 @@ export const categoryContent = {
       "Nasze misy i doniczki to solidna baza do kompozycji nagrobnych, świątecznych i okolicznościowych. Są lekkie, stabilne i dostępne w kolorach, które dobrze komponują się z kwiatami, gałązkami i dekoracjami.",
       "Produkty z tej kategorii celowo nie mają otworów w dnie. Dzięki temu można je zalać gipsem, wypełnić kamieniami, piaskiem lub żwirkiem i wbić w nie gąbkę florystyczną albo sztuczne kwiaty – nic nie wycieknie, a kompozycja stoi stabilnie i nie przewraca się na wietrze.",
     ],
+    subheading: "Misy, doniczki i wkłady do stroików – na Wszystkich Świętych i Boże Narodzenie",
+    sections: [
+      {
+        title: "Co znajdziesz w kategorii „Do stroików”?",
+        paragraphs: [
+          "W ofercie są misy do stroików fi 17 i fi 21 cm w kolorach złotym i antracytowym, doniczki z pełnym dnem fi 10 cm w wielu kolorach (zielone, czarne, żółte, złote, terakota i piaskowe), a także flakony z podstawą i wkłady do wazonów nagrobkowych.",
+          "Złoty i antracytowy kolor szczególnie dobrze współgra z jesiennymi i świątecznymi dekoracjami, a pełne dno pozwala dociążyć kompozycję tak, by nie przewróciła się na cmentarzu ani na tarasie.",
+        ],
+      },
+      {
+        title: "Jak przygotować stroik w misie bez otworów?",
+        paragraphs: [
+          "Wlej do misy gips albo wypełnij ją kamieniami lub piaskiem, aby ją dociążyć, a następnie osadź gąbkę florystyczną lub gałązki i dekoracje. Zalany gips tworzy stabilną bazę, w którą łatwo wbić elementy kompozycji.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Dlaczego misy do stroików nie mają otworów w dnie?",
+        answer: "Pełne dno pozwala zalać misę gipsem lub wypełnić ją kamieniami i piaskiem, bez ryzyka że coś wycieknie. Dzięki temu kompozycja jest stabilna.",
+      },
+      {
+        question: "Czy te misy nadają się na cmentarz?",
+        answer: "Tak. Są lekkie, odporne na stłuczenie i warunki atmosferyczne, a po dociążeniu gipsem lub kamieniami dobrze stoją na zewnątrz.",
+      },
+      {
+        question: "Czy mogę posadzić w nich żywe rośliny?",
+        answer: "Misy z pełnym dnem są przeznaczone głównie do kompozycji ze sztucznych kwiatów, gąbki florystycznej i dekoracji. Do żywych roślin lepiej wybrać misy z otworami drenażowymi z kategorii Misy.",
+      },
+      {
+        question: "Czy sprzedajecie misy do stroików hurtowo?",
+        answer:
+          'Tak, realizujemy zamówienia hurtowe, także dla kwiaciarni i zakładów pogrzebowych. Zadzwoń: <a href="tel:+48608467068">+48 608 467 068</a> lub napisz: <a href="mailto:kontakt.tiplast@gmail.com">kontakt.tiplast@gmail.com</a>.',
+      },
+    ],
   },
 
   // Misy do chryzantem
@@ -141,6 +176,41 @@ export const categoryContent = {
     intro: [
       "Misy do chryzantem mają szeroki, stabilny kształt, który dobrze mieści rozrośnięte chryzantemy, także odmiany trio i tricolor. Sprawdzą się na cmentarzu, przed domem i na balkonie.",
     ],
+    subheading: "Misy do chryzantem – szerokie i stabilne, na jesienne kompozycje",
+    sections: [
+      {
+        title: "Jaką misę wybrać do chryzantemy?",
+        paragraphs: [
+          "Do pojedynczej chryzantemy w standardowej doniczce wystarczy misa fi 17 cm lub 21 cm. Rozrośnięte odmiany, a zwłaszcza chryzantemy trio i tricolor, najlepiej czują się w dużej misie fi 25 cm, która daje im miejsce na rozwój korzeni i stabilnie utrzymuje bujne kwiatostany.",
+          "Misy dostępne są w kolorach terakota, czarnym i białym, więc łatwo dopasować je do miejsca, w którym staną: przed wejściem, na tarasie lub na grobie.",
+        ],
+      },
+      {
+        title: "Dlaczego warto wybrać misy Tiplast do chryzantem?",
+        paragraphs: [
+          "Misy są lekkie, a jednocześnie wytrzymałe i odporne na deszcz, wilgoć i zmiany temperatury, dlatego nie tracą wyglądu w trakcie jesiennej pogody. Otwory drenażowe odprowadzają nadmiar wody i chronią korzenie przed gniciem.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "W jakiej misie posadzić chryzantemę trio?",
+        answer: "Najlepiej w misie fi 25 cm. Chryzantemy trio i tricolor mocno się rozrastają i potrzebują sporo miejsca.",
+      },
+      {
+        question: "Czy misy mają otwory drenażowe?",
+        answer: "Tak, większość mis do chryzantem ma otwory, które odprowadzają nadmiar wody. Dzięki temu korzenie nie gniją po deszczu.",
+      },
+      {
+        question: "Czy mogę ich używać na zewnątrz jesienią?",
+        answer: "Tak. Tworzywo jest odporne na wilgoć, deszcz i niskie temperatury, więc misy dobrze znoszą jesienną pogodę.",
+      },
+      {
+        question: "Czy sprzedajecie misy do chryzantem hurtowo?",
+        answer:
+          'Tak. Realizujemy zamówienia hurtowe, np. dla szkółek i punktów ogrodniczych. Zadzwoń: <a href="tel:+48608467068">+48 608 467 068</a> lub napisz: <a href="mailto:kontakt.tiplast@gmail.com">kontakt.tiplast@gmail.com</a>.',
+      },
+    ],
   },
 
   // Haki, uchwyty
@@ -149,6 +219,38 @@ export const categoryContent = {
     title: "Haki i uchwyty do doniczek i mis wiszących | tiplast.pl",
     description:
       "Haki i uchwyty do zawieszania doniczek i mis wiszących. Wytrzymałe, z tworzywa sztucznego. Polski producent Tiplast.",
+    subheading: "Haki i uchwyty do doniczek wiszących – wytrzymałe i w wielu kolorach",
+    intro: [
+      "Haki i uchwyty Tiplast służą do bezpiecznego zawieszania doniczek i mis wiszących na balkonie, tarasie, pergoli czy w ogrodzie. Wykonane są z trwałego tworzywa, nie rdzewieją i są odporne na deszcz oraz słońce.",
+    ],
+    sections: [
+      {
+        title: "Jak dobrać hak do doniczki wiszącej?",
+        paragraphs: [
+          "Dostępne haki mają długość 48 cm i występują w kolorach: biały, grafitowy, terakota, fuksjowy, szary beż oraz jasnozielony. Możesz dobrać kolor do misy, tak aby całość wyglądała spójnie, albo wybrać wyrazisty akcent, np. fuksję lub zieleń.",
+          "Haki pasują do mis wiszących z naszej oferty, a także do innych doniczek i mis o odpowiedniej średnicy. Przed zakupem upewnij się, że uchwyt pasuje do rozmiaru Twojej misy.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Jaką długość mają haki do doniczek wiszących?",
+        answer: "Haki, uchwyty dostępne w sklepie mają 48 cm długości.",
+      },
+      {
+        question: "Czy haki rdzewieją?",
+        answer: "Nie. Są wykonane z tworzywa sztucznego, które nie koroduje i jest odporne na deszcz, wilgoć i promieniowanie UV.",
+      },
+      {
+        question: "Czy haki pasują do mis wiszących Tiplast?",
+        answer: "Tak, uchwyty są przeznaczone do doniczek i mis wiszących. Wszystkie nasze misy wiszące są sprzedawane w komplecie z hakami, a osobne haki przydadzą się, gdy chcesz mieć zapas lub inny kolor.",
+      },
+      {
+        question: "Czy sprzedajecie haki hurtowo?",
+        answer:
+          'Tak. Realizujemy zamówienia hurtowe. Zadzwoń: <a href="tel:+48608467068">+48 608 467 068</a> lub napisz: <a href="mailto:kontakt.tiplast@gmail.com">kontakt.tiplast@gmail.com</a>.',
+      },
+    ],
   },
 
   // Podstawki
@@ -157,6 +259,95 @@ export const categoryContent = {
     title: "Podstawki do doniczek i mis | tiplast.pl",
     description:
       "Podstawki pod doniczki i misy do kwiatów. Chronią parapety, balkony i tarasy przed wodą. Trwałe tworzywo, różne rozmiary. Polski producent Tiplast.",
+    subheading: "Podstawki pod doniczki i misy – ochrona parapetów, balkonów i tarasów",
+    intro: [
+      "Podstawki Tiplast zbierają wodę, która wypływa otworami drenażowymi, dzięki czemu parapet, balkon czy taras pozostają suche i czyste. Są lekkie, trwałe i odporne na warunki atmosferyczne.",
+    ],
+    sections: [
+      {
+        title: "Do jakich mis pasują podstawki?",
+        paragraphs: [
+          "Podstawki w naszej ofercie pasują pod misy fi 21 i fi 23 cm i występują w kolorach grafitowym, terakota i białym. Dobierz kolor do misy, aby uzyskać spójną aranżację na balkonie lub w ogrodzie.",
+          "Podstawka chroni powierzchnię przed zalaniem i zabrudzeniem, a nadmiar wody można łatwo wylać po podlewaniu lub deszczu.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Pod jakie misy pasują podstawki?",
+        answer: "Podstawki pasują pod misy o średnicy fi 21 i fi 23 cm.",
+      },
+      {
+        question: "Czy podstawki nadają się na zewnątrz?",
+        answer: "Tak. Tworzywo jest odporne na wilgoć, deszcz i promieniowanie UV, więc podstawki sprawdzą się na balkonie, tarasie i w ogrodzie.",
+      },
+      {
+        question: "W jakich kolorach są dostępne podstawki?",
+        answer: "Dostępne są w kolorach grafitowym, terakota i białym, tak jak najpopularniejsze misy.",
+      },
+      {
+        question: "Czy sprzedajecie podstawki hurtowo?",
+        answer:
+          'Tak. Realizujemy zamówienia hurtowe. Zadzwoń: <a href="tel:+48608467068">+48 608 467 068</a> lub napisz: <a href="mailto:kontakt.tiplast@gmail.com">kontakt.tiplast@gmail.com</a>.',
+      },
+    ],
+  },
+
+  // Wazony, flakony
+  12: {
+    heading: "Wazony i flakony",
+    title: "Wazony i flakony z tworzywa – na kwiaty cięte i do dekoracji | tiplast.pl",
+    description:
+      "Wazony i flakony z trwałego tworzywa oraz wkłady do wazonów nagrobkowych. Lekkie, stabilne i odporne na stłuczenie. Polski producent Tiplast.",
+    subheading: "Wazony i flakony – lekkie, stabilne i odporne na stłuczenie",
+    intro: [
+      "Wazony i flakony Tiplast to praktyczne pojemniki na kwiaty cięte, gałązki i kompozycje florystyczne. W przeciwieństwie do szkła i ceramiki nie tłuką się, są lekkie i dobrze znoszą deszcz, słońce oraz mróz, dlatego sprawdzą się zarówno w domu, jak i na zewnątrz.",
+    ],
+    sections: [
+      {
+        title: "Gdzie sprawdzą się wazony i flakony z tworzywa?",
+        paragraphs: [
+          "Wazony nadają się do dekoracji wnętrz, na biurko, parapet i stół, ale też na taras, do ogrodu i na cmentarz. Odporność na stłuczenie i warunki atmosferyczne sprawia, że nie trzeba ich chować po sezonie ani obawiać się porwania przez wiatr, gdy są odpowiednio obciążone.",
+          "Wykończenie w kolorze złota dodaje im elegancji i dobrze pasuje do świątecznych oraz okolicznościowych aranżacji. Stabilna podstawa zapewnia pewne ustawienie także przy wyższych bukietach.",
+        ],
+      },
+      {
+        title: "Wkłady do flakonów – do wazonów nagrobkowych",
+        paragraphs: [
+          "Wkłady do flakonów przeznaczone są głównie do umieszczania w wazonach nagrobkowych. Wkładasz je do wazonu i to w nich trzymasz wodę oraz kwiaty, więc łatwo je wyjąć, opróżnić i umyć, a sam wazon pozostaje czysty. Są dostępne w kilku kolorach, dzięki czemu możesz dopasować je do wazonu.",
+        ],
+      },
+      {
+        title: "Dlaczego warto wybrać wazony Tiplast?",
+        paragraphs: [
+          "Jesteśmy polskim producentem wyrobów z tworzyw sztucznych, więc kontrolujemy jakość od projektu po gotowy wyrób. Realizujemy zamówienia detaliczne i hurtowe, a wysyłka trwa 24 godziny od zamówienia.",
+          "Jeśli potrzebujesz większej ilości wazonów lub flakonów, np. dla kwiaciarni, zakładu pogrzebowego albo firmy dekoratorskiej, skontaktuj się z nami – przygotujemy indywidualną ofertę.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Czy wazony i flakony z tworzywa nadają się na kwiaty cięte?",
+        answer: "Tak. Można w nich trzymać kwiaty cięte w wodzie tak jak w wazonie szklanym lub ceramicznym, a dodatkowo nie stłuką się przy przypadkowym potrąceniu.",
+      },
+      {
+        question: "Czy można ich używać na zewnątrz, np. na cmentarzu lub w ogrodzie?",
+        answer: "Tak. Tworzywo jest odporne na wilgoć, promieniowanie UV i zmiany temperatury. Przy silnym wietrze warto dociążyć wazon, np. kamieniami lub piaskiem.",
+      },
+      {
+        question: "Do czego służą wkłady do flakonów?",
+        answer: "Wkłady przeznaczone są głównie do umieszczania w wazonach nagrobkowych. Woda i kwiaty znajdują się we wkładzie, który łatwo wyjąć, opróżnić i umyć.",
+      },
+      {
+        question: "Czy flakon z podstawą stoi stabilnie sam?",
+        answer: "Tak. Flakony w wersji z podstawą stoją pewnie bez dodatkowych akcesoriów, także przy wyższych bukietach.",
+      },
+      {
+        question: "Czy sprzedajecie wazony i flakony hurtowo?",
+        answer:
+          'Tak. Realizujemy zarówno pojedyncze, jak i hurtowe zamówienia. W sprawie większych ilości zadzwoń: <a href="tel:+48608467068">+48 608 467 068</a> lub napisz: <a href="mailto:kontakt.tiplast@gmail.com">kontakt.tiplast@gmail.com</a>.',
+      },
+    ],
   },
 };
 

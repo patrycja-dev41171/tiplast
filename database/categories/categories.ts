@@ -5,6 +5,7 @@ import misyDoChryzantem from "./misy-do-chryzantem.json";
 import doStroikow from "./do-stroikow.json";
 import podstawki from "./podstawki.json";
 import hakiUchwyty from "./haki-uchwyty.json";
+import wazonyFlakony from "./wazony-flakony.json";
 
 export const categories = [
   misy,
@@ -14,4 +15,5 @@ export const categories = [
   doStroikow,
   podstawki,
   hakiUchwyty,
+  wazonyFlakony,
 ];
